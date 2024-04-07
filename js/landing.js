@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             // Send login request to server
-            const response = await fetch('http://localhost:3002/UserLogin', {
+            const response = await fetch('https://atman.onrender.com/UserLogin', {
                 method: 'POST',
                 body: formData
             });

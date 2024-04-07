@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/responsive.css">
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="./js/doctor/community.js"></script>
 
 
 </head>
@@ -27,7 +28,7 @@
 				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
 			</span>
 			<span class="mh-text">
-				<a href="newsfeed.html" title=""><img src="images/logo2.png" alt=""></a>
+				<a href="community.html" title=""><img src="images/logo2.png" alt=""></a>
 			</span>
 			<span class="mh-btns-right">
 				<a class="fa fa-sliders" href="#shoppingbag"></a>
@@ -48,7 +49,7 @@
 						<li><a href="index-company.html" title="">Home Company</a></li>
 						<li><a href="landing.html" title="">Login page</a></li>
 						<li><a href="doctorlogout.html" title="">Logout Page</a></li>
-						<li><a href="newsfeed.html" title="">news feed</a></li>
+						<li><a href="community.html" title="">news feed</a></li>
 					</ul>
 				</li>
 				<li><span>Time Line</span>
@@ -222,7 +223,7 @@
 				</form>
 			</div>
 			<ul class="setting-area">
-				<li><a href="newsfeed2.html" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+				<li><a href="community.html" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
 				
 				
 					
@@ -320,7 +321,7 @@
 	<div class="fixed-sidebar left">
 		<div class="menu-left">
 			<ul class="left-menu">
-				<li><a href="newsfeed.html" title="Newsfeed Page" data-toggle="tooltip" data-placement="right"><i class="ti-magnet"></i></a></li>
+				<li><a href="community.html" title="Newsfeed Page" data-toggle="tooltip" data-placement="right"><i class="ti-magnet"></i></a></li>
 				<li><a href="fav-page.html" title="favourit page" data-toggle="tooltip" data-placement="right"><i class="fa fa-star-o"></i></a></li>
 				<li><a href="insights.html" title="Account Stats" data-toggle="tooltip" data-placement="right"><i class="ti-stats-up"></i></a></li>
 				<li><a href="inbox.html" title="inbox" data-toggle="tooltip" data-placement="right"><i class="ti-import"></i></a></li>
@@ -378,36 +379,138 @@
 							</div>
 							<!-- sidebar -->
 							<div class="col-lg-6">
-
-								<div id="appointments"> 
-							
 								<div class="central-meta">
 									<div class="new-postbox">
-										<div class="p-5">
-											<img src="images/resources/admin2.jpg" alt="">
+										<figure>
+											<img src="images/resources/admin2.jpg" alt>
+										</figure>
+										<div class="newpst-input">
+											<form id="createPostForm">
+												<textarea rows="1" placeholder="enter title" type="text"
+													id="title" name="title"></textarea>
+												<textarea rows="2" placeholder="write something" id="description"
+													name="description"></textarea>
+												<div class="attachments">
+													<ul>
+
+														<li>
+															<i class="fa fa-image"></i>
+															<label class="fileContainer">
+																<input type="file" id="image" name="image" accept="image/*">
+															</label>
+														</li>
+
+														<li>
+
+															<input type="hidden" name="uid" id="uid" value>
+														</li>
+														<li>
+															<button type="reset">Reset</button>
+															<button type="submit">Post</button>
+														</li>
+													</ul>
+												</div>
+											</form>
+											<img id="imagePreview" src="#" alt="Image Preview"
+												style="max-width: 100%;display: none;">
+
 										</div>
-										<div class="newpst-input p-5 groups">
-											<h5>Name: </h5>
-											<h5>Gender:</h5>
-											<h5>Age :</h5>
-											<h5>Ocupation:</h5>
-											<span></i>time slot : </span>
-										</div>
-										
 									</div>
-									
+								</div><!-- add post new box -->
+								<div class="loadMore">
+
+									<div class="central-meta item" id="posts-container">
+
+										<div class="user-post">
+											<div class="friend-info">
+												<figure>
+													<img src="images/resources/friend-avatar10.jpg" alt>
+												</figure>
+												<div class="friend-name">
+													<ins><a href="time-line.html" title>Janice Griffith</a></ins>
+													<span>published: june,2 2018 19:PM</span>
+												</div>
+												<div class="post-meta">
+													<img src="images/resources/user-post.jpg" alt>
+													<div class="we-video-info">
+														<ul>
+
+															<li>
+																<span class="like" data-toggle="tooltip" title="like">
+																	<i class="ti-heart"></i>
+																	<ins>2.2k</ins>
+																</span>
+															</li>
+
+															<li class="social-media">
+																<div class="menu">
+																	<div class="btn trigger"><i
+																			class="fa fa-share-alt"></i></div>
+																	<div class="rotater">
+																		<div class="btn btn-icon"><a href="#" title><i
+																					class="fa fa-html5"></i></a></div>
+																	</div>
+																	<div class="rotater">
+																		<div class="btn btn-icon"><a href="#" title><i
+																					class="fa fa-facebook"></i></a></div>
+																	</div>
+																	<div class="rotater">
+																		<div class="btn btn-icon"><a href="#" title><i
+																					class="fa fa-google-plus"></i></a></div>
+																	</div>
+																	<div class="rotater">
+																		<div class="btn btn-icon"><a href="#" title><i
+																					class="fa fa-twitter"></i></a></div>
+																	</div>
+																	<div class="rotater">
+																		<div class="btn btn-icon"><a href="#" title><i
+																					class="fa fa-css3"></i></a></div>
+																	</div>
+																	<div class="rotater">
+																		<div class="btn btn-icon"><a href="#" title><i
+																					class="fa fa-instagram"></i></a>
+																		</div>
+																	</div>
+																	<div class="rotater">
+																		<div class="btn btn-icon"><a href="#" title><i
+																					class="fa fa-dribbble"></i></a>
+																		</div>
+																	</div>
+																	<div class="rotater">
+																		<div class="btn btn-icon"><a href="#" title><i
+																					class="fa fa-pinterest"></i></a>
+																		</div>
+																	</div>
+
+																</div>
+															</li>
+														</ul>
+													</div>
+													<div class="description">
+
+														<p>
+															World's most beautiful car in Curabitur <a href="#" title>#test
+																drive booking !</a> the most beatuiful car available in
+															america and the saudia arabia, you can book your test drive by
+															our official website
+														</p>
+													</div>
+												</div>
+											</div>
+
+										</div>
+</div>
 								</div>
-								
 							</div>
-							</div>
-							<div class="col-lg-3 ">
+						
+							<div class="col-lg-3">
 								<aside class="sidebar static right">
 									<div class="widget">
 										<h4 class="widget-title">Shortcuts</h4>
 										<ul class="naves">
 											<li>
 												<i class="ti-clipboard"></i>
-												<a href="newsfeed2.html" title="">News feed</a>
+												<a href="community.html" title="">News feed</a>
 											</li>
 											<li>
 												<i class="ti-mouse-alt"></i>
@@ -420,6 +523,10 @@
 												<i class="ti-comments-smiley"></i>
 												<a href="chatting.html" title="">Messages</a>
 											</li>
+											<li>
+												<i class="ti-comments-smiley"></i>
+												<a href="clients.html" title="">Students</a>
+											</li>
 											
 											
 											
@@ -429,33 +536,9 @@
 											</li>
 										</ul>
 									</div><!-- Shortcuts -->
-									<div class="widget">
-										<h4 class="widget-title">Recent Activity</h4>
-										<ul class="activitiez">
-											<li>
-												<div class="activity-meta">
-													<i>10 hours Ago</i>
-													<span><a href="#" title="">Commented on Video posted </a></span>
-													<h6>by <a href="time-line.html">black demon.</a></h6>
-												</div>
-											</li>
-											<li>
-												<div class="activity-meta">
-													<i>30 Days Ago</i>
-													<span><a href="#" title="">Posted your status. “Hello guys, how are you?”</a></span>
-												</div>
-											</li>
-											<li>
-												<div class="activity-meta">
-													<i>2 Years Ago</i>
-													<span><a href="#" title="">Share a video on her timeline.</a></span>
-													<h6>"<a href="#">you are so funny mr.been.</a>"</h6>
-												</div>
-											</li>
-										</ul>
-									</div><!-- recent activites -->
 									
-								</aside>
+									
+								
 							</div><!-- centerl meta -->
 							<!-- sidebar -->
 						</div>	
@@ -543,7 +626,6 @@
 	<script src="js/main.min.js"></script>
 	<script src="js/script.js"></script>
 	<script src="js/map-init.js"></script>
-	<script src="./js/doctor/appointments.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
 
 </body>	

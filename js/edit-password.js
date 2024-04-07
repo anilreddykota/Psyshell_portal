@@ -25,7 +25,7 @@ async function updatePassword() {
 
     try {
         // Send POST request using Axios with async/await
-        const response = await axios.post('http://localhost:3001/change-password', requestBody);
+        const response = await axios.post('https://atman.onrender.com/change-password', requestBody);
 
         // Check if response status is ok
         if (response.status !== 200) {

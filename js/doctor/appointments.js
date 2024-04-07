@@ -1,18 +1,40 @@
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('appointments').innerHTML = "<div class='text-center card text-danger'> no appointments found</div>";
+   
+
+
+    var approvedAppointments = [];
+    var pendingAppointments = [];
 
     async function getAppointments() {
         const puid = localStorage.puid;
         try {
-            const response = await axios.post('http://localhost:3001/getAppointmentsByDoctor', { puid });
+            const response = await axios.post('https://atman.onrender.com/getAppointmentsByDoctor', { puid });
             const appointments = response.data;
             console.log(appointments);
 
             if(appointments){
-                displayAppointments([...appointments.approvedAppointments,...appointments.pendingAppointments] );
+                approvedAppointments = [...appointments.approvedAppointments]
+                pendingAppointments = [...appointments.pendingAppointments]  
+                displayAppointments([...appointments.approvedAppointments] );
+                document.getElementById('approvedbtn').addEventListener('click', () => {
+                    console.log('clicked approvalbtn');
+                    displayAppointments(approvedAppointments);
+                    document.getElementById('approvedbtn').classList.remove('slot');
+                    document.getElementById('pendingbtn').classList.add('slot');
+                });
+                
+                document.getElementById('pendingbtn').addEventListener('click', () => {
+                    document.getElementById('pendingbtn').classList.remove('slot');
+                    document.getElementById('approvedbtn').classList.add('slot');
+                    displayAppointments(pendingAppointments);
+                });
+                
+
 
             }else{
                 document.getElementById('appointments').textContent = 'No appointments found for this doctor.';
+                document.getElementById('buttons-div').style.display = 'none';
 
             }
          
@@ -22,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function displayAppointments(appointments) {
-        console.log(appointments);
         const appointmentsDiv = document.getElementById('appointments');
         document.getElementById('appointments').innerHTML = "";
 

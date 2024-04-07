@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('popup-button').textContent = setmood(mood) || "open";
 
         try {
-            const response = await axios.post('http://localhost:3001/submit-daily-mood', {
+            const response = await axios.post('https://atman.onrender.com/submit-daily-mood', {
                 uid: uid,
                 answer: mood,
             })

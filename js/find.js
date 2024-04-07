@@ -14,7 +14,7 @@ if(!docValue)
 }
 
 
-fetch("http://localhost:3002/admin/doctors", {
+fetch("https://atman.onrender.com/admin/doctors", {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',

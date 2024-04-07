@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function logout() {
         window.location.href = 'landing.html';
         localStorage.clear();
-        axios.post('http://localhost:3002/logout', null, {
+        axios.post('https://atman.onrender.com/logout', null, {
             headers: {
                 'Authorization': `Bearer ${localStorage.token}` // Replace with your actual token
             }

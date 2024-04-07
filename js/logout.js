@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 uid: localStorage.uid
             };
     
-            const response = await axios.post('http://localhost:3002/logout-user', body);
+            const response = await axios.post('https://atman.onrender.com/logout-user', body);
     
             // Handle logout success response
 
@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Handle logout error
             console.error('Logout failed');
             console.error(error); // Optionally, you can handle the error response here
+            localStorage.clear();
+                window.location.href = 'landing.html';
         }
     }
     

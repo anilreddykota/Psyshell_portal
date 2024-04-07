@@ -1,5 +1,5 @@
 
-const uid = localStorage.uid;
+const puid = localStorage.puid;
 
 
 
@@ -41,7 +41,7 @@ fetch('https://atman.onrender.com/get-newsfeed')
                                     <ul>
                                         <li>
                                             <span class="like" data-toggle="tooltip" title="like">
-                                                 <i class="ti-heart like-btn text-${post?.likedBy?.likes[uid] == true ? 'danger' : 'success'}" key="${post.postId}" isliked="${!!post?.likedBy?.likes[uid]}"></i>
+                                                 <i class="ti-heart like-btn text-${post?.likedBy?.likes[puid] == true ? 'danger' : 'success'}" key="${post.postId}" isliked="${!!post?.likedBy?.likes[puid]}"></i>
                                                 
                                                 <p><span class="ins" key="${post.postId}" >${post.likesCount}</span></p>
                                             </span>
@@ -60,7 +60,7 @@ fetch('https://atman.onrender.com/get-newsfeed')
 
         document.getElementById('posts-container').innerHTML += postHTML;
         const likeButtons = document.querySelectorAll('.like-btn');
-        if (uid){
+        if (puid){
           
         
         likeButtons?.forEach(like => {
@@ -69,10 +69,10 @@ fetch('https://atman.onrender.com/get-newsfeed')
               const uniqueKey = like.getAttribute('key');
               const isLiked = like.getAttribute('isliked');
               const ins = document.querySelector(`.ins[key="${uniqueKey}"]`);
-              const uid = localStorage.getItem('uid');
+              const puid = localStorage.getItem('puid');
               const queryParams = new URLSearchParams();
               queryParams.append('postid', uniqueKey);
-              queryParams.append('uid', uid);
+              queryParams.append('uid', puid);
               let url;
 
 
@@ -147,15 +147,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const description = document.getElementById('description').value.trim();
     const image1 = document.getElementById('image')?.files[0];
 
-    const uid = localStorage.uid;
+    const puid = localStorage.puid;
     if (!title || !description || !image1) {
       alert('Please fill in all fields');
       return;
     }
 
-    // Set UID value
+    // Set puid value
 
-    document.getElementById('uid').value = uid;
+    document.getElementById('uid').value = puid;
 
     // Create FormData object
     const formData = new FormData(this);

@@ -1,4 +1,4 @@
-const socket = io('http://localhost:3002');
+const socket = io('https://atman.onrender.com:3002');
 
 
 if(!getParams()['puid']){

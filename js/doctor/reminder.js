@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     async function getAppointments() {
         const puid = localStorage.puid;
         try {
-            const response = await axios.post('http://localhost:3001/getAppointmentsByDoctor', { puid });
+            const response = await axios.post('https://atman.onrender.com/getAppointmentsByDoctor', { puid });
             const appointments = response.data;
             console.log(appointments);
             approvedAppointments = [...appointments.approvedAppointments];
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         try {
-            const response = await axios.post('http://localhost:3001/api/sendmessages', {
+            const response = await axios.post('https://atman.onrender.com/api/sendmessages', {
                 puid: puid,
                 uids: uids,
                 message: message

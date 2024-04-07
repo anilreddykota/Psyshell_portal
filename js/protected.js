@@ -5,7 +5,7 @@ async function fetchProtectedRoute(token) {
         return false
     }
     try {
-        const response = await fetch('http://localhost:3002/protected-route-user', {
+        const response = await fetch('https://atman.onrender.com/protected-route-user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

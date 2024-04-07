@@ -3,14 +3,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var approvedAppointments = [];
 
+
     async function getAppointments() {
         const puid = localStorage.puid;
         try {
-            const response = await axios.post('http://localhost:3001/getAppointmentsByDoctor', { puid });
+            const response = await axios.post('https://atman.onrender.com/getAppointmentsByDoctor', { puid });
             const appointments = response.data;
             console.log(appointments);
-            approvedAppointments = [...appointments.approvedAppointments];
-            displayAppointments([...appointments.approvedAppointments]);
+            approvedAppointments = [...appointments.approvedAppointments,...appointments.addedAppointmentsData];
+            displayAppointments([...appointments.approvedAppointments,...appointments.addedAppointmentsData]);
         } catch (error) {
             console.error('Error fetching appointments:', error);
         }
@@ -35,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
             appointmentsDiv.textContent = 'No appointments found for this doctor.';
         } else {
             appointments.map(appointment => {
-                console.log(appointment);
                 const appointmentHTML = `
                 <li class="unread appointment" data-uid="${appointment.uid}">
                 <div class="d-flex">
@@ -59,10 +59,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('selectedstudent').style.display = 'none';
              document.querySelectorAll('.appointment').forEach(item => {
                 document.getElementById('selectedstudent').style.display = 'block';
-        console.log(item);
         item.addEventListener('click', event => {
- 
-
+            window.location.hash = "#selectedstudent";
             const selectedUserId = event.currentTarget.dataset.uid;
             const selectedUser = approvedAppointments.find(appointment => appointment.uid === selectedUserId);
             if (selectedUser) {
@@ -75,9 +73,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     { label: 'Gender', value: userDetails.gender },
                     { label: 'Age', value: userDetails.age },
                     { label: 'Occupation', value: userDetails.occupation },
-                    { label: 'Relationship Status', value: userDetails.relationshipStatus },
-                    { label: 'Languages Spoken', value: userDetails.languagesSpoken?.join(', ') },
-                    { label: 'Contact Details', value: userDetails.contactDetails }
+                    { label: 'Relationship Status', value: userDetails.relationshipstatus },
+                    { label: 'Languages Spoken', value: userDetails.languagesSpoken?.join(', ') || userDetails.language },
+                    { label: 'Contact Details', value: userDetails.email }
                 ];
                 let userHTML = '';
                 userFields.forEach(field => {
