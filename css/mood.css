@@ -1,0 +1,56 @@
+.popup-container {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: -100%; /* Start off-screen */
+    right: 0;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 300px;
+    transition: top 0.5s ease; /* Transition for smooth movement */
+}
+
+.popup-container.active {
+    display: block;
+    top: 0; /* Slide in from the top */
+}
+
+/* Styles for the popup button */
+.popup-button {
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+/* Mood modal */
+.mood-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    border-radius: 20px;
+    padding: 35px 0px;
+    display: none; /* Initially hidden */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.mood-modal.active {
+    display: block; /* Show the modal when active */
+}
+.emojis-container{
+    border-radius: 20px !important;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
