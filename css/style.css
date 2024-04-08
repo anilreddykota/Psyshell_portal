@@ -1434,6 +1434,16 @@ img {
     background-color: #80e2fb;
     color: black;
 }
+#land-buttons{
+    position: fixed;
+    bottom: 75px;
+    left: 50%;
+    transform: translate(-40%,50px);
+}
+a[href^="#"] {
+    scroll-behavior: smooth;
+  }
+
 
 .users-data::-webkit-scrollbar {
     display: none;

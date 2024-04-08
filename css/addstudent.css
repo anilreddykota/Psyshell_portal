@@ -9,4 +9,107 @@
     z-index: 9998;
 }
 
+.features {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .feature {
+    padding: 10px;
+    cursor: pointer;
+  }
+  .hidden {
+    display: none !important;
+  }
+  .modal {
+  
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+   
+
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+  .add-notes-overlay {
+    display: none   ;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9998;
+}
+.edit-notes-overlay {
+    display: none ;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9998;
+}
+  
+.show{
+    display: block;
+}
+.widget-task {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .task-checkbox {
+    margin-right: 10px;
+  }
+  
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 25px;
+    color: black;
+}
+
+.streak-day {
+    background-color: green;
+    color: white;
+}
+
+.calendar-day:not(.streak-day):empty {
+    background-color: white;
+    color: darkblue;
+}
+
 

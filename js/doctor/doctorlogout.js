@@ -16,24 +16,33 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }, 1000);
 
-    function logout() {
-        window.location.href = 'landing.html';
-        localStorage.clear();
-        axios.post('https://atman.onrender.com/logout', null, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.token}` // Replace with your actual token
-            }
-        })
-        .then(function (response) {
+    async function logout() {
+        console.log('called logout');
+        try {
+            const body = {
+                puid: localStorage.puid
+            };
+            console.log('called logout');
+
+            const response = await axios.post('http://localhost:3001/psychologistLogout', body);
+            console.log('called logout');
+
             // Handle logout success response
-            document.getElementById('logoutHeading').textContent = 'Logged out successfully';
-            console.log('Logout successful');
+console.log(response);
+            if(response.data?.message ==="Logout successful")
+            {
+                console.log('Logout successful');
+                localStorage.clear();
+                window.location.href = 'landing.html';
+            }
            
-        })
-        .catch(function (error) {
+        } catch (error) {
             // Handle logout error
             console.error('Logout failed');
             console.error(error); // Optionally, you can handle the error response here
-        });
+            localStorage.clear();
+                window.location.href = 'landing.html';
+        }
     }
+    
 });

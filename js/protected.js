@@ -1,6 +1,7 @@
 async function fetchProtectedRoute(token) {
      // Show loading animation before making the request
-    if (!token){
+     showLoadingAnimation();
+    if (!token || !localStorage.uid){
         window.location.href = 'logout.html';
         return false
     }
@@ -28,29 +29,34 @@ async function fetchProtectedRoute(token) {
             console.log(error);
             // window.location.href = 'logout.html'; // Redirect to logout.html for unauthorized access
         }
+    }finally{
+        hideLoadingAnimation();
     }
 }
 
 function showLoadingAnimation() {
-    // const loadingDiv = document.createElement('div');
-    // loadingDiv.textContent = 'Loading...';
-    // loadingDiv.style.position = 'fixed';
-    // loadingDiv.style.top = '50%';
-    // loadingDiv.style.left = '50%';
-    // loadingDiv.style.transform = 'translate(-50%, -50%)';
-    // loadingDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-    // loadingDiv.style.padding = '20px';
-    // loadingDiv.style.borderRadius = '5px';
-    // loadingDiv.style.zIndex = '9999';
-    // document.body.appendChild(loadingDiv);
+    console.log('Loading animation');
+    const loadingDiv = document.createElement('div');
+    loadingDiv.classList.add('loading-div');
+    loadingDiv.textContent = 'Loading...';
+    loadingDiv.style.position = 'fixed';
+    loadingDiv.style.top = '50%';
+    loadingDiv.style.left = '50%';
+    loadingDiv.style.transform = 'translate(-50%, -50%)';
+    loadingDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+    loadingDiv.style.padding = '20px';
+    loadingDiv.style.borderRadius = '5px';
+    loadingDiv.style.zIndex = '9999';
+    document.head.appendChild(loadingDiv);
 }
 
 // Function to remove loading animation
 function hideLoadingAnimation() {
-    // const loadingDiv = document.querySelector('.loading-div');
-    // if (loadingDiv) {
-    //     loadingDiv.remove();
-    // }
+    console.log('hideded');
+    const loadingDiv = document.querySelector('.loading-div');
+    if (loadingDiv) {
+        loadingDiv.remove();
+    }
 }
 
 // Example usage:

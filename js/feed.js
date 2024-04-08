@@ -23,7 +23,6 @@ fetch('https://atman.onrender.com/get-newsfeed')
           minute: '2-digit',
           second: '2-digit'
         });
-        console.log(post);
         const postHTML = `<div class="central-meta item" >
                     <div class="user-post">
                         <div class="friend-info">

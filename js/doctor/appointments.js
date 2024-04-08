@@ -20,14 +20,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('approvedbtn').addEventListener('click', () => {
                     console.log('clicked approvalbtn');
                     displayAppointments(approvedAppointments);
-                    document.getElementById('approvedbtn').classList.remove('slot');
-                    document.getElementById('pendingbtn').classList.add('slot');
+                    document.getElementById('pendingbtn').classList.remove('slot');
+                    document.getElementById('approvedbtn').classList.add('slot');
+                   
                 });
                 
                 document.getElementById('pendingbtn').addEventListener('click', () => {
-                    document.getElementById('pendingbtn').classList.remove('slot');
-                    document.getElementById('approvedbtn').classList.add('slot');
+                   
                     displayAppointments(pendingAppointments);
+                    document.getElementById('approvedbtn').classList.remove('slot');
+                    document.getElementById('pendingbtn').classList.add('slot');
                 });
                 
 
