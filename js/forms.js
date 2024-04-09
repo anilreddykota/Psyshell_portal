@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
 
             // Post the login data to the server using Axios
-            const response = await axios.post('http://localhost:3001/UserLogin', loginData);
+            const response = await axios.post('https://atman.onrender.com/UserLogin', loginData);
 
             if (response.data.message === 'Login successful') {
                 localStorage.clear();
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             // Post the registration data to the server using Axios
-            const response = await axios.post('http://localhost:3001/registerUseronweb', registrationData);
+            const response = await axios.post('https://atman.onrender.com/registerUseronweb', registrationData);
 
             // Handle success response
 
