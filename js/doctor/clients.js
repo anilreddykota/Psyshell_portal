@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var approvedAppointments = [];
 
-
-
     async function getAppointments() {
         const puid = localStorage.puid;
         try {
@@ -80,25 +78,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     graphdata = response;
                     console.log(graphdata.data);
-                  if(response.data.message ==='No mood data found for the specified user.'){
-                    console.log(response.data.message);
-                    document.getElementById('no-graph-message').innerHTML =response.data.message;
-                    document.getElementById('moodChart').innerHTML = "";
-                    document.getElementById('streak-data').innerHTML = "";
-                    if (moodChart) {
-                        // If an existing chart instance exists, destroy it
-                        moodChart.destroy();
+                    if (response.data.message === 'No mood data found for the specified user.') {
+                        console.log(response.data.message);
+                        document.getElementById('no-graph-message').innerHTML = response.data.message;
+                        document.getElementById('moodChart').innerHTML = "";
+                        document.getElementById('streak-data').innerHTML = "";
+                        if (moodChart) {
+                            // If an existing chart instance exists, destroy it
+                            moodChart.destroy();
+                        }
+
+                    } else {
+                        displayMoodChart();
+                        streakdata(response.data.longestStreak, response.data.currentStreak);
+                        document.getElementById('no-graph-message').innerHTML = "";
+
                     }
-                    
-                  }else{
-                    displayMoodChart();
-                    streakdata(response.data.longestStreak, response.data.currentStreak);
-                    document.getElementById('no-graph-message').innerHTML ="";
-
-                  }
 
 
-                    
+
 
 
                     if (selectedUser) {
@@ -170,7 +168,7 @@ function showFeature(featureNum) {
     // Show only the clicked feature
     document.getElementById('feature' + featureNum).classList.remove('hidden');
 
-   
+
 }
 
 
@@ -308,7 +306,7 @@ function displayMoodChart() {
                             3: "😞 Bad",
                             4: "😄 Happy",
                             5: "😊 Amazing",
-                            
+
                         };
                         return labelMap[value] || value;
                     }
@@ -327,7 +325,7 @@ function displayMoodChart() {
         }
     };
 
-     moodChart = new Chart(ctx, {
+    moodChart = new Chart(ctx, {
         type: 'line',
         data: data,
         options: options
@@ -341,17 +339,17 @@ function streakdata(longest, current) {
     const datesCurrent = current.dates;
 
     // Function to format dates as "Month Day, Year"
- // Function to format dates as "Month Day, Year"
-const formatDate = (date) => {
-    const options = { month: 'short', day: 'numeric', year: 'numeric' };
-    return new Date(date).toLocaleDateString('en-US', options);
-};
+    // Function to format dates as "Month Day, Year"
+    const formatDate = (date) => {
+        const options = { month: 'short', day: 'numeric', year: 'numeric' };
+        return new Date(date).toLocaleDateString('en-US', options);
+    };
 
 
     // Generate calendar HTML
     const generateCalendarHTML = (dates) => {
 
-        
+
         const calendar = {};
 
         // Initialize calendar object
@@ -368,7 +366,7 @@ const formatDate = (date) => {
             const key = formatDate(date);
             const isStreakDay = calendar[key] ? 'streak-day' : '';
             const isCompletedDay = calendar[key] ? '' : (date <= today ? 'completed-day' : ''); // Check if day is completed (past)
-            html += `<div class="calendar-day ${isStreakDay} ${isCompletedDay}">${ date.getDate() }</div>`;
+            html += `<div class="calendar-day ${isStreakDay} ${isCompletedDay}">${date.getDate()}</div>`;
         }
         html += '</div>';
         return html;

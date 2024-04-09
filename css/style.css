@@ -1444,6 +1444,32 @@ a[href^="#"] {
     scroll-behavior: smooth;
   }
 
+  .spinner-loading{
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+      height : 100px;
+      width : 100px;
+      border-radius : 50%;
+      z-index: 9999;
+      border : 10px solid white;    
+      border-top-color : #0077b5;
+      animation : spin-l 1s linear infinite;
+    }
+    
+    @keyframes spin-l{
+      0%{
+        transform : rotate(0deg);
+      }
+      100%{
+        transform : rotate(360deg);
+      }
+    }
+
+
+
 
 .users-data::-webkit-scrollbar {
     display: none;

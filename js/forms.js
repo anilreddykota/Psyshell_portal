@@ -1,12 +1,12 @@
+const loadingdiv = document.getElementById('loading-div');
 document.addEventListener('DOMContentLoaded', function () {
-
 
     localStorage.clear();
     const loginForm = document.getElementById('loginFormu');
 
     loginForm.addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent the default form submission behavior
-
+        loadingdiv.classList.add('spinner-loading');
         const username = document.getElementById('username').value?.trim();
         const password = document.getElementById('password').value;
         const rememberMe = document.getElementById('rememberMe').checked;
@@ -20,8 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
 
             // Post the login data to the server using Axios
-            const response = await axios.post('https://atman.onrender.com/UserLogin',loginData);
-            console.log('came here', response);
+            const response = await axios.post('http://localhost:3001/UserLogin', loginData);
 
             if (response.data.message === 'Login successful') {
                 localStorage.clear();
@@ -29,26 +28,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 localStorage.setItem('nickname', response.data.userData?.nickname)
                 localStorage.setItem('token', response.data.userData.token)
                 alert(response.data.message);
-                console.log(response.data.token);
 
 
                 window.location.href = 'index.html';
 
+            } else {
+                alert(response.data.message);
             }
 
         } catch (error) {
             // Handle error
-            console.error('Login failed',error);
+            console.error('Login failed', error);
+        } finally {
+            loadingdiv.classList.remove('spinner-loading');
+
         }
     });
 });
 document.addEventListener('DOMContentLoaded', function () {
     const registerForm = document.getElementById('registeru');
-    console.log(registerForm);
 
     registerForm.addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent the default form submission behavior
-        console.log(event); //
+        loadingdiv.classList.add('spinner-loading');
+
         const nickname = document.querySelector('input[name="unickname"]').value;
         const email = document.querySelector('input[name="uemail"]').value;
         const password = document.querySelector('input[name="upassword"]').value;
@@ -71,13 +74,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             // Post the registration data to the server using Axios
-            const response = await axios.post('https://atman.onrender.com/registerUseronweb', registrationData);
+            const response = await axios.post('http://localhost:3001/registerUseronweb', registrationData);
 
             // Handle success response
 
             // Optionally, you can handle the response data here
             if (response.data.message) {
                 alert('student registration successful', response.data.message);
+                window.location.reload();
             } else if (response.data.message === 'nickname already exist') {
                 alert(response.data.message)
             }
@@ -91,14 +95,17 @@ document.addEventListener('DOMContentLoaded', function () {
         } catch (error) {
             // Handle error
             console.log(error);
+        } finally {
+            loadingdiv.classList.remove('spinner-loading');
+
         }
     });
     const register = document.getElementById('registerp');
-    console.log(register);
 
     register.addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent the default form submission behavior
-        console.log(event); //
+        loadingdiv.classList.add('spinner-loading');
+
         const nickname = document.querySelector('input[name="nname"]').value;
         const email = document.querySelector('input[name="email"]').value;
         const password = document.querySelector('input[name="password"]').value;
@@ -141,8 +148,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         } catch (error) {
             // Handle error
-           
+
             console.log(error);
+        } finally {
+            loadingdiv.classList.remove('spinner-loading');
+
         }
     });
 });
@@ -151,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     loginForm.addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent the default form submission behavior
+        loadingdiv.classList.add('spinner-loading');
 
         const username = document.getElementById('input').value?.toLowerCase().trim();
         const password = document.querySelector('input[type="password"]').value;
@@ -162,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function () {
             password: password,
 
         };
-        console.log(loginData);
 
         try {
             // Post the login data to the server using Axios
@@ -171,22 +181,20 @@ document.addEventListener('DOMContentLoaded', function () {
             // Handle success response
             if (response.data.message === 'Login successful') {
                 localStorage.clear();
-                console.log(response.data);
                 localStorage.setItem('puid', response.data.userData.uid);
                 localStorage.setItem('nickname', response.data.userData?.nickname);
                 localStorage.setItem('token', response.data.userData?.token);
 
                 window.location.href = '/index2.html';
-
-
-
-
             }
             alert(response.data.message);// Optionally, you can handle the response data here
         } catch (error) {
             // Handle error
             console.error('Login failed');
             console.error(error); // Optionally, you can handle the error response here
+        } finally {
+            loadingdiv.classList.remove('spinner-loading');
+
         }
     });
 });
