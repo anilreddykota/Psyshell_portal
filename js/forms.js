@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
             password: password,
 
         };
-
         try {
 
             // Post the login data to the server using Axios
@@ -153,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loginForm.addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent the default form submission behavior
 
-        const username = document.getElementById('input').value;
+        const username = document.getElementById('input').value?.toLowerCase().trim();
         const password = document.querySelector('input[type="password"]').value;
         const rememberMe = document.querySelector('input[type="checkbox"]').checked;
 
@@ -163,6 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
             password: password,
 
         };
+        console.log(loginData);
 
         try {
             // Post the login data to the server using Axios
