@@ -2,7 +2,7 @@ async function fetchProtectedRoute(token) {
      // Show loading animation before making the request
      showLoadingAnimation();
     if (!token || !localStorage.uid){
-        window.location.href = 'logout.html';
+        window.location.href = 'landing.html';
         return false
     }
     try {

@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
 
             // Post the login data to the server using Axios
-            const response = await axios.post('http://localhost:3001/UserLogin',loginData);
+            const response = await axios.post('https://atman.onrender.com/UserLogin',loginData);
             console.log('came here', response);
 
             if (response.data.message === 'Login successful') {
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             // Post the registration data to the server using Axios
-            const response = await axios.post('http://localhost:3001/registerUseronweb', registrationData);
+            const response = await axios.post('https://atman.onrender.com/registerUseronweb', registrationData);
 
             // Handle success response
 
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             // Post the registration data to the server using Axios
-            const response = await axios.post('http://localhost:3001/registerPsychologistonweb', registrationData);
+            const response = await axios.post('https://atman.onrender.com/registerPsychologistonweb', registrationData);
 
             // Handle success response
 
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             // Post the login data to the server using Axios
-            const response = await axios.post('http://localhost:3001/psychologistLogin', loginData);
+            const response = await axios.post('https://atman.onrender.com/psychologistLogin', loginData);
 
             // Handle success response
             if (response.data.message === 'Login successful') {

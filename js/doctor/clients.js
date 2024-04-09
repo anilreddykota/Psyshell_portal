@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     window.location.hash = "#selectedstudent";
                     const selectedUserId = event.currentTarget.dataset.uid;
                     const selectedUser = approvedAppointments.find(appointment => appointment.uid === selectedUserId);
-                    const response = await axios.post('http://localhost:3001/get-analysis-of-student', { uid: selectedUser.uid })
+                    const response = await axios.post('https://atman.onrender.com/get-analysis-of-student', { uid: selectedUser.uid })
 
 
 

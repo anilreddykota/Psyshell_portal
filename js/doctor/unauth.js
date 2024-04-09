@@ -1,11 +1,11 @@
 async function fetchProtectedRoute(token) {
     // Show loading animation before making the request
    if (!token || !localStorage.puid){
-       window.location.href = 'doctorlogout.html';
+       window.location.href = 'landing.html';
        return false
    }
    try {
-       const response = await fetch('http://localhost:3001/protected-route-doctor', {
+       const response = await fetch('https://atman.onrender.com/protected-route-doctor', {
        method: 'POST',
        headers: {
            'Content-Type': 'application/json'

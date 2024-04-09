@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             };
             console.log('called logout');
 
-            const response = await axios.post('http://localhost:3001/psychologistLogout', body);
+            const response = await axios.post('https://atman.onrender.com/psychologistLogout', body);
             console.log('called logout');
 
             // Handle logout success response
