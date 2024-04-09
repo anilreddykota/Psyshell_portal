@@ -1,4 +1,4 @@
-const socket = io('https://atman.onrener.com');
+const socket = io('https://atman.onrender.com');
 
 
 if(!getParams()['puid']){
