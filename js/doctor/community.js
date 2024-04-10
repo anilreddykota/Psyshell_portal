@@ -3,7 +3,7 @@ const puid = localStorage.puid;
 
 
 
-fetch('http://localhost:3002/get-newsfeed')
+fetch('http://atman.onrender.com/get-newsfeed')
   .then(response => response.json())
   .then(data => {
     // Process the received JSON data
@@ -244,7 +244,7 @@ async function addcomment(postid, puid) {
     showToast("Please enter a comment.");
     return;
   }
-  const response = await axios.post('http://localhost:3002/doctor/addcomment', { comment: commentText, puid: puid, postid });
+  const response = await axios.post('http://atman.onrender.com/doctor/addcomment', { comment: commentText, puid: puid, postid });
 
   if (response.data.message === "Comment added successfully.") {
     showToast(response.data.message)

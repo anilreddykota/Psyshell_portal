@@ -3,7 +3,7 @@ const uid = localStorage.uid;
 
 
 
-fetch('http://localhost:3002/get-newsfeed')
+fetch('http://atman.onrender.com/get-newsfeed')
   .then(response => response.json())
   .then(data => {
     // Process the received JSON data
