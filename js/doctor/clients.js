@@ -72,12 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const selectedUserId = event.currentTarget.dataset.uid;
                     const selectedUser = approvedAppointments.find(appointment => appointment.uid === selectedUserId);
                     const response = await axios.post('https://atman.onrender.com/get-analysis-of-student', { uid: selectedUser.uid })
-
-
-
-
                     graphdata = response;
-                    console.log(graphdata.data);
                     if (response.data.message === 'No mood data found for the specified user.') {
                         console.log(response.data.message);
                         document.getElementById('no-graph-message').innerHTML = response.data.message;

@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
 
             // Post the login data to the server using Axios
-            const response = await axios.post('https://atman.onrender.com/UserLogin', loginData);
+            const response = await axios.post('http://localhost:3002/UserLogin', loginData);
 
             if (response.data.message === 'Login successful') {
                 localStorage.clear();
@@ -56,7 +56,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const email = document.querySelector('input[name="uemail"]').value;
         const password = document.querySelector('input[name="upassword"]').value;
         const age = document.querySelector('input[name="uage"]').value;
+        const college = document.querySelector('select[name="collegecode"]').value;
+        const formData = new FormData(this); // Get form data
 
+        // Create an object from form data
+      
         // Check if all required fields are filled
         if (!nickname || !email || !password || !age) {
             alert('Please fill in all required fields.');
@@ -69,12 +73,13 @@ document.addEventListener('DOMContentLoaded', function () {
             email: email,
             password: password,
             age: age,
+            college:college
 
         };
-
+        console.log(registrationData)
         try {
             // Post the registration data to the server using Axios
-            const response = await axios.post('https://atman.onrender.com/registerUseronweb', registrationData);
+            const response = await axios.post('http://localhost:3002/registerUseronweb', registrationData);
 
             // Handle success response
 
@@ -197,5 +202,56 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
     });
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent default form submission
+    
+        const formData = new FormData(this); // Get form data
+    
+        // Create an object from form data
+        const formDataObject = {};
+        console.log(formData);
+        formData.forEach(function(value, key){
+            formDataObject[key] = value;
+        });
+    console.log(formDataObject);
+        try {
+            const response = await axios.post('http://localhost:3002/collegelogin', {email: formDataObject["college-email"], password:formDataObject["college-password"]});
+    
+            if (response) {
+                // Successful login, handle accordingly (e.g., redirect)
+                alert(response.data.message);
+            } else {
+                // Failed login, display error message
+                console.error('Login failed:', response.data.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+
+
+
+
+
+
+});
+
+
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        const response = await axios.get('http://localhost:3002/listcolleges');
+        const colleges = response.data;
+
+        const collegeSelect = document.getElementById('collegeSelect');
+document.getElementById("collegeSelect_chosen").innerHTML ="";
+        colleges?.list?.forEach(college => {
+            const option = document.createElement('option');
+            option.value = college.collegecode;
+            option.text = college.collegename;
+            collegeSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error fetching colleges:', error);
+    }
 });
 

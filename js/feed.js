@@ -3,7 +3,7 @@ const uid = localStorage.uid;
 
 
 
-fetch('https://atman.onrender.com/get-newsfeed')
+fetch('http://localhost:3002/get-newsfeed')
   .then(response => response.json())
   .then(data => {
     // Process the received JSON data
@@ -23,38 +23,59 @@ fetch('https://atman.onrender.com/get-newsfeed')
           minute: '2-digit',
           second: '2-digit'
         });
-        const postHTML = `<div class="central-meta item" >
-                    <div class="user-post">
-                        <div class="friend-info">
-                            <figure>
-                                <img src="${post?.userDetails?.profile || "./images/resources/defaultpic.jpg"}" alt="">
-                            </figure>
-                            <div class="friend-name">
-                            <ins><a href="time-line.html" title="">${post.userDetails?.nickname || "unknown user"}</a></ins>
-                                <span>published: ${formattedDateTime}</span>
+        const postHTML = `<div class="central-meta item">
+        <div class="user-post">
+            <div class="friend-info">
+                <figure>
+                    <img src="${post?.userDetails?.profile || "./images/resources/defaultpic.jpg"}" alt="">
+                </figure>
+                <div class="friend-name">
+                    <ins><a href="time-line.html" title="">${post.userDetails?.nickname || "unknown user"}</a></ins>
+                    <span>published: ${formattedDateTime}</span>
+                </div>
+                <div class="post-meta">
+                    <ins><a title="">${post.title}</a></ins>
+                    <img src="${post.imageUrl}" alt="" class='h-50'>
+                    <div class="we-video-info">
+                        <ul>
+                            <li>
+                                <span class="like" data-toggle="tooltip" title="like">
+                                    <i class="ti-heart like-btn text-${post?.likedBy?.likes[uid] == true ? 'danger' : 'success'}" key="${post.postId}" isliked="${!!post?.likedBy?.likes[uid]}"></i>
+                                    <p><span class="ins" key="${post.postId}" >${post.likesCount}</span></p>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="description">
+                        <p>${post.description}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <card-with-comments class="card-with-comments" role="article">
+            ${post.comments.length > 0 ? `
+                <div class="comments">
+                    ${post.comments.map(comment => `
+                        <div class="comment">
+                            <div class="comment__header">
+                                <img src="${comment.commenterDetails.profile || "./images/resources/defaultpic.jpg"}" alt="Comment writer image" class="comment__avatar">
+                                <p class="comment__user-name">${comment.commenterDetails.nickname || "unknown user"}</p>
+                                <p class="comment__time text-success">${formatTimeDifference(comment.timestamp)}</p>
+                                <p class="comment__chip">${comment.commenterDetails.role || "Psycholigist"}</p>
                             </div>
-                            <div class="post-meta">
-                            <ins><a  title="">${post.title}</a></ins>
-                                <img src="${post.imageUrl}" alt="" class='h-50'>
-                                <div class="we-video-info">
-                                    <ul>
-                                        <li>
-                                            <span class="like" data-toggle="tooltip" title="like">
-                                                 <i class="ti-heart like-btn text-${post?.likedBy?.likes[uid] == true ? 'danger' : 'success'}" key="${post.postId}" isliked="${!!post?.likedBy?.likes[uid]}"></i>
-                                                
-                                                <p><span class="ins" key="${post.postId}" >${post.likesCount}</span></p>
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="description">
-                                    <p>${post.description}</p>
-                                </div>
-                            </div>
+                            <p class="comment__text">${comment.comment}</p>
                         </div>
-                    </div>
-                    </div>
-                `;
+                    `).join('')}
+                </div>
+                ` : ''}
+                <div class="form">
+               
+            </card-with-comments>
+        </div>
+        
+    </div>`;
 
 
         document.getElementById('posts-container').innerHTML += postHTML;
@@ -183,3 +204,26 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+function formatTimeDifference(timestamp) {
+  const currentTime = new Date();
+  const commentTime = new Date(timestamp._seconds * 1000 + Math.round(timestamp._nanoseconds / 1000000));
+
+  const differenceInSeconds = Math.floor((currentTime - commentTime) / 1000);
+  const differenceInMinutes = Math.floor(differenceInSeconds / 60);
+  const differenceInHours = Math.floor(differenceInMinutes / 60);
+  const differenceInDays = Math.floor(differenceInHours / 24);
+  if (differenceInDays > 7) {
+    // If it crosses more than a week, display the date
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return commentTime.toLocaleDateString('en-US', options);
+  } else if (differenceInDays > 0) {
+    // If it's within a week, but more than a day, display days ago
+    return differenceInDays === 1 ? '1 day ago' : `${differenceInDays} days ago`;
+  } else if (differenceInHours > 0) {
+    // If it's within a day, but more than an hour, display hours ago
+    return differenceInHours === 1 ? '1 hr ago' : `${differenceInHours} hrs ago`;
+  } else {
+    // If it's within an hour, display minutes ago
+    return differenceInMinutes <= 1 ? 'just now' : `${differenceInMinutes} mins ago`;
+  }
+}

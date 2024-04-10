@@ -104,73 +104,24 @@
 							<div class="log-reg-area sign">
 								<h2 class="log-title text-dark">college login</h2>
 								
-								<form id="loginc">
+								<form id="loginForm">
 									<div class="form-group">
-										<input type="text" id="inpu" required="required" name="college-uname" />
-										<label class="control-label" for="input">Username</label><i
+										<input type="text" id="collegeEmail" required="required" name="college-email" />
+										<label class="control-label" for="collegeEmail">College email</label><i
 											class="mtrl-select"></i>
 									</div>
 									<div class="form-group">
-										<input type="password" required="required" name="college-password"/>
-										<label class="control-label" for="input">Password</label><i
+										<input type="password" required="required" id="collegePassword" name="college-password"/>
+										<label class="control-label" for="collegePassword">Password</label><i
 											class="mtrl-select"></i>
 									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" checked="checked" /><i
-												class="check-box"></i>Always Remember Me.
-										</label>
-									</div>
-									<a href="#" title class="forgot-pwd">Forgot Password?</a>
+									<a href="#" class="forgot-pwd">Forgot Password?</a>
 									<div class="submit-btns">
-										<button class="mtr-btn signin" 
-											type="submit"><span>Login</span></button>
-										<!-- <button class="mtr-btn rsignup"
-											type="button"><span>Register</span></button> -->
+										<button class="mtr-btn signin" type="submit"><span>Login</span></button>
 									</div>
 								</form>
 							</div>
-							<div class="log-reg-area reg login-reg-bg-p ">
-								<h2 class="log-title">Psychologist Register</h2>
-								<p>
-									Don’t use Winku Yet? <a href="#" title>Take the tour</a> or <a href="#"
-										title>Join now</a>
-								</p>
-								<form id="registerp">
-
-									<div class="form-group">
-										<input type="text" required="required" name="nname"/>
-										<label class="control-label" for="input" >Nick Name</label><i
-											class="mtrl-select"></i>
-									</div>
-									<div class="form-group">
-										<input type="text" required="required" name="email"/>
-										<label class="control-label" for="input">email</label><i
-											class="mtrl-select"></i>
-									</div>
-									<div class="form-group">
-										<input type="password" required="required" name="password" />
-										<label class="control-label" for="input">Password</label><i
-											class="mtrl-select"></i>
-									</div>
-									<div class="form-group">
-										<input type="text" required="required" name="aoe"/>
-										<label class="control-label" for="input">Area of exprtise</label><i
-											class="mtrl-select"></i>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" checked="checked" name="checked"/><i
-												class="check-box"></i>Accept Terms & Conditions ?
-										</label>
-									</div>
-									<a href="#" title class="already-have-p">Already have an account</a>
-									<div class="submit-btns">
-										<button class="mtr-btn signupp"
-											type="submit"><span>Register</span></button>
-									</div>
-								</form>
-							</div>
+							
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -206,20 +157,16 @@
 							</div>
 							<div class="log-reg-area reg">
 								<h2 class="log-title">Student Register</h2>
-								<p>
-									Don’t use atman Yet? <a href="#" title>Take the tour</a> or <a href="#"
-										title>Join now</a>
-								</p>
+								
 								<form id="registeru">
-
 									<div class="form-group">
 										<input type="text" required="required" name="unickname" />
-										<label class="control-label" for="input">Nick Name</label><i
+										<label class="control-label" for="input">Full Name</label><i
 											class="mtrl-select"></i>
 									</div>
 									<div class="form-group">
 										<input type="text" required="required" name="uemail" />
-										<label class="control-label" for="input">email</label><i
+										<label class="control-label" for="input">Email</label><i
 											class="mtrl-select"></i>
 									</div>
 									<div class="form-group">
@@ -232,6 +179,11 @@
 										<label class="control-label" for="input">Age</label><i
 											class="mtrl-select"></i>
 									</div>
+									<div class="form-group">
+										<label for="collegeSelect">Select College:</label>
+										<select id="collegeSelect" name="collegecode" required>
+									</select>
+									</div>
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" checked="checked" name="uchecked" /><i
@@ -240,8 +192,7 @@
 									</div>
 									<a href="#" title class="already-have-p">Already have an account</a>
 									<div class="submit-btns">
-										<input class="mtr-btn signup"
-											type="submit" value="Register">
+										<input class="mtr-btn signup " type="submit" value="Register" style=" background-color: #0077b5;color: white;">
 									</div>
 								</form>
 							</div>
@@ -257,9 +208,7 @@
 			<a href="#stu"><button class="btn  m-2" id="studentbtn"> student</button></a>
 		</div>
 
-		<script data-cfasync="false"
-			src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script
-			src="js/main.min.js"></script>
+		<script src="js/main.min.js"></script>
 		<script src="js/script.js"></script>
 		<script src="./js/forms.js"></script>
 
