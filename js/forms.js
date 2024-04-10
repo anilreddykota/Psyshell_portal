@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
 
             // Post the login data to the server using Axios
-            const response = await axios.post('http://atman.onrender.com/UserLogin', loginData);
+            const response = await axios.post('https://atman.onrender.com/UserLogin', loginData);
 
             if (response.data.message === 'Login successful') {
                 localStorage.clear();
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(registrationData)
         try {
             // Post the registration data to the server using Axios
-            const response = await axios.post('http://atman.onrender.com/registerUseronweb', registrationData);
+            const response = await axios.post('https://atman.onrender.com/registerUseronweb', registrationData);
 
             // Handle success response
 
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     console.log(formDataObject);
         try {
-            const response = await axios.post('http://atman.onrender.com/collegelogin', {email: formDataObject["college-email"], password:formDataObject["college-password"]});
+            const response = await axios.post('https://atman.onrender.com/collegelogin', {email: formDataObject["college-email"], password:formDataObject["college-password"]});
     
             if (response) {
                 // Successful login, handle accordingly (e.g., redirect)
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', async function() {
     try {
-        const response = await axios.get('http://atman.onrender.com/listcolleges');
+        const response = await axios.get('https://atman.onrender.com/listcolleges');
         const colleges = response.data;
 
         const collegeSelect = document.getElementById('collegeSelect');
