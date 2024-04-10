@@ -1,547 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-	<title>Winku Social Network Toolkit</title>
-    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16"> 
-    
-    <link rel="stylesheet" href="css/main.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/color.css">
-    <link rel="stylesheet" href="css/responsive.css">
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./js/doctor/unauth.js"></script>
-	<script src="./js/doctor/community.js"></script>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content />
+		<meta name="keywords" content />
+		<title>PsyShell - Bridge gap to inner peace</title>
+		<link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
 
+		<link rel="stylesheet" href="css/main.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/color.css">
+		<link rel="stylesheet" href="css/responsive.css">
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="./js/doctor/unauth.js"></script>
+		<script src="./js/doctor/community.js"></script>
 
-</head>
-<body>
-<!--<div class="se-pre-con"></div>-->
-<div class="theme-layout">
-	<div class="message-toast" id="messageToast">
-		<button class="close-btn" onclick="closeToast()">X</button>
-	  </div>
-	  
-	
-	<div class="responsive-header">
-		<div class="mh-head first Sticky">
-			<span class="mh-btns-left">
-				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
-			</span>
-			<span class="mh-text">
-				<a href="community.html" title=""><img src="images/faq.png" alt=""></a>
-			</span>
-			<span class="mh-btns-right">
-				<a class="fa fa-sliders" href="#shoppingbag"></a>
-			</span>
-		</div>
-		
-		<nav id="menu" class="res-menu">
-			<ul>
-				<li><a href="index2.html" title="">Home</a></li>
-				<li><a href="community.html" title="">news feed</a></li>
-				<li><a href="chatting.html" title="">Your message box</a></li>
-				<li><a href="clients.html" title="">Students</a></li>
-				<li><a href="inbox.html" title="">send remiber</a></li>
-				<li><a href="doctorlogout.html" title="">Logout</a></li>
-	</ul>
-		</nav>
-		<nav id="shoppingbag">
-			<div>
-				<div class="">
-					<form method="post">
-						<div class="setting-row">
-							<span>use night mode</span>
-							<input type="checkbox" id="nightmode"/> 
-							<label for="nightmode" data-on-label="ON" data-off-label="OFF"></label>
-						</div>
-						<div class="setting-row">
-							<span>Notifications</span>
-							<input type="checkbox" id="switch2"/> 
-							<label for="switch2" data-on-label="ON" data-off-label="OFF"></label>
-						</div>
-						<div class="setting-row">
-							<span>Notification sound</span>
-							<input type="checkbox" id="switch3"/> 
-							<label for="switch3" data-on-label="ON" data-off-label="OFF"></label>
-						</div>
-						<div class="setting-row">
-							<span>My profile</span>
-							<input type="checkbox" id="switch4"/> 
-							<label for="switch4" data-on-label="ON" data-off-label="OFF"></label>
-						</div>
-						<div class="setting-row">
-							<span>Show profile</span>
-							<input type="checkbox" id="switch5"/> 
-							<label for="switch5" data-on-label="ON" data-off-label="OFF"></label>
-						</div>
-					</form>
-					<h4 class="panel-title">Account Setting</h4>
-					<form method="post">
-						<div class="setting-row">
-							<span>Sub users</span>
-							<input type="checkbox" id="switch6" /> 
-							<label for="switch6" data-on-label="ON" data-off-label="OFF"></label>
-						</div>
-						<div class="setting-row">
-							<span>personal account</span>
-							<input type="checkbox" id="switch7" /> 
-							<label for="switch7" data-on-label="ON" data-off-label="OFF"></label>
-						</div>
-						<div class="setting-row">
-							<span>Business account</span>
-							<input type="checkbox" id="switch8" /> 
-							<label for="switch8" data-on-label="ON" data-off-label="OFF"></label>
-						</div>
-						<div class="setting-row">
-							<span>Show me online</span>
-							<input type="checkbox" id="switch9" /> 
-							<label for="switch9" data-on-label="ON" data-off-label="OFF"></label>
-						</div>
-						<div class="setting-row">
-							<span>Delete history</span>
-							<input type="checkbox" id="switch10" /> 
-							<label for="switch10" data-on-label="ON" data-off-label="OFF"></label>
-						</div>
-						<div class="setting-row">
-							<span>Expose author name</span>
-							<input type="checkbox" id="switch11" /> 
-							<label for="switch11" data-on-label="ON" data-off-label="OFF"></label>
-						</div>
-					</form>
-				</div>
+	</head>
+	<body>
+		<!--<div class="se-pre-con"></div>-->
+		<div class="theme-layout">
+			<div class="message-toast" id="messageToast">
+				<button class="close-btn" onclick="closeToast()">X</button>
 			</div>
-		</nav>
-	</div><!-- responsive header -->
-	
-	<div class="topbar stick">
-		<div class="logo">
-			<a title="" href="index2.html"><img src="images/fav.png" alt="" style="width: 70px;height: auto;"></a>
-		</div>
-		
-		<div class="top-area">
-			<ul class="main-menu">
-				
-				<li><a href="index2.html" title="">Home</a></li>
-				<li><a href="community.html" title="">news feed</a></li>
-				<li><a href="chatting.html" title="">Your message box</a></li>
-				<li><a href="clients.html" title="">Students</a></li>
-				<li><a href="inbox.html" title="">send remiber</a></li>
-				<li><a href="doctorlogout.html" title="">Logout</a></li>
 
-			</ul>
-			<ul class="setting-area">
-				
-				<li><a href="community.html" title="Home" data-ripple><i
-							class="ti-home"></i></a></li>
-
-			
-			</ul>
-			<div class="user-img">
-				<img src="images/resources/admin.jpg" alt>
-				<span class="status f-online"></span>
-				<div class="user-setting ">
-
-					<a href="#" title><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title><i class="ti-settings"></i>account setting</a>
-					<a title id="logout"><i class="ti-power-off"></i>log out</a>
+			<div class="responsive-header">
+				<div class="mh-head first Sticky">
+					<span class="mh-btns-left">
+						<a class href="#menu"><i class="fa fa-align-justify"></i></a>
+					</span>
+					<span class="mh-text">
+						<a href="community.html" title><img src="images/fav.png" alt></a>
+					</span>
+					<span class="mh-btns-right">
+						<a class="fa fa-sliders" href="#shoppingbag"></a>
+					</span>
 				</div>
-			</div>
-			<span class="ti-menu main-menu" data-ripple=""></span>
-		</div>
-	</div><!-- topbar -->
-	
-	
-	<div class="fixed-sidebar right">
-		<div class="chat-friendz">
-			<ul class="chat-users">
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend1.jpg" alt="">
+
+				<nav id="menu" class="res-menu">
+					<ul>
+						<li><a href="index2.html" title>Home</a></li>
+						<li><a href="community.html" title>news feed</a></li>
+						<li><a href="chatting.html" title>Your message box</a></li>
+						<li><a href="clients.html" title>Students</a></li>
+						<li><a href="inbox.html" title>send remiber</a></li>
+						<li><a href="doctorlogout.html" title>Logout</a></li>
+					</ul>
+				</nav>
+				<nav id="shoppingbag">
+					<div>
+						<div class>
+							<form method="post">
+								<div class="setting-row">
+									<span>use night mode</span>
+									<input type="checkbox" id="nightmode" />
+									<label for="nightmode" data-on-label="ON" data-off-label="OFF"></label>
+								</div>
+								<div class="setting-row">
+									<span>Notifications</span>
+									<input type="checkbox" id="switch2" />
+									<label for="switch2" data-on-label="ON" data-off-label="OFF"></label>
+								</div>
+								<div class="setting-row">
+									<span>Notification sound</span>
+									<input type="checkbox" id="switch3" />
+									<label for="switch3" data-on-label="ON" data-off-label="OFF"></label>
+								</div>
+								<div class="setting-row">
+									<span>My profile</span>
+									<input type="checkbox" id="switch4" />
+									<label for="switch4" data-on-label="ON" data-off-label="OFF"></label>
+								</div>
+								<div class="setting-row">
+									<span>Show profile</span>
+									<input type="checkbox" id="switch5" />
+									<label for="switch5" data-on-label="ON" data-off-label="OFF"></label>
+								</div>
+							</form>
+							<h4 class="panel-title">Account Setting</h4>
+							<form method="post">
+								<div class="setting-row">
+									<span>Sub users</span>
+									<input type="checkbox" id="switch6" />
+									<label for="switch6" data-on-label="ON" data-off-label="OFF"></label>
+								</div>
+								<div class="setting-row">
+									<span>personal account</span>
+									<input type="checkbox" id="switch7" />
+									<label for="switch7" data-on-label="ON" data-off-label="OFF"></label>
+								</div>
+								<div class="setting-row">
+									<span>Business account</span>
+									<input type="checkbox" id="switch8" />
+									<label for="switch8" data-on-label="ON" data-off-label="OFF"></label>
+								</div>
+								<div class="setting-row">
+									<span>Show me online</span>
+									<input type="checkbox" id="switch9" />
+									<label for="switch9" data-on-label="ON" data-off-label="OFF"></label>
+								</div>
+								<div class="setting-row">
+									<span>Delete history</span>
+									<input type="checkbox" id="switch10" />
+									<label for="switch10" data-on-label="ON" data-off-label="OFF"></label>
+								</div>
+								<div class="setting-row">
+									<span>Expose author name</span>
+									<input type="checkbox" id="switch11" />
+									<label for="switch11" data-on-label="ON" data-off-label="OFF"></label>
+								</div>
+							</form>
+						</div>
+					</div>
+				</nav>
+			</div><!-- responsive header -->
+
+			<div class="topbar stick">
+				<div class="logo">
+					<a title href="index2.html"><img src="images/fav.png" alt
+							style="width: 70px;height: auto;"></a>
+				</div>
+
+				<div class="top-area">
+					<ul class="main-menu">
+
+						<li><a href="index2.html" title>Home</a></li>
+						<li><a href="community.html" title>news feed</a></li>
+						<li><a href="chatting.html" title>Your message box</a></li>
+						<li><a href="clients.html" title>Students</a></li>
+						<li><a href="inbox.html" title>send remiber</a></li>
+						<li><a href="doctorlogout.html" title>Logout</a></li>
+
+					</ul>
+					<ul class="setting-area">
+
+						<li><a href="community.html" title="Home" data-ripple><i
+									class="ti-home"></i></a></li>
+
+					</ul>
+					<div class="user-img">
+						<img src="images/resources/admin.jpg" alt>
 						<span class="status f-online"></span>
+						<div class="user-setting ">
+
+							<a href="#" title><i class="ti-pencil-alt"></i>edit profile</a>
+							<a href="#" title><i class="ti-settings"></i>account setting</a>
+							<a title id="logout"><i class="ti-power-off"></i>log out</a>
+						</div>
 					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend2.jpg" alt="">
-						<span class="status f-away"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend3.jpg" alt="">
-						<span class="status f-online"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend4.jpg" alt="">
-						<span class="status f-offline"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend5.jpg" alt="">
-						<span class="status f-online"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend6.jpg" alt="">
-						<span class="status f-online"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend7.jpg" alt="">
-						<span class="status f-offline"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend8.jpg" alt="">
-						<span class="status f-online"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend9.jpg" alt="">
-						<span class="status f-away"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend10.jpg" alt="">
-						<span class="status f-away"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend8.jpg" alt="">
-						<span class="status f-online"></span>
-					</div>
-				</li>
-			</ul>
-			
-		</div>
-	</div><!-- right sidebar user chat -->
-	
-	<div class="fixed-sidebar left">
-		<div class="menu-left">
-			<ul class="left-menu">
-				<li><a href="community.html" title="Community" data-toggle="tooltip" data-placement="right"><i class="ti-magnet"></i></a></li>
-				<li><a href="inbox.html" title="send reminder" data-toggle="tooltip" data-placement="right"><i class="ti-import"></i></a></li>
-				<li><a href="messages.html" title="your Messages" data-toggle="tooltip" data-placement="right"><i class="ti-comment-alt"></i></a></li>
-				<li><a href="clients.html" title="Students" data-toggle="tooltip" data-placement="right"><i class="ti-themify-favicon"></i></a></li>
-				<li><a href="doctorlogout.html" title="logout" data-toggle="tooltip" data-placement="right"><i class="ti-power-off"></i></a></li>
-			</ul>
-		</div>
-	</div><!-- left sidebar menu -->
-		
-	<section>
-		<div class="gap2 gray-bg">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="row merged20" id="page-contents">
-							<div class="col-lg-3">
-								<aside class="sidebar static left">
-									<div class="widget">
-										
-										<div class="your-page">
-											<a class="box widget-title h1"> Next <br>
-												 Appointment<br>
-												  in 2hrs </a>
-											
-											<div class="page-likes">
-												<ul class="nav nav-tabs likes-btn">
-													<li class="nav-item"><a class="active" href="#link1" data-toggle="tab">Clients</a></li>
-													 <li class="nav-item"><a class="" href="#link2" data-toggle="tab">Routine</a></li>
-												</ul>
-												<!-- Tab panes -->
-												<div class="tab-content">
-												  <div class="tab-pane active fade show " id="link1" >
-													<span>No. of clients</span>
-													  <a href="#" title="weekly-likes">35 new clients this week</a>
-													  <div class="users-thumb-list">
-													  
-													  </div>
-												  </div>
-												  <div class="tab-pane fade" id="link2" >
-													  
-													  <a href="#" title="weekly-likes">this is your daily routine</a>
-													  <div class="users-thumb-list">
-														 
-													  </div>
-												  </div>
-												</div>
-											</div>
-										</div>
-									</div><!-- page like widget -->
-								</aside>
+					<span class="ti-menu main-menu" data-ripple></span>
+				</div>
+			</div><!-- topbar -->
+
+			<div class="fixed-sidebar right">
+				<div class="chat-friendz">
+					<ul class="chat-users">
+						<li>
+							<div class="author-thmb">
+								<img src="images/resources/side-friend1.jpg" alt>
+								<span class="status f-online"></span>
 							</div>
-							<!-- sidebar -->
-							<div class="col-lg-6">
-								<div class="central-meta">
-									<div class="new-postbox">
-										<figure>
-											<img src="images/resources/admin2.jpg" alt>
-										</figure>
-										<div class="newpst-input">
-											<form id="createPostForm">
-												<textarea rows="1" placeholder="enter title" type="text"
-													id="title" name="title"></textarea>
-												<textarea rows="2" placeholder="write something" id="description"
-													name="description"></textarea>
-												<div class="attachments">
-													<ul>
+						</li>
+						<li>
+							<div class="author-thmb">
+								<img src="images/resources/side-friend2.jpg" alt>
+								<span class="status f-away"></span>
+							</div>
+						</li>
+						<li>
+							<div class="author-thmb">
+								<img src="images/resources/side-friend3.jpg" alt>
+								<span class="status f-online"></span>
+							</div>
+						</li>
+						<li>
+							<div class="author-thmb">
+								<img src="images/resources/side-friend4.jpg" alt>
+								<span class="status f-offline"></span>
+							</div>
+						</li>
+						<li>
+							<div class="author-thmb">
+								<img src="images/resources/side-friend5.jpg" alt>
+								<span class="status f-online"></span>
+							</div>
+						</li>
+						<li>
+							<div class="author-thmb">
+								<img src="images/resources/side-friend6.jpg" alt>
+								<span class="status f-online"></span>
+							</div>
+						</li>
+						<li>
+							<div class="author-thmb">
+								<img src="images/resources/side-friend7.jpg" alt>
+								<span class="status f-offline"></span>
+							</div>
+						</li>
+						<li>
+							<div class="author-thmb">
+								<img src="images/resources/side-friend8.jpg" alt>
+								<span class="status f-online"></span>
+							</div>
+						</li>
+						<li>
+							<div class="author-thmb">
+								<img src="images/resources/side-friend9.jpg" alt>
+								<span class="status f-away"></span>
+							</div>
+						</li>
+						<li>
+							<div class="author-thmb">
+								<img src="images/resources/side-friend10.jpg" alt>
+								<span class="status f-away"></span>
+							</div>
+						</li>
+						<li>
+							<div class="author-thmb">
+								<img src="images/resources/side-friend8.jpg" alt>
+								<span class="status f-online"></span>
+							</div>
+						</li>
+					</ul>
 
-														<li>
-															<i class="fa fa-image"></i>
-															<label class="fileContainer">
-																<input type="file" id="image" name="image" accept="image/*">
-															</label>
-														</li>
+				</div>
+			</div><!-- right sidebar user chat -->
 
-														<li>
+			<div class="fixed-sidebar left">
+				<div class="menu-left">
+					<ul class="left-menu">
+						<li><a href="community.html" title="Community" data-toggle="tooltip"
+								data-placement="right"><i class="ti-magnet"></i></a></li>
+						<li><a href="inbox.html" title="send reminder" data-toggle="tooltip"
+								data-placement="right"><i class="ti-import"></i></a></li>
+						<li><a href="messages.html" title="your Messages" data-toggle="tooltip"
+								data-placement="right"><i class="ti-comment-alt"></i></a></li>
+						<li><a href="clients.html" title="Students" data-toggle="tooltip"
+								data-placement="right"><i class="ti-themify-favicon"></i></a></li>
+						<li><a href="doctorlogout.html" title="logout" data-toggle="tooltip"
+								data-placement="right"><i class="ti-power-off"></i></a></li>
+					</ul>
+				</div>
+			</div><!-- left sidebar menu -->
 
-															<input type="hidden" name="uid" id="uid" value>
-														</li>
-														<li>
-															<button type="reset">Reset</button>
-															<button type="submit">Post</button>
-														</li>
-													</ul>
-												</div>
-											</form>
-											<img id="imagePreview" src="#" alt="Image Preview"
-												style="max-width: 100%;display: none;">
+			<section>
+				<div class="gap2 gray-bg">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="row merged20" id="page-contents">
+									<div class="col-lg-3">
+										<aside class="sidebar static left">
+											<div class="widget">
 
-										</div>
-									</div>
-								</div><!-- add post new box -->
-								<div class="loadMore">
+												<div class="your-page">
+													<a class="box widget-title h1"> Next <br>
+														Appointment<br>
+														in 2hrs </a>
 
-									<div class="central-meta item" id="posts-container">
-
-										<div class="user-post">
-											<div class="friend-info">
-												<figure>
-													<img src="images/resources/friend-avatar10.jpg" alt>
-												</figure>
-												<div class="friend-name">
-													<ins><a href="time-line.html" title>Janice Griffith</a></ins>
-													<span>published: june,2 2018 19:PM</span>
-												</div>
-												<div class="post-meta">
-													<img src="images/resources/user-post.jpg" alt>
-													<div class="we-video-info">
-														<ul>
-
-															<li>
-																<span class="like" data-toggle="tooltip" title="like">
-																	<i class="ti-heart"></i>
-																	<ins>2.2k</ins>
-																</span>
-															</li>
-
-															<li class="social-media">
-																<div class="menu">
-																	<div class="btn trigger"><i
-																			class="fa fa-share-alt"></i></div>
-																	<div class="rotater">
-																		<div class="btn btn-icon"><a href="#" title><i
-																					class="fa fa-html5"></i></a></div>
-																	</div>
-																	<div class="rotater">
-																		<div class="btn btn-icon"><a href="#" title><i
-																					class="fa fa-facebook"></i></a></div>
-																	</div>
-																	<div class="rotater">
-																		<div class="btn btn-icon"><a href="#" title><i
-																					class="fa fa-google-plus"></i></a></div>
-																	</div>
-																	<div class="rotater">
-																		<div class="btn btn-icon"><a href="#" title><i
-																					class="fa fa-twitter"></i></a></div>
-																	</div>
-																	<div class="rotater">
-																		<div class="btn btn-icon"><a href="#" title><i
-																					class="fa fa-css3"></i></a></div>
-																	</div>
-																	<div class="rotater">
-																		<div class="btn btn-icon"><a href="#" title><i
-																					class="fa fa-instagram"></i></a>
-																		</div>
-																	</div>
-																	<div class="rotater">
-																		<div class="btn btn-icon"><a href="#" title><i
-																					class="fa fa-dribbble"></i></a>
-																		</div>
-																	</div>
-																	<div class="rotater">
-																		<div class="btn btn-icon"><a href="#" title><i
-																					class="fa fa-pinterest"></i></a>
-																		</div>
-																	</div>
+													<div class="page-likes">
+														<ul class="nav nav-tabs likes-btn">
+															<li class="nav-item"><a class="active" href="#link1"
+																	data-toggle="tab">Clients</a></li>
+															<li class="nav-item"><a class href="#link2"
+																	data-toggle="tab">Routine</a></li>
+														</ul>
+														<!-- Tab panes -->
+														<div class="tab-content">
+															<div class="tab-pane active fade show " id="link1">
+																<span>No. of clients</span>
+																<a href="#" title="weekly-likes">35 new clients this week</a>
+																<div class="users-thumb-list">
 
 																</div>
-															</li>
-														</ul>
-													</div>
-													<div class="description">
+															</div>
+															<div class="tab-pane fade" id="link2">
 
-														<p>
-															World's most beautiful car in Curabitur <a href="#" title>#test
-																drive booking !</a> the most beatuiful car available in
-															america and the saudia arabia, you can book your test drive by
-															our official website
-														</p>
+																<a href="#" title="weekly-likes">this is your daily routine</a>
+																<div class="users-thumb-list">
+
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
-											</div>
+											</div><!-- page like widget -->
+										</aside>
+									</div>
+									<!-- sidebar -->
+									<div class="col-lg-6">
+										<div class="central-meta">
+											<div class="new-postbox">
+												<figure>
+													<img src="images/resources/admin2.jpg" alt>
+												</figure>
+												<div class="newpst-input">
+													<form id="createPostForm">
+														<textarea rows="1" placeholder="enter title" type="text"
+															id="title" name="title"></textarea>
+														<textarea rows="2" placeholder="write something" id="description"
+															name="description"></textarea>
+														<div class="attachments">
+															<ul>
 
+																<li>
+																	<i class="fa fa-image"></i>
+																	<label class="fileContainer">
+																		<input type="file" id="image" name="image" accept="image/*">
+																	</label>
+																</li>
+
+																<li>
+
+																	<input type="hidden" name="uid" id="uid" value>
+																</li>
+																<li>
+																	<button type="reset">Reset</button>
+																	<button type="submit">Post</button>
+																</li>
+															</ul>
+														</div>
+													</form>
+													<img id="imagePreview" src="#" alt="Image Preview"
+														style="max-width: 100%;display: none;">
+
+												</div>
+											</div>
+										</div><!-- add post new box -->
+										<div class="loadMore">
+
+											<div class="central-meta item" id="posts-container">
+
+												<div class="user-post">
+													<div class="friend-info">
+														<figure>
+															<img src="images/resources/friend-avatar10.jpg" alt>
+														</figure>
+														<div class="friend-name">
+															<ins><a href="time-line.html" title>Janice Griffith</a></ins>
+															<span>published: june,2 2018 19:PM</span>
+														</div>
+														<div class="post-meta">
+															<img src="images/resources/user-post.jpg" alt>
+															<div class="we-video-info">
+																<ul>
+
+																	<li>
+																		<span class="like" data-toggle="tooltip" title="like">
+																			<i class="ti-heart"></i>
+																			<ins>2.2k</ins>
+																		</span>
+																	</li>
+
+																	<li class="social-media">
+																		<div class="menu">
+																			<div class="btn trigger"><i
+																					class="fa fa-share-alt"></i></div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title><i
+																							class="fa fa-html5"></i></a></div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title><i
+																							class="fa fa-facebook"></i></a></div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title><i
+																							class="fa fa-google-plus"></i></a></div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title><i
+																							class="fa fa-twitter"></i></a></div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title><i
+																							class="fa fa-css3"></i></a></div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title><i
+																							class="fa fa-instagram"></i></a>
+																				</div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title><i
+																							class="fa fa-dribbble"></i></a>
+																				</div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title><i
+																							class="fa fa-pinterest"></i></a>
+																				</div>
+																			</div>
+
+																		</div>
+																	</li>
+																</ul>
+															</div>
+															<div class="description">
+
+																<p>
+																	World's most beautiful car in Curabitur <a href="#" title>#test
+																		drive booking !</a> the most beatuiful car available in
+																	america and the saudia arabia, you can book your test drive by
+																	our official website
+																</p>
+															</div>
+														</div>
+													</div>
+
+												</div>
+											</div>
 										</div>
-</div>
+									</div>
+
+									<div class="col-lg-3">
+										<aside class="sidebar static right">
+											<div class="widget">
+												<h4 class="widget-title">Shortcuts</h4>
+												<ul class="naves">
+													<li>
+														<i class="ti-clipboard"></i>
+														<a href="community.html" title>News feed</a>
+													</li>
+													<li>
+														<i class="ti-mouse-alt"></i>
+														<a href="inbox.html" title>Inbox</a>
+													</li>
+													<li>
+														<i class="ti-mouse-alt"></i>
+														<a href="index2.html" title>Home</a>
+													</li>
+													<li>
+														<i class="ti-mouse-alt"></i>
+														<a href="clients.html" title>Students</a>
+													</li>
+
+													<li>
+														<i class="ti-comments-smiley"></i>
+														<a href="chatting.html" title>Messages</a>
+													</li>
+													<li>
+														<i class="ti-comments-smiley"></i>
+														<a href="clients.html" title>Students</a>
+													</li>
+
+													<li>
+														<i class="ti-power-off"></i>
+														<a href="doctorlogout.html" title>Logout</a>
+													</li>
+												</ul>
+											</div><!-- Shortcuts -->
+
+										</div><!-- centerl meta -->
+										<!-- sidebar -->
 								</div>
 							</div>
-						
-							<div class="col-lg-3">
-								<aside class="sidebar static right">
-									<div class="widget">
-										<h4 class="widget-title">Shortcuts</h4>
-										<ul class="naves">
-											<li>
-												<i class="ti-clipboard"></i>
-												<a href="community.html" title="">News feed</a>
-											</li>
-											<li>
-												<i class="ti-mouse-alt"></i>
-												<a href="inbox.html" title="">Inbox</a>
-											</li>
-											<li>
-												<i class="ti-mouse-alt"></i>
-												<a href="index2.html" title="">Home</a>
-											</li>
-											<li>
-												<i class="ti-mouse-alt"></i>
-												<a href="clients.html" title="">Students</a>
-											</li>
-											
-											
-											
-											<li>
-												<i class="ti-comments-smiley"></i>
-												<a href="chatting.html" title="">Messages</a>
-											</li>
-											<li>
-												<i class="ti-comments-smiley"></i>
-												<a href="clients.html" title="">Students</a>
-											</li>
-											
-											
-											
-											<li>
-												<i class="ti-power-off"></i>
-												<a href="doctorlogout.html" title="">Logout</a>
-											</li>
-										</ul>
-									</div><!-- Shortcuts -->
-									
-									
-								
-							</div><!-- centerl meta -->
-							<!-- sidebar -->
-						</div>	
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>	
-	</section>
+				</section>
 
-	<div class="bottombar">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<span class="copyright"><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></span>
-					<i><img src="images/credit-cards.png" alt=""></i>
-				</div>
+				
 			</div>
-		</div>
-	</div>
-</div>
-	<div class="side-panel">
-			<h4 class="panel-title">General Setting</h4>
-			<form method="post">
-				<div class="setting-row">
-					<span>use night mode</span>
-					<input type="checkbox" id="nightmode1"/> 
-					<label for="nightmode1" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Notifications</span>
-					<input type="checkbox" id="switch22" /> 
-					<label for="switch22" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Notification sound</span>
-					<input type="checkbox" id="switch33" /> 
-					<label for="switch33" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>My profile</span>
-					<input type="checkbox" id="switch44" /> 
-					<label for="switch44" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Show profile</span>
-					<input type="checkbox" id="switch55" /> 
-					<label for="switch55" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-			</form>
-			<h4 class="panel-title">Account Setting</h4>
-			<form method="post">
-				<div class="setting-row">
-					<span>Sub users</span>
-					<input type="checkbox" id="switch66" /> 
-					<label for="switch66" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>personal account</span>
-					<input type="checkbox" id="switch77" /> 
-					<label for="switch77" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Business account</span>
-					<input type="checkbox" id="switch88" /> 
-					<label for="switch88" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Show me online</span>
-					<input type="checkbox" id="switch99" /> 
-					<label for="switch99" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Delete history</span>
-					<input type="checkbox" id="switch101" /> 
-					<label for="switch101" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Expose author name</span>
-					<input type="checkbox" id="switch111" /> 
-					<label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-			</form>
-		</div><!-- side panel -->		
-	
-	<script src="js/main.min.js"></script>
-	<script src="js/script.js"></script>
-	<script src="js/map-init.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
+			<div class="side-panel">
+				<h4 class="panel-title">General Setting</h4>
+				<form method="post">
+					<div class="setting-row">
+						<span>use night mode</span>
+						<input type="checkbox" id="nightmode1" />
+						<label for="nightmode1" data-on-label="ON" data-off-label="OFF"></label>
+					</div>
+					<div class="setting-row">
+						<span>Notifications</span>
+						<input type="checkbox" id="switch22" />
+						<label for="switch22" data-on-label="ON" data-off-label="OFF"></label>
+					</div>
+					<div class="setting-row">
+						<span>Notification sound</span>
+						<input type="checkbox" id="switch33" />
+						<label for="switch33" data-on-label="ON" data-off-label="OFF"></label>
+					</div>
+					<div class="setting-row">
+						<span>My profile</span>
+						<input type="checkbox" id="switch44" />
+						<label for="switch44" data-on-label="ON" data-off-label="OFF"></label>
+					</div>
+					<div class="setting-row">
+						<span>Show profile</span>
+						<input type="checkbox" id="switch55" />
+						<label for="switch55" data-on-label="ON" data-off-label="OFF"></label>
+					</div>
+				</form>
+				<h4 class="panel-title">Account Setting</h4>
+				<form method="post">
+					<div class="setting-row">
+						<span>Sub users</span>
+						<input type="checkbox" id="switch66" />
+						<label for="switch66" data-on-label="ON" data-off-label="OFF"></label>
+					</div>
+					<div class="setting-row">
+						<span>personal account</span>
+						<input type="checkbox" id="switch77" />
+						<label for="switch77" data-on-label="ON" data-off-label="OFF"></label>
+					</div>
+					<div class="setting-row">
+						<span>Business account</span>
+						<input type="checkbox" id="switch88" />
+						<label for="switch88" data-on-label="ON" data-off-label="OFF"></label>
+					</div>
+					<div class="setting-row">
+						<span>Show me online</span>
+						<input type="checkbox" id="switch99" />
+						<label for="switch99" data-on-label="ON" data-off-label="OFF"></label>
+					</div>
+					<div class="setting-row">
+						<span>Delete history</span>
+						<input type="checkbox" id="switch101" />
+						<label for="switch101" data-on-label="ON" data-off-label="OFF"></label>
+					</div>
+					<div class="setting-row">
+						<span>Expose author name</span>
+						<input type="checkbox" id="switch111" />
+						<label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
+					</div>
+				</form>
+			</div><!-- side panel -->
+		
 
-</body>	
-</html>
+			<script src="js/main.min.js"></script>
+			<script src="js/script.js"></script>
+			<script src="js/map-init.js"></script>
+			<script
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
+
+		</body>
+	</html>
