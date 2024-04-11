@@ -72,14 +72,9 @@
 			
 			</ul>
 			<div class="user-img">
-				<img src="images/resources/admin.jpg" alt>
-				<span class="status f-online"></span>
-				<div class="user-setting ">
-
-					<a href="#" title><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title><i class="ti-settings"></i>account setting</a>
-					<a title id="logout"><i class="ti-power-off"></i>log out</a>
-				</div>
+				  <img src="images/resources/defaultpic.jpg" alt 
+ class="adminlogo">
+				
 			</div>
 			<span class="ti-menu main-menu" data-ripple=""></span>
 		</div>
@@ -89,72 +84,8 @@
 	<div class="fixed-sidebar right">
 		<div class="chat-friendz">
 			<ul class="chat-users">
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend1.jpg" alt="">
-						<span class="status f-online"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend2.jpg" alt="">
-						<span class="status f-away"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend3.jpg" alt="">
-						<span class="status f-online"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend4.jpg" alt="">
-						<span class="status f-offline"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend5.jpg" alt="">
-						<span class="status f-online"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend6.jpg" alt="">
-						<span class="status f-online"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend7.jpg" alt="">
-						<span class="status f-offline"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend8.jpg" alt="">
-						<span class="status f-online"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend9.jpg" alt="">
-						<span class="status f-away"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend10.jpg" alt="">
-						<span class="status f-away"></span>
-					</div>
-				</li>
-				<li>
-					<div class="author-thmb">
-						<img src="images/resources/side-friend8.jpg" alt="">
-						<span class="status f-online"></span>
-					</div>
-				</li>
+				
+				
 			</ul>
 			
 		</div>
@@ -257,7 +188,7 @@
 												<a href="inbox.html" title="">Inbox</a>
 											</li>
 											<li>
-												<i class="ti-mouse-alt"></i>
+												<i class="ti-home"></i>
 												<a href="index2.html" title="">Home</a>
 											</li>
 											<li>
@@ -265,7 +196,7 @@
 												<a href="chatting.html" title="">Messages</a>
 											</li>
 											<li>
-												<i class="ti-comments-smiley"></i>
+												<i class="ti-comments"></i>
 												<a href="clients.html" title="">Students</a>
 											</li>
 											
@@ -279,27 +210,16 @@
 									</div><!-- Shortcuts -->
 									<div class="widget">
 										<h4 class="widget-title">Recent Activity</h4>
-										<ul class="activitiez">
+										<ul class="activitiez" style="max-height: 400px; overflow: scroll;" id="activity-log">
 											<li>
 												<div class="activity-meta">
 													<i>10 hours Ago</i>
 													<span><a href="#" title="">Commented on Video posted </a></span>
-													<h6>by <a href="time-line.html">black demon.</a></h6>
 												</div>
 											</li>
-											<li>
-												<div class="activity-meta">
-													<i>30 Days Ago</i>
-													<span><a href="#" title="">Posted your status. “Hello guys, how are you?”</a></span>
-												</div>
-											</li>
-											<li>
-												<div class="activity-meta">
-													<i>2 Years Ago</i>
-													<span><a href="#" title="">Share a video on her timeline.</a></span>
-													<h6>"<a href="#">you are so funny mr.been.</a>"</h6>
-												</div>
-											</li>
+											
+											
+									
 										</ul>
 									</div><!-- recent activites -->
 									
@@ -313,16 +233,7 @@
 		</div>	
 	</section>
 
-	<div class="bottombar">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<span class="copyright"><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></span>
-					<i><img src="images/credit-cards.png" alt=""></i>
-				</div>
-			</div>
-		</div>
-	</div>
+
 </div>
 	<div class="side-panel">
 			<h4 class="panel-title">General Setting</h4>
@@ -391,6 +302,7 @@
 	<script src="js/main.min.js"></script>
 	<script src="js/script.js"></script>
 	<script src="js/map-init.js"></script>
+	<script src="./js/doctor/activity.js"></script>
 	<script src="./js/doctor/appointments.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
 

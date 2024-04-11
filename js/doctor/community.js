@@ -30,7 +30,11 @@ fetch('https://atman.onrender.com/get-newsfeed')
                     <img src="${post?.userDetails?.profile || "./images/resources/defaultpic.jpg"}" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a href="time-line.html" title="">${post.userDetails?.nickname || "unknown user"}</a></ins>
+                <ins><a  title="">${post.userDetails?.nickname || "unknown user"}</a>  
+                ${post.userDetails?.badges ? post?.userDetails?.badges?.map((badge) =>
+          ` <img src="./images/badges/${badge}.png" class="user-badges">`
+        ) : ''}
+               </ins>
                     <span>published: ${formattedDateTime}</span>
                 </div>
                 <div class="post-meta">

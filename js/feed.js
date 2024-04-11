@@ -30,14 +30,21 @@ fetch('https://atman.onrender.com/get-newsfeed')
                     <img src="${post?.userDetails?.profile || "./images/resources/defaultpic.jpg"}" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a href="time-line.html" title="">${post.userDetails?.nickname || "unknown user"}</a></ins>
+                    <ins><a  title="">${post.userDetails?.nickname || "unknown user"}</a>  
+                    ${post.userDetails?.badges ? post?.userDetails?.badges?.map((badge)=>
+                    ` <img src="./images/badges/${badge}.png" class="user-badges" title="${badge} - badge">`
+                    ): ''}
+                   </ins>
                     <span>published: ${formattedDateTime}</span>
                 </div>
                 <div class="post-meta">
-                    <ins><a title="">${post.title}</a></ins>
+                    <ins><b>${post.title}</b></ins>
                     <img src="${post.imageUrl}" alt="" class='h-50'>
+                    <div class="description">
+                        <b>${post.description}</b>
+                    </div>
                     <div class="we-video-info">
-                        <ul>
+                        <ul style="height:30px;">
                             <li>
                                 <span class="like" data-toggle="tooltip" title="like">
                                     <i class="ti-heart like-btn text-${post?.likedBy?.likes[uid] == true ? 'danger' : 'success'}" key="${post.postId}" isliked="${!!post?.likedBy?.likes[uid]}"></i>
@@ -46,9 +53,7 @@ fetch('https://atman.onrender.com/get-newsfeed')
                             </li>
                         </ul>
                     </div>
-                    <div class="description">
-                        <p>${post.description}</p>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -63,7 +68,7 @@ fetch('https://atman.onrender.com/get-newsfeed')
                                 <img src="${comment.commenterDetails.profile || "./images/resources/defaultpic.jpg"}" alt="Comment writer image" class="comment__avatar">
                                 <p class="comment__user-name">${comment.commenterDetails.nickname || "unknown user"}</p>
                                 <p class="comment__time text-success">${formatTimeDifference(comment.timestamp)}</p>
-                                <p class="comment__chip">${comment.commenterDetails.role || "Psycholigist"}</p>
+                                <p class="comment__chip">Psycholigist</p>
                             </div>
                             <p class="comment__text">${comment.comment}</p>
                         </div>

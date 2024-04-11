@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const response = await axios.post('https://atman.onrender.com/getAppointmentsByDoctor', { puid });
             const appointments = response.data;
-            console.log(appointments);
             approvedAppointments = [...appointments.approvedAppointments, ...appointments.addedAppointmentsData];
             displayAppointments([...appointments.approvedAppointments, ...appointments.addedAppointmentsData]);
         } catch (error) {
@@ -87,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         displayMoodChart();
                         streakdata(response.data.longestStreak, response.data.currentStreak);
                         document.getElementById('no-graph-message').innerHTML = "";
+                        document.getElementById('averagemoodscore').innerHTML = `<div class='card mt-2'> <div class='card-title widget-title'>Average Mood Score</div> <div class='card-body'><h1>${response?.data?.analyticsResult?.averageMoodScore}</h1></div></div>`;
 
                     }
 
@@ -274,14 +274,45 @@ function displayMoodChart() {
         // If an existing chart instance exists, destroy it
         moodChart.destroy();
     }
+    var selectedweek = 0;
+    const dates = graphdata?.data?.moodDate;
+    const scores = graphdata?.data?.analyticsResult?.moodScore;
+    const label = [];
+    const subLabels = [];
+    const subScores = [];
+    const days = [];
+    var week = 1;
+    dates.forEach((date, index) => {
+        const currentDate = new Date(date);
+        const currentWeek = currentDate.getWeek(); // Assuming getWeek() returns week number
+
+        // If current week is different from previous week, update week and weekStart
+        if (currentWeek !== week) {
+            week = currentWeek;
+            label.push(`Week ${week}`);
+            subLabels.push([]);
+            subScores.push([]);
+            days.push([]) // Initialize sub-scores array for the week
+            weekStart = index;
+        }
+
+        // Add day name as sublabel
+        const dayName = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(currentDate);
+        subLabels[subLabels.length - 1].push(dayName);
+        days[days.length - 1].push(date);
+        // Add mood score for the day
+        subScores[subScores.length - 1].push(scores[index]);
+    });
+    week = subScores.length - 1;
+
     const ctx = document.getElementById('moodChart').getContext('2d');
-    const labels = [...graphdata?.data?.moodDate];
+    const labels = [...subLabels[week]];
 
     const data = {
         labels: labels,
         datasets: [{
             label: 'Mood Level',
-            data: [...graphdata?.data?.analyticsResult?.moodScore],
+            data: [...subScores[week]],
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1
@@ -314,7 +345,7 @@ function displayMoodChart() {
             x: {
                 title: {
                     display: true,
-                    text: 'Month'
+                    text: 'day'
                 }
             }
         }
@@ -326,8 +357,68 @@ function displayMoodChart() {
         options: options
     });
 
+    const controls = document.getElementById('moodChartControl');
+    controls.innerHTML = "";
+    // Create container div
+    const controlContainer = document.createElement('div');
+    controlContainer.classList.add('d-flex')
+
+    const emptydiv = document.createElement('div');
+    const prevButton = document.createElement('button');
+    prevButton.classList.add('btn')
+    prevButton.textContent = '<';
+    prevButton.addEventListener('click', function () {
+        if (selectedweek > 0) {
+            selectedweek--;
+            week = selectedweek;
+            updateGraph();
+        }
+    });
+
+    controlContainer.appendChild(emptydiv.appendChild(prevButton));
+
+    // Create and append Week Data
+
+    const weekdata = document.createElement('div');
+    weekdata.classList.add('ml-5', 'mr-5')
+    weekdata.innerHTML = `${days[week][0]} - ${days[week][days[week].length - 1]}`;
+    controlContainer.appendChild(weekdata);
+
+    // Create and append Next Week button
+    const emptydiv2 = document.createElement('div');
+
+    const nextButton = document.createElement('button');
+    nextButton.classList.add('btn')
+
+    nextButton.textContent = '>';
+    nextButton.addEventListener('click', function () {
+        if (selectedweek < subLabels.length - 1) {
+            selectedweek++;
+            week = selectedweek;
+            updateGraph();
+        }
+    });
+    controlContainer.appendChild(emptydiv2.appendChild(nextButton));
+
+    // Append the container to the controls
+    controls.appendChild(controlContainer);
+
+    // Function to update the graph
+    function updateGraph() {
+        moodChart.data.labels = [...subLabels[selectedweek]];
+        moodChart.data.datasets[0].data = [...subScores[selectedweek]];
+        moodChart.update();
+        weekdata.innerHTML = `${days[selectedweek][0]} - ${days[selectedweek][days[selectedweek].length - 1]}`;
+    }
 }
 
+
+Date.prototype.getWeek = function () {
+    const onejan = new Date(this.getFullYear(), 0, 1);
+    const weekStart = new Date(onejan.getFullYear(), onejan.getMonth(), onejan.getDate() - onejan.getDay());
+    const diff = this - weekStart;
+    return Math.ceil(diff / (7 * 24 * 60 * 60 * 1000));
+};
 
 function streakdata(longest, current) {
     const datesLongest = longest.dates;
@@ -350,7 +441,6 @@ function streakdata(longest, current) {
         // Initialize calendar object
         dates.forEach(date => {
             const key = formatDate(date);
-            console.log(key);
             calendar[key] = true;
         });
 

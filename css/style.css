@@ -1474,9 +1474,21 @@ a[href^="#"] {
     width: 70px;
     height: auto;
    }
+   #activity-log{
+    overflow: scroll;
+   }
 
-
-
+   #activity-log::-webkit-scrollbar {
+    display: none;
+  }
+  .user-badges{
+    height: 32px;
+    width: 32px;
+  }
+.adminlogo{
+    width: 50px;
+    height: 50px;
+}
 .users-data::-webkit-scrollbar {
     display: none;
   }
@@ -4921,7 +4933,7 @@ canvas {
 }
 
 .top-area > ul.main-menu > li::after {
-    content: "";
+    content: "";
     font-family: fontawesome;
     font-size: 13px;
     position: absolute;
