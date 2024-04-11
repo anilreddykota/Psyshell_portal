@@ -2,7 +2,6 @@
 const puid = localStorage.puid;
 
 
-
 fetch('https://atman.onrender.com/get-newsfeed')
   .then(response => response.json())
   .then(data => {
@@ -12,9 +11,9 @@ fetch('https://atman.onrender.com/get-newsfeed')
       // Iterate over posts data
       data.posts.forEach(post => {
         // Generate HTML markup for each post
-
         const date = new Date(post.date._seconds * 1000 + Math.round(post.date._nanoseconds / 1000000));
         // Format the date and time
+
         const formattedDateTime = date.toLocaleString('en-US', {
           year: 'numeric',
           month: '2-digit',
@@ -67,12 +66,13 @@ fetch('https://atman.onrender.com/get-newsfeed')
                             <div class="comment__header">
                                 <img src="${comment.commenterDetails.profile || "./images/resources/defaultpic.jpg"}" alt="Comment writer image" class="comment__avatar">
                                 <p class="comment__user-name">${comment.commenterDetails.nickname || "unknown user"}</p>
-                                <p class="comment__time text-success">${formatTimeDifference(comment.timestamp)}</p>
+                                <p class="comment__time text-success">${formatTimeDifferences(comment.timestamp)}</p>
                                 <p class="comment__chip">${comment.commenterDetails.role || "Psycholigist"}</p>
                             </div>
                             <p class="comment__text">${comment.comment}</p>
                         </div>
-                    `).join('')}
+                    `).join('')
+                  }
                 </div>
                 ` : ''}
                 <div class="form">
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function formatTimeDifference(timestamp) {
+function formatTimeDifferences(timestamp) {
   const currentTime = new Date();
   const commentTime = new Date(timestamp._seconds * 1000 + Math.round(timestamp._nanoseconds / 1000000));
 
@@ -221,7 +221,6 @@ function formatTimeDifference(timestamp) {
   const differenceInMinutes = Math.floor(differenceInSeconds / 60);
   const differenceInHours = Math.floor(differenceInMinutes / 60);
   const differenceInDays = Math.floor(differenceInHours / 24);
-  console.log(timestamp)
   if (differenceInDays > 7) {
     // If it crosses more than a week, display the date
     const options = { year: 'numeric', month: 'short', day: 'numeric' };

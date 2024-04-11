@@ -1262,12 +1262,13 @@ img {
 
 /*--- sidebar widgets ---*/
 
+
 .sidebar {
-    display: table;
+    display: block;
     float: none;
     margin: 0 auto;
     padding-bottom: 20px;
-    width: 80%;
+    width: 100%;
 }
 
 .sidebar .widget {
@@ -5503,7 +5504,7 @@ canvas {
 }
 
 .row.widget-page aside.sidebar {
-    width: 100%;
+    width: fit-content;
 }
 
 

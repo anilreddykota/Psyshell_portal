@@ -11,29 +11,12 @@
 
 .features {
     display: flex;
-    justify-content: space-between;
     margin-bottom: 10px;
-    overflow: scroll;
-    width: 90%;
+    padding: -15px !important;
   }
-  .box-features{
-    width: 95%;
-  }
-#feature1{
-  width: 90%;
-}
-#feature2{
-  width: 90%;
-}
-#feature3{
-  width: 90%;
-}
-#feature4{
-  width: 90%;
-}
+
 
   .feature {
-    padding:-4px !important;
     cursor: pointer;
   }
   .hidden {

@@ -67,7 +67,7 @@ fetch('https://atman.onrender.com/get-newsfeed')
                             <div class="comment__header">
                                 <img src="${comment.commenterDetails.profile || "./images/resources/defaultpic.jpg"}" alt="Comment writer image" class="comment__avatar">
                                 <p class="comment__user-name">${comment.commenterDetails.nickname || "unknown user"}</p>
-                                <p class="comment__time text-success">${formatTimeDifference(comment.timestamp)}</p>
+                                <p class="comment__time text-success">${formatTimeDifferences(comment.timestamp)}</p>
                                 <p class="comment__chip">Psycholigist</p>
                             </div>
                             <p class="comment__text">${comment.comment}</p>
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function formatTimeDifference(timestamp) {
+function formatTimeDifferences(timestamp) {
   const currentTime = new Date();
   const commentTime = new Date(timestamp._seconds * 1000 + Math.round(timestamp._nanoseconds / 1000000));
 
