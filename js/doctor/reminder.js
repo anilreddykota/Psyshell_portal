@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const response = await axios.post('https://atman.onrender.com/getAppointmentsByDoctor', { puid });
             const appointments = response.data;
-            console.log(appointments);
             approvedAppointments = [...appointments.approvedAppointments];
             displayAppointments([...appointments.approvedAppointments,...appointments.pendingAppointments]);
         } catch (error) {
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
             displayAppointments(approvedAppointments);
         } else {
             const users = approvedAppointments.filter(appointment => {
-                console.log(appointment.userDetails.nickname);
                 return appointment.userDetails.nickname === userNickname;
             });
             displayAppointments(users);
@@ -36,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
             appointmentsDiv.textContent = 'No appointments found for this doctor.';
         } else {
             appointments.map(appointment => {
-                console.log(appointment);
                 const appointmentHTML = `
                 <li class="unread">
                 <input class="select-message" type="checkbox" name="userselect" data-uid="${appointment.uid}"/>
@@ -79,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     selectedAppointments.splice(index, 1);
                 }
             }
-            console.log(selectedAppointments);
         });
     });
 
@@ -97,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 selectedAppointments.splice(index, 1);
             }
         });
-        console.log(selectedAppointments);
     });
     const sendReminderButton = document.getElementById('send-reminder');
     sendReminderButton.addEventListener('click', async function() {

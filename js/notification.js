@@ -18,7 +18,6 @@ async function fetchData() {
         }
 
         const data = await response.json(); // Assuming the response is JSON
-        console.log(data);
         // Get the activity log ul element
         const activityLog = document.getElementById('activity-log');
         

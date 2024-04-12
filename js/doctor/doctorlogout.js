@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('called logout');
 
             // Handle logout success response
-console.log(response);
             if(response.data?.message ==="Logout successful")
             {
                 console.log('Logout successful');

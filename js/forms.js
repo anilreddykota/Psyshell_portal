@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
             college:college
 
         };
-        console.log(registrationData)
         try {
             // Post the registration data to the server using Axios
             const response = await axios.post('https://atman.onrender.com/registerUseronweb', registrationData);
@@ -209,11 +208,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
         // Create an object from form data
         const formDataObject = {};
-        console.log(formData);
         formData.forEach(function(value, key){
             formDataObject[key] = value;
         });
-    console.log(formDataObject);
         try {
             const response = await axios.post('https://atman.onrender.com/collegelogin', {email: formDataObject["college-email"], password:formDataObject["college-password"]});
     

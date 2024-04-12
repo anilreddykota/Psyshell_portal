@@ -33,7 +33,6 @@ async function updatePassword() {
         }
 
         // Handle success response
-        console.log(response.data);
 
         if(response.data){
             alert(response.data.message);

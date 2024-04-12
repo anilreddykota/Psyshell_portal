@@ -11,14 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const response = await axios.post('https://atman.onrender.com/getAppointmentsByDoctor', { puid });
             const appointments = response.data;
-            console.log(appointments);
 
             if(appointments){
                 approvedAppointments = [...appointments.approvedAppointments]
                 pendingAppointments = [...appointments.pendingAppointments]  
                 displayAppointments([...appointments.approvedAppointments] );
                 document.getElementById('approvedbtn').addEventListener('click', () => {
-                    console.log('clicked approvalbtn');
                     displayAppointments(approvedAppointments);
                     document.getElementById('pendingbtn').classList.remove('slot');
                     document.getElementById('approvedbtn').classList.add('slot');
@@ -54,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             
             appointments.map(appointment => {
-                console.log(appointment);
                 const appointmentHTML = `
                     <div class="central-meta p-0 appointment-card">
                         <div class="new-postbox">

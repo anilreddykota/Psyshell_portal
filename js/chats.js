@@ -2,7 +2,6 @@ const socket = io('https://atman.onrender.com');
 
 
 if(!getParams()['puid']){
-    console.log('Please');
     window.location.href = '/groups.html';
 }
 
@@ -75,7 +74,6 @@ function appendMessage(message) {
 
 
 socket.on('previousmessages', (data) => {
-    console.log('previousmessages', data);
     data.forEach(message => {
         appendMessage(message)
     });
@@ -100,6 +98,5 @@ function sendMessage() {
 
 // Event listener for receiving messages from the server
 socket.on('newmessage', (message) => {
-    console.log('received', message);
     appendMessage(message);
 });

@@ -52,7 +52,6 @@ function showLoadingAnimation() {
 
 // Function to remove loading animation
 function hideLoadingAnimation() {
-    console.log('hideded');
     const loadingDiv = document.querySelector('.loading-div');
     if (loadingDiv) {
         loadingDiv.remove();

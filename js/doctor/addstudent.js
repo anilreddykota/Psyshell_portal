@@ -1,5 +1,4 @@
 document.getElementById("openPopup").addEventListener("click", function() {
-    console.log("Popup clicked")
     document.getElementById("overlay-add-student").style.display = "block";
 });
 
@@ -26,7 +25,6 @@ document.getElementById('addButton').addEventListener("click", async () => {
             alert(response.data.message)  
         }
         
-        console.log('Request sent successfully:', response);
     } catch (error) {
         // Handle errors if needed
         console.error('Error occurred while sending request:', error);

@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
             displayAppointments(approvedAppointments);
         } else {
             const users = approvedAppointments.filter(appointment => {
-                console.log(appointment.userDetails.nickname);
                 return appointment.userDetails.nickname === userNickname;
             });
             displayAppointments(users);

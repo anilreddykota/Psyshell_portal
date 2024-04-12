@@ -127,7 +127,6 @@ fetch('https://atman.onrender.com/get-newsfeed')
                 });
 
                 if (response.ok) {
-                  console.log('Like request successful');
                   like.setAttribute('isliked', (!isLiked).toString());
                   // Optionally, update UI to reflect the change in like status
                 } else {
@@ -197,7 +196,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data.message);
         alert(data.message);
         window.location.reload();
         // Optionally, redirect to another page or display a success message
@@ -238,7 +236,6 @@ function formatTimeDifferences(timestamp) {
 }
 
 async function addcomment(postid, puid) {
-  console.log('adding comment', postid, puid);
   const commentTextElement = document.getElementById(`commentText_${postid}`);
   const commentText = commentTextElement.value.trim();
 

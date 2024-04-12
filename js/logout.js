@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if(response.data?.message ==="Logout successful")
             {
-                console.log('Logout successful');
                 localStorage.clear();
                 window.location.href = 'landing.html';
             }
