@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 uid: uid,
                 answer: mood,
             })
-            console.log(response);
             if (response.data) {
 
                 alert(response.data.message)
@@ -51,7 +50,6 @@ const today = `${date.getDate()}${date.getMonth() + 1}${date.getFullYear()}`
 document.addEventListener("DOMContentLoaded", function () {
     // Show popup after 5 seconds
     document.getElementById('popup-button').style.display = 'none';
-    console.log(today, localStorage.moodDate);
     if (today !== localStorage.moodDate) {
 
         document.getElementById('popup').style.display = 'block';

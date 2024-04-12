@@ -14,12 +14,15 @@
 		<link rel="stylesheet" href="css/color.css">
 		<link rel="stylesheet" href="css/responsive.css">
 		<link rel="stylesheet" href="./css/mood.css">
-		<script src="./js/protected.js"></script>
+		<link rel="stylesheet" href="./css/addstudent.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js" integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="./js/feed.js" defer></script>
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		<script src="./js/protected.js"></script>
-
 		<script src="./js/mood.js"></script>
+		<script src="./js/score.js"></script>
+	
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -83,12 +86,7 @@
 						<a class="fa fa-sliders" href="#shoppingbag"></a>
 					</span>
 				</div>
-				<div class="mh-head second">
-					<form class="mh-form">
-						<input placeholder="search" />
-						<a href="#/" class="fa fa-search"></a>
-					</form>
-				</div>
+				
 				<nav id="menu" class="res-menu">
 					<ul>
 						<li><a href="index.html" title>Home</a></li>
@@ -106,66 +104,16 @@
 				<nav id="shoppingbag">
 					<div>
 						<div class>
-							<form method="post">
-								<div class="setting-row">
-									<span>use night mode</span>
-									<input type="checkbox" id="nightmode" />
-									<label for="nightmode" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Notifications</span>
-									<input type="checkbox" id="switch2" />
-									<label for="switch2" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Notification sound</span>
-									<input type="checkbox" id="switch3" />
-									<label for="switch3" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>My profile</span>
-									<input type="checkbox" id="switch4" />
-									<label for="switch4" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Show profile</span>
-									<input type="checkbox" id="switch5" />
-									<label for="switch5" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-							</form>
-							<h4 class="panel-title">Account Setting</h4>
-							<form method="post">
-								<div class="setting-row">
-									<span>Sub users</span>
-									<input type="checkbox" id="switch6" />
-									<label for="switch6" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>personal account</span>
-									<input type="checkbox" id="switch7" />
-									<label for="switch7" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Business account</span>
-									<input type="checkbox" id="switch8" />
-									<label for="switch8" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Show me online</span>
-									<input type="checkbox" id="switch9" />
-									<label for="switch9" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Delete history</span>
-									<input type="checkbox" id="switch10" />
-									<label for="switch10" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Expose author name</span>
-									<input type="checkbox" id="switch11" />
-									<label for="switch11" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-							</form>
+							<div id="feature2">
+								<div id="moodChartSelect"></div>
+								<canvas id="moodChart"></canvas>
+								<div id="moodChartControl" class="d-flex justify-content-space-between"></div>
+
+								<div id="averagemoodscore"></div>
+								<div id="streak-data"> </div>
+								<div id="no-graph-message"></div>
+							  </div>
+							
 						</div>
 					</div>
 				</nav>
@@ -225,8 +173,7 @@
 						</li>
 					</ul>
 					<div class="user-img">
-						  <img src="images/resources/defaultpic.jpg" alt 
- class="adminlogo">
+						  <img src="images/resources/defaultpic.jpg" alt class="adminlogo">
 
 						<div class="user-setting">
 
@@ -235,7 +182,7 @@
 							<a href="#" title><i class="ti-power-off"></i>log out</a>
 						</div>
 					</div>
-					<span class="ti-menu main-menu" data-ripple></span>
+					<a class="fa fa-sliders" href="#shoppingbag"></a>
 				</div>
 			</div><!-- topbar -->
 
@@ -246,9 +193,9 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="row" id="page-contents">
-									<div class="col-lg-3">
-										<aside class="sidebar static">
-											<div class="widget">
+									<div class="col-lg-2 d-md-none d-lg-block">
+										<aside class="sidebar static ">
+											<div class="widget ">
 												<h4 class="widget-title">Shortcuts</h4>
 												<ul class="naves">
 													<li>
@@ -271,9 +218,55 @@
 													</li>
 												</ul>
 											</div><!-- Shortcuts -->
+											
 											<!-- who's following -->
 										</aside>
 									</div><!-- sidebar -->
+									<div class="col-lg-4">
+										<div class="d-flex flex-column">
+										<div class="navsbanner">
+											<img id="banner" alt="banner image" src="./images/logo2.png">
+										</div>
+										<div class="navsbanner">
+											<main id="selftest" data-ripple>
+												<h2>Self Test</h2>
+												<h4>working on problem ans self<br> examination is sign of strength</h4>
+												<button class="start">Start</button>
+												<div id="selftestimg"></div>
+											  </main>
+										</div>
+										<div class="navsbanner">
+											<main id="coping" data-ripple>
+												<h2>Coping Technique</h2>
+												<h4>Helps in your critical times and <br>gives strength</h4>
+												<button class="start">Start</button>
+												<div id="copingimg"></div>
+											  </main>
+										</div>
+										<div class="navsbanner">
+											<main id="journal">
+												<h2>Daily Journal</h2>
+												<h4>Unlock your Thoughts, write Your <br>Heart : Your Daily Diary Companion</h4>
+												<button class="start"  onclick="window.location.href='journal.html'">Start</button>
+												<div id="journalimg"></div>
+											  </main>
+										</div>
+										<div class="navsbanner">
+											
+											<main id="performance">
+												
+												<h2>check your performance</h2>
+												<h4>check yours with graph </h4>
+												
+													<a  href="#shoppingbag" id="performancearrow"><i class="fa fa-arrow-right fa-beat fa-lg" style="color: black"></i></a>
+												
+											
+												
+											  </main>
+											
+										</div>
+									</div>
+									</div>
 									<div class="col-lg-6">
 										<!-- add post new box -->
 										<div class="loadMore" id="posts-container">
@@ -281,14 +274,12 @@
 												<div class="user-post">
 													<div class="friend-info">
 														<figure>
-															<img src="images/resources/friend-avatar10.jpg" alt>
 														</figure>
 														<div class="friend-name">
 															<ins><a href="time-line.html" title>Janice Griffith</a></ins>
 															<span>published: june,2 2018 19:PM</span>
 														</div>
 														<div class="post-meta">
-															<img src="images/resources/user-post.jpg" alt>
 															<div class="we-video-info">
 																<ul>
 																	<li>
@@ -371,107 +362,7 @@
 														</div>
 													</div>
 													<div class="coment-area">
-														<ul class="we-comet">
-															<li>
-																<div class="comet-avatar">
-																	<img src="images/resources/comet-1.jpg" alt>
-																</div>
-																<div class="we-comment">
-																	<div class="coment-head">
-																		<h5><a href="time-line.html" title>Jason borne</a></h5>
-																		<span>1 year ago</span>
-																		<a class="we-reply" href="#" title="Reply"><i
-																				class="fa fa-reply"></i></a>
-																	</div>
-																	<p>we are working for the dance and sing songs. this car is
-																		very awesome for the youngster. please vote this car and like
-																		our post</p>
-																</div>
-																<ul>
-																	<li>
-																		<div class="comet-avatar">
-																			<img src="images/resources/comet-2.jpg" alt>
-																		</div>
-																		<div class="we-comment">
-																			<div class="coment-head">
-																				<h5><a href="time-line.html" title>alexendra dadrio</a></h5>
-																				<span>1 month ago</span>
-																				<a class="we-reply" href="#" title="Reply"><i
-																						class="fa fa-reply"></i></a>
-																			</div>
-																			<p>yes, really very awesome car i see the features of this
-																				car in the official website of <a href="#"
-																					title>#Mercedes-Benz</a> and really impressed :-)</p>
-																		</div>
-																	</li>
-																	<li>
-																		<div class="comet-avatar">
-																			<img src="images/resources/comet-3.jpg" alt>
-																		</div>
-																		<div class="we-comment">
-																			<div class="coment-head">
-																				<h5><a href="time-line.html" title>Olivia</a></h5>
-																				<span>16 days ago</span>
-																				<a class="we-reply" href="#" title="Reply"><i
-																						class="fa fa-reply"></i></a>
-																			</div>
-																			<p>i like lexus cars, lexus cars are most beautiful with the
-																				awesome features, but this car is really outstanding than
-																				lexus</p>
-																		</div>
-																	</li>
-																</ul>
-															</li>
-															<li>
-																<div class="comet-avatar">
-																	<img src="images/resources/comet-1.jpg" alt>
-																</div>
-																<div class="we-comment">
-																	<div class="coment-head">
-																		<h5><a href="time-line.html" title>Donald Trump</a></h5>
-																		<span>1 week ago</span>
-																		<a class="we-reply" href="#" title="Reply"><i
-																				class="fa fa-reply"></i></a>
-																	</div>
-																	<p>we are working for the dance and sing songs. this video is
-																		very awesome for the youngster. please vote this video and
-																		like our channel
-																		<i class="em em-smiley"></i>
-																	</p>
-																</div>
-															</li>
-															<li>
-																<a href="#" title class="showmore underline">more comments</a>
-															</li>
-															<li class="post-comment">
-																<div class="comet-avatar">
-																	<img src="images/resources/comet-1.jpg" alt>
-																</div>
-																<div class="post-comt-box">
-																	<form method="post">
-																		<textarea placeholder="Post your comment"></textarea>
-																		<div class="add-smiles">
-																			<span class="em em-expressionless" title="add icon"></span>
-																		</div>
-																		<div class="smiles-bunch">
-																			<i class="em em---1"></i>
-																			<i class="em em-smiley"></i>
-																			<i class="em em-anguished"></i>
-																			<i class="em em-laughing"></i>
-																			<i class="em em-angry"></i>
-																			<i class="em em-astonished"></i>
-																			<i class="em em-blush"></i>
-																			<i class="em em-disappointed"></i>
-																			<i class="em em-worried"></i>
-																			<i class="em em-kissing_heart"></i>
-																			<i class="em em-rage"></i>
-																			<i class="em em-stuck_out_tongue"></i>
-																		</div>
-																		<button type="submit"></button>
-																	</form>
-																</div>
-															</li>
-														</ul>
+														
 													</div>
 												</div></div>
 										</div>
@@ -534,69 +425,7 @@
 				</footer><!-- footer -->
 
 			</div>
-			<div class="side-panel">
-				<h4 class="panel-title">General Setting</h4>
-				<form method="post">
-					<div class="setting-row">
-						<span>use night mode</span>
-						<input type="checkbox" id="nightmode1" />
-						<label for="nightmode1" data-on-label="ON" data-off-label="OFF"></label>
-					</div>
-					<div class="setting-row">
-						<span>Notifications</span>
-						<input type="checkbox" id="switch22" />
-						<label for="switch22" data-on-label="ON" data-off-label="OFF"></label>
-					</div>
-					<div class="setting-row">
-						<span>Notification sound</span>
-						<input type="checkbox" id="switch33" />
-						<label for="switch33" data-on-label="ON" data-off-label="OFF"></label>
-					</div>
-					<div class="setting-row">
-						<span>My profile</span>
-						<input type="checkbox" id="switch44" />
-						<label for="switch44" data-on-label="ON" data-off-label="OFF"></label>
-					</div>
-					<div class="setting-row">
-						<span>Show profile</span>
-						<input type="checkbox" id="switch55" />
-						<label for="switch55" data-on-label="ON" data-off-label="OFF"></label>
-					</div>
-				</form>
-				<h4 class="panel-title">Account Setting</h4>
-				<form method="post">
-					<div class="setting-row">
-						<span>Sub users</span>
-						<input type="checkbox" id="switch66" />
-						<label for="switch66" data-on-label="ON" data-off-label="OFF"></label>
-					</div>
-					<div class="setting-row">
-						<span>personal account</span>
-						<input type="checkbox" id="switch77" />
-						<label for="switch77" data-on-label="ON" data-off-label="OFF"></label>
-					</div>
-					<div class="setting-row">
-						<span>Business account</span>
-						<input type="checkbox" id="switch88" />
-						<label for="switch88" data-on-label="ON" data-off-label="OFF"></label>
-					</div>
-					<div class="setting-row">
-						<span>Show me online</span>
-						<input type="checkbox" id="switch99" />
-						<label for="switch99" data-on-label="ON" data-off-label="OFF"></label>
-					</div>
-					<div class="setting-row">
-						<span>Delete history</span>
-						<input type="checkbox" id="switch101" />
-						<label for="switch101" data-on-label="ON" data-off-label="OFF"></label>
-					</div>
-					<div class="setting-row">
-						<span>Expose author name</span>
-						<input type="checkbox" id="switch111" />
-						<label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
-					</div>
-				</form>
-			</div><!-- side panel -->
+			
 
 			<script
 				src="js/main.min.js"></script>

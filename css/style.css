@@ -2594,6 +2594,13 @@ footer .logo {
     padding: 15px 0;
     width: 100%;
 }
+.points_logo{
+    position: absolute;
+    right: 30px;
+    bottom: 25px;
+    height: 150px;
+    width: auto;
+}
 
 .toggle-setting > span {
     color: #4f4f4f;
@@ -2694,6 +2701,15 @@ footer .logo {
 /*input[switch="bool"]:checked + label {
     background-color: #bce954;
 }*/
+
+
+
+#banner{
+    width: 100%;
+    height: auto;
+    padding: 0;
+}
+
 
 .side-panel {
     background: #fefefe;

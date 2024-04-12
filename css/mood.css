@@ -59,3 +59,94 @@
     border-radius: 20px !important;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+#banner{
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+    border-radius: 30px;
+}
+main {
+    width: 100%;
+    background-color:  #8bc536;
+    border-radius: 30px;
+    position: relative;
+    padding:20px 0px;
+    margin-bottom: 10px;
+  }
+
+
+  main#selftest{
+    background-color: #6dd3ce;
+  }
+  main#coping{
+    background-color: #8267c6;
+  }
+  main#performance{
+    background-color: #c2a1f0;
+  }
+  h4 {
+    margin-top: 10px;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+      margin-left:20px;
+  
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+    color: black;
+    font-size: 20px;
+    margin-left:20px;
+  
+  }
+  button.start {
+    padding: 6px 20px;
+    margin-left:20px;
+    border-radius: 100px;
+    border: none;
+    background-color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  #selftestimg {
+    position: absolute;
+    bottom: -40px;
+    right: -120px;
+    height: 200px;
+    width: 300px;
+    background-image: url("../images/todo1.png");
+    background-repeat: no-repeat;
+    background-size: auto 90%;
+  }
+  #copingimg {
+    position: absolute;
+    bottom: -49px;
+    right: -100px;
+    height: 200px;
+    width: 300px;
+    background-image: url("../images/3d-rendering-cartoon-like-woman-doing-yoga-PhotoRoom.png-PhotoRoom.png");
+    background-repeat: no-repeat;
+    background-size: auto 150px;
+  }
+  #journalimg {
+    position: absolute;
+    bottom: -35px;
+    right: -140px;
+    height: 200px;
+    width: 300px;
+    background-image: url("../images/m028t0142_d_teacher_resources_01sep22-PhotoRoom.png-PhotoRoom.png");
+    background-repeat: no-repeat;
+    background-size: auto 180px;
+  }
+  #performancearrow{
+    position: absolute;
+    bottom: 60px;
+    right: 50px;
+    height: 0px;
+    width: 0px; 
+ 
+
+  }
+  
+  

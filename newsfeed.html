@@ -13,10 +13,13 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/color.css">
 		<link rel="stylesheet" href="css/responsive.css">
+		<link rel="stylesheet" href="./css/addstudent.css">
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>	
 		<script src="./js/feed.js" defer></script>
 		<script src="./js/mood.js"></script>
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js" integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="./js/protected.js"></script>
+		<script src="./js/score.js"></script>
 		<link rel="stylesheet" href="./css/mood.css">
 
 	</head>
@@ -94,67 +97,16 @@
 				</nav>
 				<nav id="shoppingbag">
 					<div>
-						<div class="d-none">
-							<form method="post">
-								<div class="setting-row">
-									<span>use night mode</span>
-									<input type="checkbox" id="nightmode" />
-									<label for="nightmode" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Notifications</span>
-									<input type="checkbox" id="switch2" />
-									<label for="switch2" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Notification sound</span>
-									<input type="checkbox" id="switch3" />
-									<label for="switch3" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>My profile</span>
-									<input type="checkbox" id="switch4" />
-									<label for="switch4" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Show profile</span>
-									<input type="checkbox" id="switch5" />
-									<label for="switch5" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-							</form>
-							<h4 class="panel-title">Account Setting</h4>
-							<form method="post">
-								<div class="setting-row">
-									<span>Sub users</span>
-									<input type="checkbox" id="switch6" />
-									<label for="switch6" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>personal account</span>
-									<input type="checkbox" id="switch7" />
-									<label for="switch7" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Business account</span>
-									<input type="checkbox" id="switch8" />
-									<label for="switch8" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Show me online</span>
-									<input type="checkbox" id="switch9" />
-									<label for="switch9" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Delete history</span>
-									<input type="checkbox" id="switch10" />
-									<label for="switch10" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-								<div class="setting-row">
-									<span>Expose author name</span>
-									<input type="checkbox" id="switch11" />
-									<label for="switch11" data-on-label="ON" data-off-label="OFF"></label>
-								</div>
-							</form>
+						<div>
+							<div id="feature2">
+								<div id="moodChartSelect"></div>
+								<canvas id="moodChart"></canvas>
+								<div id="moodChartControl" class="d-flex justify-content-space-between"></div>
+
+								<div id="averagemoodscore"></div>
+								<div id="streak-data"> </div>
+								<div id="no-graph-message"></div>
+							  </div>		
 						</div>
 					</div>
 				</nav>
@@ -224,7 +176,10 @@
 							<a href="#" title><i class="ti-power-off"></i>log out</a>
 						</div>
 					</div>
-					<span class="ti-menu main-menu" data-ripple></span>
+					<span class="mh-btns-right">
+						<a class="fa fa-sliders" href="#shoppingbag"></a>
+					</span>
+					
 				</div>
 			</div><!-- topbar -->
 

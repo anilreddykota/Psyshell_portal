@@ -232,3 +232,4 @@ function formatTimeDifferences(timestamp) {
     return differenceInMinutes <= 1 ? 'just now' : `${differenceInMinutes} mins ago`;
   }
 }
+

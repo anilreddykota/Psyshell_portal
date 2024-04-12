@@ -257,17 +257,17 @@ jQuery(document).ready(function ($) {
 		$('#menu').mmenu();
 		$('#shoppingbag').mmenu({
 			navbar: {
-				title: 'General Setting'
+				title: 'Performance'
 			},
 			offCanvas: {
 				position: 'right'
-			}
+			},
 		});
 
 		//	fire the plugin
 		$('.mh-head.first').mhead({
 			scroll: {
-				hide: 200
+				hide: 300
 			}
 
 		});
@@ -418,6 +418,11 @@ logout.forEach(log => log.addEventListener('click', () => {
 }
 
 ))
+
+
+
+
+
 
 
 
