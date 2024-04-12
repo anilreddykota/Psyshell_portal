@@ -1,7 +1,7 @@
 .popup-container {
-    display: none; /* Initially hidden */
+    display: none; 
     position: fixed;
-    top: -100%; /* Start off-screen */
+    bottom: 0; 
     right: 0;
     background-color: white;
     padding: 20px;
@@ -12,7 +12,7 @@
 
 .popup-container.active {
     display: block;
-    top: 0; /* Slide in from the top */
+    top: 0; 
 }
 
 /* Styles for the popup button */
@@ -43,7 +43,7 @@
     z-index: 999;
     border-radius: 20px;
     padding: 35px 0px;
-    display: none; /* Initially hidden */
+    display: none; 
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 @media only screen and (max-width: 600px) {
@@ -53,7 +53,7 @@
   }
 
 .mood-modal.active {
-    display: block; /* Show the modal when active */
+    display: block; 
 }
 .emojis-container{
     border-radius: 20px !important;
@@ -74,7 +74,6 @@ main {
     margin-bottom: 10px;
   }
 
-
   main#selftest{
     background-color: #6dd3ce;
   }
@@ -84,7 +83,8 @@ main {
   main#performance{
     background-color: #c2a1f0;
   }
-  h4 {
+
+ main h4 {
     margin-top: 10px;
     color: white;
     font-size: 14px;
@@ -92,14 +92,15 @@ main {
       margin-left:20px;
   
   }
-  
-  h2 {
+  main h2 {
     margin-bottom: 10px;
     color: black;
     font-size: 20px;
     margin-left:20px;
   
   }
+
+  
   button.start {
     padding: 6px 20px;
     margin-left:20px;
@@ -111,33 +112,35 @@ main {
   }
   #selftestimg {
     position: absolute;
-    bottom: -40px;
-    right: -120px;
+    bottom: -60px;
+    left: 50%;
     height: 200px;
     width: 300px;
     background-image: url("../images/todo1.png");
     background-repeat: no-repeat;
-    background-size: auto 90%;
+    background-size: auto 80%;
   }
+
   #copingimg {
     position: absolute;
-    bottom: -49px;
-    right: -100px;
+    bottom: -70px;
+    left: 60%;
     height: 200px;
     width: 300px;
     background-image: url("../images/3d-rendering-cartoon-like-woman-doing-yoga-PhotoRoom.png-PhotoRoom.png");
     background-repeat: no-repeat;
-    background-size: auto 150px;
+    background-size: auto 130px;
   }
   #journalimg {
     position: absolute;
-    bottom: -35px;
-    right: -140px;
+    padding-left: 200px;
+    bottom: -90px;
+    left: 70%;
     height: 200px;
     width: 300px;
     background-image: url("../images/m028t0142_d_teacher_resources_01sep22-PhotoRoom.png-PhotoRoom.png");
     background-repeat: no-repeat;
-    background-size: auto 180px;
+    background-size: auto 80px;
   }
   #performancearrow{
     position: absolute;
