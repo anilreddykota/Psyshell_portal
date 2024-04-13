@@ -26,7 +26,7 @@ backdrop.id = 'network-backdrop';
 backdrop.textContent = 'Network Disconnected. Please check your connection.';
 
 // Append the backdrop element to the document body
-document.body.prepend(backdrop);
+document.body.appendChild(backdrop);
 
 // Function to toggle the visibility of the backdrop based on network status
 function toggleBackdrop() {

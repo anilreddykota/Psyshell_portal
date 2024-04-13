@@ -25,9 +25,9 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-		crossorigin="anonymous"></script> -->
+		crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -79,7 +79,10 @@
 			</div>
 
 			<nav id="menu" class="res-menu">
+				
+
 				<ul>
+					<li><a id="username"><i class="ti-user"></i></a></li>
 					<li><a href="index.html" title>Home</a></li>
 					<li><a href="newsfeed.html" title>news feed</a></li>
 					<li><a href="journal.html" title> Daily Journal</a></li>
@@ -96,6 +99,8 @@
 				<div>
 					<div class>
 						<div id="feature2">
+							<a id="username"><i class="ti-user"></i></a>
+
 							<div id="moodChartSelect"></div>
 							<canvas id="moodChart"></canvas>
 							<div id="moodChartControl" class="d-flex justify-content-space-between"></div>
@@ -165,7 +170,7 @@
 					<img src="images/resources/defaultpic.jpg" alt class="adminlogo">
 
 					<div class="user-setting">
-
+						<a id="username"><i class="ti-user"></i></a>
 						<a href="#" title><i class="ti-user"></i> view profile</a>
 						<a href="#" title><i class="ti-settings"></i>account setting</a>
 						<a href="#" title><i class="ti-power-off"></i>log out</a>
@@ -201,10 +206,10 @@
 													<a href="notifications.html" title>Notifications</a>
 												</li>
 
-												<li>
+												<!-- <li>
 													<i class="ti-power-off"></i>
 													<a id="logout">Logout</a>
-												</li>
+												</li> -->
 											</ul>
 										</div><!-- Shortcuts -->
 
@@ -221,7 +226,7 @@
 												<h2>Self Test</h2>
 												<h4>working on problem ans self<br> examination is sign of
 													strength</h4>
-												<button class="start">Start</button>
+												<button class="start" onclick="window.location.href='selftest.html'">Start</button>
 												<div id="selftestimg"></div>
 											</main>
 										</div>
@@ -229,7 +234,7 @@
 											<main id="coping" data-ripple>
 												<h2>Coping Technique</h2>
 												<h4>Helps in your critical times and <br>gives strength</h4>
-												<button class="start">Start</button>
+												<button class="start" onclick="window.location.href='coping.html'"">Start</button>
 												<div id="copingimg"></div>
 											</main>
 										</div>

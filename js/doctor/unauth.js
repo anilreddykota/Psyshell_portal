@@ -17,7 +17,8 @@ async function fetchProtectedRoute(token) {
    });
        // Handle the data returned from the protected route
        if (response.data?.message === 'UnauthorizedUnauthorized - Missing token'|| 'send-to-logout') {
-           window.location.href = 'landing.html'; // Redirect to logout.html for unauthorized access
+        console.log(response.data);
+           window.location.href = 'doctorlogout.html'; // Redirect to logout.html for unauthorized access
        }
    } catch (error) {
        // Handle errors
@@ -26,7 +27,6 @@ async function fetchProtectedRoute(token) {
        if (error.response && error.response.status === 401) {
            // Unauthorized access
            console.log(error);
-           // window.location.href = 'logout.html'; // Redirect to logout.html for unauthorized access
        }
    }
 }

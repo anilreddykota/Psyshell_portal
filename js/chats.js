@@ -68,11 +68,6 @@ function appendMessage(message) {
     // Scroll to the bottom of the chat box
     chatBox.scrollTop = chatBox.scrollHeight;
 }
-
-
-
-
-
 socket.on('previousmessages', (data) => {
     data.forEach(message => {
         appendMessage(message)
@@ -99,4 +94,11 @@ function sendMessage() {
 // Event listener for receiving messages from the server
 socket.on('newmessage', (message) => {
     appendMessage(message);
+});
+
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
 });

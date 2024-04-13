@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 console.log('Logout successful');
                 localStorage.clear();
+                sessionStorage.clear();
+
                 window.location.href = 'landing.html';
             }
            
@@ -40,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Logout failed');
             console.error(error); // Optionally, you can handle the error response here
             localStorage.clear();
+            sessionStorage.clear();
                 window.location.href = 'landing.html';
         }
     }

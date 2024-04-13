@@ -309,7 +309,7 @@ jQuery(document).ready(function ($) {
 		return false;
 	});
 	$('.already-have-p').on("click", function () {
-		$('.login-reg-bg-p').removeClass('show');
+		$('.login-reg-bg').removeClass('show');
 		return false;
 	});
 

@@ -69,11 +69,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     window.location.hash = "#selectedstudent";
                     const selectedUserId = event.currentTarget.dataset.uid;
                     const selectedUser = approvedAppointments.find(appointment => appointment.uid === selectedUserId);
-                    const response = await axios.post('https://atman.onrender.com/get-analysis-of-student', { uid: selectedUser.uid })
-                    graphdata = response;
-                    if (response.data.message === 'No mood data found for the specified user.') {
-                        console.log(response.data.message);
-                        document.getElementById('no-graph-message').innerHTML = response.data.message;
+
+                    if(localStorage.getItem[`graphdata_${selectedUser.uid }`]) {
+                     graphdata = JSON.parse(localStorage.getItem[`graphdata_${selectedUser.uid}`]);
+                    }else{
+                        const response = await axios.post('https://atman.onrender.com/get-analysis-of-student', { uid: selectedUser.uid })
+                        graphdata = response;
+                        localStorage.setItem(`graphdata_${selectedUser.uid}`,JSON.stringify(response));
+                    }
+
+
+
+
+                    
+                    if (graphdata.data.message === 'No mood data found for the specified user.') {
+                        console.log(graphdata.data.message);
+                        document.getElementById('no-graph-message').innerHTML = graphdata.data.message;
                         document.getElementById('moodChart').innerHTML = "";
                         document.getElementById('streak-data').innerHTML = "";
                         if (moodChart) {
@@ -83,16 +94,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     } else {
                         displayMoodChart();
-                        streakdata(response.data.longestStreak, response.data.currentStreak);
+                        streakdata(graphdata.data.longestStreak, graphdata.data.currentStreak);
                         document.getElementById('no-graph-message').innerHTML = "";
-                        document.getElementById('averagemoodscore').innerHTML = `<div class='card mt-2'> <div class='card-title widget-title'>Average Mood Score</div> <div class='card-body'><h1>${response?.data?.analyticsResult?.averageMoodScore}</h1></div></div>`;
+                        document.getElementById('averagemoodscore').innerHTML = `<div class='card mt-2'> <div class='card-title widget-title'>Average Mood Score</div> <div class='card-body'><h1>${graphdata?.data?.analyticsResult?.averageMoodScore}</h1></div></div>`;
 
                     }
-
-
-
-
-
                     if (selectedUser) {
                         document.getElementById('chat-link').setAttribute('href', `chatting.html?uid=${selectedUser.uid}&uname=${selectedUser.userDetails?.nickname}`)
                         document.getElementById('user-image').setAttribute('src', selectedUser.userDetails?.profile || './images/resources/defaultpic.jpg')
@@ -115,13 +121,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
                         document.querySelector('.users-data').innerHTML = userHTML;
                     }
-
-
-
-
-
-
-
                 });
 
             });

@@ -1,5 +1,8 @@
+
 document.addEventListener('DOMContentLoaded', function () {
-    localStorage.clear();
+
+
+  
     const loginForm = document.getElementById('loginForm');
 
     loginForm.addEventListener('submit', async function (event) {

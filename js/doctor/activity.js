@@ -1,45 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetchData();
+    fetchData(); // Fetch data immediately on page load
+    setInterval(fetchData, 6 * 60 * 60 * 1000); // Fetch data every 6 hours
 });
 
 async function fetchData() {
     try {
-        const uid = localStorage.puid;
-        const response = await fetch('https://atman.onrender.com/user/activity', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ uid: uid })
-        });
+        const lastFetchedTime = sessionStorage.getItem('lastFetchTime');
+        const currentTime = Date.now();
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+        // Check if data was fetched in the last 24 hours or if it's the first fetch
+        if (!lastFetchedTime || (currentTime - lastFetchedTime) > (24 * 60 * 60 * 1000)) {
+            const uid = localStorage.puid;
+            const response = await fetch('https://atman.onrender.com/user/activity', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ uid: uid })
+            });
+
+            
+
+            const data = await response.json(); // Assuming the response is JSON
+            // Get the activity log ul element
+            const activityLog = document.getElementById('activity-log');
+
+            // Clear existing content
+            activityLog.innerHTML = '';
+
+            // Iterate over the data and create list items
+            data?.activityLog?.forEach(activity => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <div class="activity-meta">
+                        <i>${formatTimeDifference(activity.timestamp)}</i>
+                        <span><a href="#" title="">${activity.activity}</a></span>
+                    </div>
+                `;
+                activityLog.appendChild(li);
+            });
+
+            // Update last fetch time in session storage
+            sessionStorage.setItem('lastFetchTime', currentTime);
+            // Store fetched data in session storage
+            sessionStorage.setItem('activityLogData', JSON.stringify(data.activityLog));
+        } else {
+            // If data was fetched within the last 24 hours, retrieve and display it from session storage
+            const activityLogData = JSON.parse(sessionStorage.getItem('activityLogData'));
+            const activityLog = document.getElementById('activity-log');
+
+            // Clear existing content
+            activityLog.innerHTML = '';
+
+            // Iterate over the stored data and create list items
+            activityLogData?.forEach(activity => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <div class="activity-meta">
+                        <i>${formatTimeDifference(activity.timestamp)}</i>
+                        <span><a href="#" title="">${activity.activity}</a></span>
+                    </div>
+                `;
+                activityLog.appendChild(li);
+            });
         }
-
-        const data = await response.json(); // Assuming the response is JSON
-        // Get the activity log ul element
-        const activityLog = document.getElementById('activity-log');
-
-        // Clear existing content
-        activityLog.innerHTML = '';
-
-        // Iterate over the data and create list items
-        data?.activityLog?.forEach(activity => {
-            const li = document.createElement('li');
-            li.innerHTML = `
-			<div class="activity-meta">
-				<i>${formatTimeDifference(activity.timestamp)}</i>
-				<span><a href="#" title="">${activity.activity}</a></span>
-			</div>
-											
-            `;
-            activityLog.appendChild(li);
-        });
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
     }
 }
+
 
 function formatTimeDifference(timestamp) {
     const currentTime = new Date();

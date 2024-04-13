@@ -1,22 +1,36 @@
 var graphdata;
+var fetchCounter = 0;
+
 async function fetchData() {
     try {
-        // Make POST request using Axios
-        const response = await axios.post(
-            "https://atman.onrender.com/get-analysis-of-student",
-            { uid: localStorage.uid }
-        );
-
-        // Extract graph data from response
-        graphdata = response;
-
-        // Call displayMoodChart function with graphdata
+        if (localStorage.graphdata) {
+            // Data is available in local storage, use it directly
+            graphdata = JSON.parse(localStorage.graphdata);
+        } else if (sessionStorage.graphdata && fetchCounter < 3) {
+            // Data is available in session storage and fetch counter is less than 3
+            graphdata = JSON.parse(sessionStorage.graphdata);
+        } else {
+            const response = await axios.post(
+                "https://atman.onrender.com/get-analysis-of-student",
+                { uid: localStorage.uid }
+            );
+            graphdata = response;
+            localStorage.setItem("graphdata", JSON.stringify(graphdata));
+            // Update session storage only if fetch counter is less than 3
+            if (fetchCounter < 3) {
+                sessionStorage.setItem("graphdata", JSON.stringify(graphdata));
+                fetchCounter++;
+            }
+            
+        }
         streakdata(graphdata.data.longestStreak, graphdata.data.currentStreak, graphdata);
         displayMoodChart();
+
     } catch (error) {
         console.error("Error fetching data:", error);
     }
 }
+
 
 // Call fetchData function when DOM is loaded
 document.addEventListener("DOMContentLoaded", fetchData);

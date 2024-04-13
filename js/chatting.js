@@ -103,3 +103,9 @@ socket.on('newmessage', (message) => {
     console.log('received', message);
     appendMessage(message);
 });
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});

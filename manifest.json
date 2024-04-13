@@ -35,15 +35,10 @@
         "sizes": "512x512",
         "type": "image/png"
       }
-    ],
-    "splash_pages": null,
-    "scope": "/",
-    "orientation": "any",
-    "prefer_related_applications": false,
-    "related_applications": [],
-    "serviceworker": {
-      "src": "/service-worker.js",
-      "scope": "/"
-    }
+    ]   
+    
+  
+    
+    
   }
   

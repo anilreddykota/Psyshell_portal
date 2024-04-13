@@ -1435,12 +1435,40 @@ img {
     background-color: #80e2fb;
     color: black;
 }
-#land-buttons{
+#land-buttons {
     position: fixed;
     bottom: 75px;
     left: 50%;
-    transform: translate(-44%,50px);
+    background:#0077b5;
+    padding: 5px;
+    border-radius: 5px;
+    width: max-content;
+    transform: translate(-50%, 50px);
+    animation: slideAndFade 3s ease forwards;
 }
+
+#land-buttons button:hover, #landing-buttons button:active{
+    border-bottom: black solid 5px;
+}
+
+@keyframes slideAndFade {
+    0% {
+        transform: translate(-50%, 50px);
+        bottom: 50%
+    }
+    100% {
+        transform: translate(-50%, 50px);
+        opacity: 1;
+    }
+}
+@media  (width>900px) {
+
+    #land-buttons{
+        transform: scale(2);
+    }
+    
+}
+
 a[href^="#"] {
     scroll-behavior: smooth;
   }
@@ -10682,7 +10710,7 @@ aside.sidebar.full-style {
 #messageToast {
     position: fixed;
     top: 75px;
-    right: 32px;
+    right: 10px;
     z-index: 999999;
     display: none;
     background-color: #0077b5;
@@ -10695,8 +10723,8 @@ aside.sidebar.full-style {
     background-color: #fff;
     border-radius: 2px;
     padding: 20px 0;
-    min-width: 400px;
-    max-width: 450px;
+    min-width: 300px;
+    max-width: 350px;
     border-left: 4px solid;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
     transition: all linear 0.3s;

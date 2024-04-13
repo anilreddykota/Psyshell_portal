@@ -62,8 +62,8 @@
 #banner{
     margin-bottom: 10px;
     margin-top: 10px;
-
     border-radius: 30px;
+    height: 250px !important;
 }
 main {
     width: 100%;

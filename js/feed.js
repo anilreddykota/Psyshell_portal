@@ -31,9 +31,9 @@ fetch('https://atman.onrender.com/get-newsfeed')
                 </figure>
                 <div class="friend-name">
                     <ins><a  title="">${post.userDetails?.nickname || "unknown user"}</a>  
-                    ${post.userDetails?.badges ? post?.userDetails?.badges?.map((badge)=>
-                    ` <img src="./images/badges/${badge}.png" class="user-badges" title="${badge} - badge">`
-                    ): ''}
+                    ${post.userDetails?.badges ? post?.userDetails?.badges?.map((badge) =>
+          ` <img src="./images/badges/${badge}.png" class="user-badges" title="${badge} - badge">`
+        ) : ''}
                    </ins>
                     <span>published: ${formattedDateTime}</span>
                 </div>
@@ -85,58 +85,58 @@ fetch('https://atman.onrender.com/get-newsfeed')
 
         document.getElementById('posts-container').innerHTML += postHTML;
         const likeButtons = document.querySelectorAll('.like-btn');
-        if (uid){
-          
-        
-        likeButtons?.forEach(like => {
-          like.addEventListener('click', async (event) => {
-            try {
-              const uniqueKey = like.getAttribute('key');
-              const isLiked = like.getAttribute('isliked');
-              const ins = document.querySelector(`.ins[key="${uniqueKey}"]`);
-              const uid = localStorage.getItem('uid');
-              const queryParams = new URLSearchParams();
-              queryParams.append('postid', uniqueKey);
-              queryParams.append('uid', uid);
-              let url;
+        if (uid) {
 
 
-              if (isLiked == 'true') {
-                url = `https://atman.onrender.com/dislike-post?${queryParams.toString()}`;
-                ins.textContent = Math.max(parseInt(ins.textContent) - 1, 0);
-                like.classList.remove('text-danger');
-                like.classList.add('text-success')
-                like.setAttribute('isliked', 'false');
+          likeButtons?.forEach(like => {
+            like.addEventListener('click', async (event) => {
+              try {
+                const uniqueKey = like.getAttribute('key');
+                const isLiked = like.getAttribute('isliked');
+                const ins = document.querySelector(`.ins[key="${uniqueKey}"]`);
+                const uid = localStorage.getItem('uid');
+                const queryParams = new URLSearchParams();
+                queryParams.append('postid', uniqueKey);
+                queryParams.append('uid', uid);
+                let url;
 
-              } else {
-                url = `https://atman.onrender.com/like-post?${queryParams.toString()}`;
-                ins.textContent = parseInt(ins.textContent) + 1;
-                like.classList.remove('text-success')
-                like.classList.add('text-danger');
 
-                like.setAttribute('isliked', 'true');
+                if (isLiked == 'true') {
+                  url = `https://atman.onrender.com/dislike-post?${queryParams.toString()}`;
+                  ins.textContent = Math.max(parseInt(ins.textContent) - 1, 0);
+                  like.classList.remove('text-danger');
+                  like.classList.add('text-success')
+                  like.setAttribute('isliked', 'false');
+
+                } else {
+                  url = `https://atman.onrender.com/like-post?${queryParams.toString()}`;
+                  ins.textContent = parseInt(ins.textContent) + 1;
+                  like.classList.remove('text-success')
+                  like.classList.add('text-danger');
+
+                  like.setAttribute('isliked', 'true');
+                }
+
+
+                const response = await fetch(url, {
+                  method: 'POST'
+                });
+
+                if (response.ok) {
+                  like.setAttribute('isliked', (!isLiked).toString());
+                  // Optionally, update UI to reflect the change in like status
+                } else {
+                  console.error('Failed to send like request:', response.statusText);
+                  // Optionally, display an error message to the user
+                }
+              } catch (error) {
+                console.error('Error sending like request:', error);
+                // Handle network or other errors
               }
+            });
 
-
-              const response = await fetch(url, {
-                method: 'POST'
-              });
-
-              if (response.ok) {
-                like.setAttribute('isliked', (!isLiked).toString());
-                // Optionally, update UI to reflect the change in like status
-              } else {
-                console.error('Failed to send like request:', response.statusText);
-                // Optionally, display an error message to the user
-              }
-            } catch (error) {
-              console.error('Error sending like request:', error);
-              // Handle network or other errors
-            }
           });
-
-        });
-      }
+        }
       });
 
     } else {
@@ -151,6 +151,7 @@ fetch('https://atman.onrender.com/get-newsfeed')
 
 
 document.addEventListener('DOMContentLoaded', function () {
+  dailybanner();
   const createPostForm = document.getElementById('createPostForm');
   const imagePreview = document.getElementById('imagePreview');
   var imageref = document.getElementById('image');
@@ -231,3 +232,42 @@ function formatTimeDifferences(timestamp) {
   }
 }
 
+
+
+async function dailybanner() {
+  try {
+      document.getElementById('username').innerHTML = "welcome "+localStorage.nickname;
+      const lastFetchedDate = localStorage.getItem('lastDailyPictureFetch');
+      const currentDate = new Date().toDateString();
+
+      if (!lastFetchedDate || lastFetchedDate !== currentDate) {
+          // If the picture hasn't been fetched today, fetch it
+          const response = await axios.get('https://atman.onrender.com/fetch-daily-picture');
+          
+          if (response.data && response.data.imageUrl) {
+              // Store the image URL in local storage
+              localStorage.setItem('dailyPictureUrl', response.data.imageUrl);
+              
+              // Update the flag in local storage to indicate that the picture has been fetched today
+              localStorage.setItem('lastDailyPictureFetch', currentDate);
+              
+              // Replace the banner with the fetched image
+              const bannerElement = document.getElementById('banner');
+              if (bannerElement) {
+                  bannerElement.src = response.data.imageUrl;
+              }
+          }
+      } else {
+          // If the picture has already been fetched today, use the stored image URL
+          const storedImageUrl = localStorage.getItem('dailyPictureUrl');
+          if (storedImageUrl) {
+              const bannerElement = document.getElementById('banner');
+              if (bannerElement) {
+                  bannerElement.src = storedImageUrl;
+              }
+          }
+      }
+  } catch (error) {
+      console.error('Error fetching or displaying daily picture:', error);
+  }
+}
