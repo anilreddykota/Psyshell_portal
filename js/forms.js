@@ -1,13 +1,5 @@
 const loadingdiv = document.getElementById("loading-div");
 
-if (localStorage.uid && localStorage.token) {
-  window.location.href = "index.html";
-} else if (localStorage.puid && localStorage.token) {
-  window.location.href = "index2.html";
-} else {
-  localStorage.clear();
-  sessionStorage.clear();
-}
 
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("loginFormu");
