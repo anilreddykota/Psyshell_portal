@@ -7,7 +7,7 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 300px;
-    transition: top 0.5s ease; /* Transition for smooth movement */
+    transition: top 0.5s ease; 
 }
 
 .popup-container.active {
@@ -15,7 +15,7 @@
     top: 0; 
 }
 
-/* Styles for the popup button */
+
 .popup-button {
     position: fixed;
     bottom: 50px;
@@ -110,12 +110,14 @@ main {
     font-size: 16px;
     cursor: pointer;
   }
+  
   #selftestimg {
     position: absolute;
     bottom: -60px;
-    left: 50%;
+    right: 20px;
     height: 200px;
-    width: 300px;
+    width: 160px;
+    object-fit: fill;
     background-image: url("../images/todo1.png");
     background-repeat: no-repeat;
     background-size: auto 80%;
@@ -124,20 +126,22 @@ main {
   #copingimg {
     position: absolute;
     bottom: -70px;
-    left: 60%;
+    right: 20px;
     height: 200px;
-    width: 300px;
+    object-fit: fill;
+    width: 140px;
     background-image: url("../images/3d-rendering-cartoon-like-woman-doing-yoga-PhotoRoom.png-PhotoRoom.png");
     background-repeat: no-repeat;
     background-size: auto 130px;
   }
   #journalimg {
     position: absolute;
-    padding-left: 200px;
+    padding-left: 80px;
     bottom: -90px;
-    left: 70%;
+    right: 40px;
     height: 200px;
-    width: 300px;
+    object-fit: fill;
+    width: 30px;
     background-image: url("../images/m028t0142_d_teacher_resources_01sep22-PhotoRoom.png-PhotoRoom.png");
     background-repeat: no-repeat;
     background-size: auto 80px;
@@ -150,6 +154,6 @@ main {
     width: 0px; 
  
 
-  }
+  } 
   
   
