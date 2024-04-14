@@ -1557,6 +1557,63 @@ a[href^="#"] {
   
   
 }
+.user-profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+#upload-btn{
+    display: none;
+}
+#imagePreview {
+    position: relative;
+    width: 150px; /* Adjust width as needed */
+    height: 150px; /* Adjust height as needed */
+    border-radius: 50%; /* Make it round */
+    overflow: hidden;
+    margin-bottom: 20px; /* Add margin for spacing */
+}
+
+/* Style for profile image */
+#profileImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the container */
+}
+
+#addImageIcon {
+    position: absolute;
+    top: 75%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    font-size: 40px; 
+    color: #fff; 
+    opacity: 0.9; 
+}
+
+/* Style for text below profile image */
+#addImageText {
+    position: absolute;
+    bottom: 10px; /* Adjust position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px; /* Adjust size as needed */
+    color: #fff; /* Change color as needed */
+}
+
+/* Style for file input */
+#imageInput {
+    display: none; /* Hide file input */
+}
+
+/* Style for remove button */
+#removeImageButton {
+    display: block; /* Ensure the button is visible */
+    margin-top: 10px; /* Add margin for spacing */
+}
+
+
 
 .attachments> ul {
     list-style: outside none none;

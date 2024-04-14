@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/responsive.css">
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="./js/protected.js"></script>
+
 	
 	
 
@@ -114,7 +118,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row" id="page-contents">
-							<div class="col-lg-6">
+							<div class="col-lg-4">
 								<aside class="sidebar static">
 									<div class="widget">
 											<h4 class="widget-title">Recent Activity</h4>
@@ -140,13 +144,26 @@
 													</div>
 												</li>
 											</ul>
+											<div id="get-more"></div>
 										</div>
 									<!-- settings widget -->										
 								</aside>
 							</div><!-- sidebar -->
-							<div class="col-lg-3">
-								
-							</div><!-- centerl meta -->
+							<div class="col-lg-4 user-profile">
+								<form id="imageUploadForm" enctype="multipart/form-data">
+								  <label for="imageInput" id="imageInputLabel">
+									<div id="imagePreview">
+									  <img id="profileImage" src="./images/resources/defaultpic.jpg" alt="Profile Image">
+									  <i id="addImageIcon" class="fa fa-plus-circle"></i>
+									  <span id="addImageText">Add Image</span>
+									</div>
+								  </label>
+								  <input type="file" name="image" id="imageInput" accept="image/*" hidden>
+								  <input type="text" name="uid" id="uidInput" value="" hidden><br>
+								  <button type="submit" class="btn btn-success" id="upload-btn">Upload Image</button><button id="removeImageButton" onclick="removeProfileImage()" class="btn btn-danger">Remove Image</button>
+
+								</form>
+							  </div>
 							<div class="col-lg-3">
 								<aside class="sidebar static">
 									<div class="widget">
@@ -296,6 +313,7 @@
 	<script src="js/main.min.js"></script>
 	<script src="js/script.js"></script>
 	<script src="./js/userlog.js"></script>
+	<script src="./js/accountsetting.	js"></script>
 
 </body>	
 

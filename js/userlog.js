@@ -1,16 +1,17 @@
+var page = 1;
 document.addEventListener('DOMContentLoaded', () => {
-    fetchData();
+    fetchData(page);
 });
-
-async function fetchData() {
+var activitys = {};
+async function fetchData(page) {
     try {
         const uid = localStorage.uid;
-        const response = await fetch('https://atman.onrender.com/user/activity', {
+        const response = await fetch('  https://atman.onrender.com/user/activity', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ uid: uid })
+            body: JSON.stringify({ uid: uid,page:parseInt(page) })
         });
 
         if (!response.ok) {
@@ -19,13 +20,17 @@ async function fetchData() {
 
         const data = await response.json(); // Assuming the response is JSON
         // Get the activity log ul element
+        activitys  = {...activitys,...data?.activityLog}
+        console.log(activitys);
         const activityLog = document.getElementById('activity-log');
 
         // Clear existing content
+        if(page <2){
         activityLog.innerHTML = '';
+        }
 
         // Iterate over the data and create list items
-        data?.activityLog?.forEach(activity => {
+        Object.values(activitys).forEach(activity => {
             const li = document.createElement('li');
             li.innerHTML = `
 			<div class="activity-meta">
@@ -36,6 +41,7 @@ async function fetchData() {
             `;
             activityLog.appendChild(li);
         });
+        document.getElementById('get-more').innerHTML = `<button onclick="fetchData('${page+1}')" class="btn d-flex align-center"><i class="bi bi-arrow-clockwise"></i></button>`
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
     }
