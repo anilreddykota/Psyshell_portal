@@ -47,9 +47,27 @@ fetch('https://atman.onrender.com/get-newsfeed')
                         <ul style="height:30px;">
                             <li>
                                 <span class="like" data-toggle="tooltip" title="like">
-                                    <i class="ti-heart like-btn text-${post?.likedBy?.likes[uid] == true ? 'danger' : 'success'}" key="${post.postId}" isliked="${!!post?.likedBy?.likes[uid]}"></i>
-                                    <p><span class="ins" key="${post.postId}" >${post.likesCount}</span></p>
+                                    <button class="like-button">
+                                        <div class="like-wrapper like-btn ${post?.likedBy?.likes[uid] == true ? 'liked' : ''}"  key="${post.postId}" isliked="${!!post?.likedBy?.likes[uid]}">
+                                            <svg class="heart" width="24" height="24" viewBox="0 0 24 24">
+                                                <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
+                                            </svg>
+                                            <div class="particles" style="--total-particles: 6">
+                                            <div class="particle" style="--i: 1; --color: #7642F0"></div>
+                                           <div class="particle" style="--i: 2; --color: #AFD27F"></div>
+                                           <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
+                                           <div class="particle" style="--i: 4; --color: #D0516B"></div>
+                                           <div class="particle" style="--i: 5; --color: #5686F2"></div>
+                                          <div class="particle" style="--i: 6; --color: #D53EF3"></div>
+                                           </div>
+                                         </div>
+                                     </button>
+                                    
                                 </span>
+
+                            </li>
+                            <li>
+                            <p><span class="ins like-button" key="${post.postId}" >${post.likesCount}</span></p>
                             </li>
                         </ul>
                     </div>
@@ -99,32 +117,27 @@ fetch('https://atman.onrender.com/get-newsfeed')
                 queryParams.append('postid', uniqueKey);
                 queryParams.append('uid', uid);
                 let url;
-
-
                 if (isLiked == 'true') {
                   url = `https://atman.onrender.com/dislike-post?${queryParams.toString()}`;
                   ins.textContent = Math.max(parseInt(ins.textContent) - 1, 0);
-                  like.classList.remove('text-danger');
-                  like.classList.add('text-success')
+                  like.classList.remove('liked');
                   like.setAttribute('isliked', 'false');
-
                 } else {
                   url = `https://atman.onrender.com/like-post?${queryParams.toString()}`;
                   ins.textContent = parseInt(ins.textContent) + 1;
-                  like.classList.remove('text-success')
-                  like.classList.add('text-danger');
-
+                  like.classList.add('liked');
                   like.setAttribute('isliked', 'true');
                 }
-
-
                 const response = await fetch(url, {
                   method: 'POST'
                 });
-
-                if (response.ok) {
-                  like.setAttribute('isliked', (!isLiked).toString());
+                const result = await response.json();
+                if (result.message === 'Post liked successfully' ) {
+                  
+                  like.setAttribute('isliked', 'true');
                   // Optionally, update UI to reflect the change in like status
+                }else if(result.message === 'Post disliked successfully'){
+                  like.setAttribute('isliked', 'false');
                 } else {
                   console.error('Failed to send like request:', response.statusText);
                   // Optionally, display an error message to the user
@@ -236,38 +249,71 @@ function formatTimeDifferences(timestamp) {
 
 async function dailybanner() {
   try {
-      document.getElementById('username').innerHTML = "welcome "+localStorage.nickname;
-      const lastFetchedDate = localStorage.getItem('lastDailyPictureFetch');
-      const currentDate = new Date().toDateString();
+    document.getElementById('username').innerHTML = "welcome " + localStorage.nickname;
+    const lastFetchedDate = localStorage.getItem('lastDailyPictureFetch');
+    const currentDate = new Date().toDateString();
 
-      if (!lastFetchedDate || lastFetchedDate !== currentDate) {
-          // If the picture hasn't been fetched today, fetch it
-          const response = await axios.get('https://atman.onrender.com/fetch-daily-picture');
-          
-          if (response.data && response.data.imageUrl) {
-              // Store the image URL in local storage
-              localStorage.setItem('dailyPictureUrl', response.data.imageUrl);
-              
-              // Update the flag in local storage to indicate that the picture has been fetched today
-              localStorage.setItem('lastDailyPictureFetch', currentDate);
-              
-              // Replace the banner with the fetched image
-              const bannerElement = document.getElementById('banner');
-              if (bannerElement) {
-                  bannerElement.src = response.data.imageUrl;
-              }
-          }
-      } else {
-          // If the picture has already been fetched today, use the stored image URL
-          const storedImageUrl = localStorage.getItem('dailyPictureUrl');
-          if (storedImageUrl) {
-              const bannerElement = document.getElementById('banner');
-              if (bannerElement) {
-                  bannerElement.src = storedImageUrl;
-              }
-          }
+    if (!lastFetchedDate || lastFetchedDate !== currentDate) {
+      // If the picture hasn't been fetched today, fetch it
+      const response = await axios.get('https://atman.onrender.com/fetch-daily-picture');
+
+      if (response.data && response.data.imageUrl) {
+        // Store the image URL in local storage
+        localStorage.setItem('dailyPictureUrl', response.data.imageUrl);
+
+        // Update the flag in local storage to indicate that the picture has been fetched today
+        localStorage.setItem('lastDailyPictureFetch', currentDate);
+
+        // Replace the banner with the fetched image
+        const bannerElement = document.getElementById('banner');
+        if (bannerElement) {
+          bannerElement.src = response.data.imageUrl;
+        }
       }
+    } else {
+      // If the picture has already been fetched today, use the stored image URL
+      const storedImageUrl = localStorage.getItem('dailyPictureUrl');
+      if (storedImageUrl) {
+        const bannerElement = document.getElementById('banner');
+        if (bannerElement) {
+          bannerElement.src = storedImageUrl;
+        }
+      }
+    }
   } catch (error) {
-      console.error('Error fetching or displaying daily picture:', error);
+    console.error('Error fetching or displaying daily picture:', error);
   }
 }
+
+
+
+// Add event listener to the document, delegating the click event to elements with class 'like-btn'
+document.addEventListener('click', function (event) {
+  // Check if the clicked element has the class 'like-btn'
+  if (event.target.classList.contains('like-btn')) {
+    // Retrieve the clicked like button
+    const button = event.target;
+
+    // Check if the button is currently liked
+    const isLiked = button.getAttribute('isliked') === 'true';
+
+    // Toggle the liked status
+    if (isLiked) {
+      // If the button is already liked, remove the 'liked' class and set 'isliked' attribute to 'false'
+      button.classList.remove('liked');
+      button.setAttribute('isliked', 'false');
+
+      // Decrease the like count
+      const likeCount = button.nextElementSibling.querySelector('.ins');
+      likeCount.textContent = parseInt(likeCount.textContent) - 1;
+    } else {
+      // If the button is not liked, add the 'liked' class and set 'isliked' attribute to 'true'
+      button.classList.add('liked');
+      button.setAttribute('isliked', 'true');
+
+      // Increase the like count
+      const likeCount = button.nextElementSibling.querySelector('.ins');
+      likeCount.textContent = parseInt(likeCount.textContent) + 1;
+    }
+  }
+});

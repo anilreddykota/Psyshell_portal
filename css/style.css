@@ -301,9 +301,7 @@ html [type="button"] {
     cursor: pointer;
 }
 
-textarea {
-    resize: none;
-}
+
 
 a:hover.facebook {
     background: #516eab;
@@ -1553,22 +1551,25 @@ a[href^="#"] {
 }
 .attachments {
     border: 1px solid #eee;
-    display: block;
     padding: 10px;
     text-align: right;
-    border-top: 0;
-    background: #fff;
+    height: 0px;
+  
+  
 }
 
-.attachments > ul {
+.attachments> ul {
     list-style: outside none none;
+    height: 0px;
     margin-bottom: 0;
     padding-left: 0;
+    z-index: 1;
 }
 
 .attachments li {
     display: inline-block;
     margin-left: 5px;
+    z-index: 2;
 }
 
 textarea {

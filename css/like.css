@@ -1,0 +1,132 @@
+/* *, *:before, *:after {
+    position: relative;
+    box-sizing: border-box;
+  } */
+  
+  :root {
+    --color-bg: #FDF1F2;
+    --color-heart: #EA442B;
+    --easing: cubic-bezier(.7,0,.3,1);
+    --duration: .5s;
+  }
+  
+  .like-button {
+    font-size: 6vmin;
+
+    border: none;
+    border-radius: 50%;
+    background:white;
+    width: 1em;
+    height: 1em;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 0.3em 0.6em rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    cursor: pointer;
+    transition: background-color var(--duration) var(--easing);
+  }
+  span.like-button.ins {
+    font-size: 4vmin;
+    border: none;
+    border-radius: 50%;
+    color:red;
+    width: 5em;
+    height: 1em;
+    padding: 4px 12px;
+  
+    box-shadow: 0 0.3em 0.6em rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    cursor: pointer;
+    transition: background-color var(--duration) var(--easing);
+  }
+
+  
+  .like-wrapper.liked .heart > path {
+    fill: var(--color-heart);
+  }
+  
+  .like-wrapper:not(.liked):focus .heart {
+    animation: heart-bounce var(--duration) var(--easing);
+  }
+  
+  /* Reset the animation when clicking again! */
+  .like-wrapper:focus {
+    pointer-events: none;
+    cursor: normal;
+  }
+  
+  .like-wrapper {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  
+  .like-wrapper > * {
+    margin: auto;
+    grid-area: 1 / 1;
+  }
+  
+  .heart {
+    width: .5em;
+    height: .5em;
+    display: block;
+    transform-origin: center 80%;
+  }
+  
+  .heart > path {
+    stroke: var(--color-heart);
+    stroke-width: 2;
+    fill: transparent;
+    transition: fill var(--duration) var(--easing);
+  }
+  
+  .particles {
+    width: 1px;
+    height: 1px;
+    position: relative;
+  }
+  
+  .particle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: .1em;
+    width: .1em;
+    border-radius: .05em;
+    background-color: var(--color-heart); 
+    --percentage: calc( var(--i) / var(--total-particles) );
+    --Θ: calc( var(--percentage) * 1turn );
+    transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0) scaleY(0);
+    transition: all var(--duration) var(--easing);
+  }
+  
+  .like-wrapper:focus .particles .particle {
+    animation: particles-out calc(var(--duration) * 1.9) var(--easing) forwards;
+  }
+  
+  @keyframes particles-out {
+    50% {
+      height: .3em;
+    }
+    50%, 60% {
+      height: .3em;
+      transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
+    }
+    60% {
+      height: .2em;
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
+    }
+  }
+  
+  @keyframes heart-bounce {
+    40% {
+      transform: scale(0.7);
+    }
+    0%, 80%, 100% {
+      transform: scale(1);
+    }
+  }
+  

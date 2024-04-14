@@ -43,14 +43,32 @@ fetch('https://atman.onrender.com/get-newsfeed')
                         <p>${post.description}</p>
                     </div>
                     <div class="we-video-info">
-                        <ul>
-                            <li>
-                                <span class="like" data-toggle="tooltip" title="like">
-                                    <i class="ti-heart like-btn text-${post?.likedBy?.likes[puid] == true ? 'danger' : 'success'}" key="${post.postId}" isliked="${!!post?.likedBy?.likes[puid]}"></i>
-                                    <p><span class="ins" key="${post.postId}" >${post.likesCount}</span></p>
-                                </span>
-                            </li>
-                        </ul>
+                    <ul style="height:30px;">
+                    <li>
+                        <span class="like" data-toggle="tooltip" title="like">
+                            <button class="like-button">
+                                <div class="like-wrapper like-btn ${post?.likedBy?.likes[puid] == true ? 'liked' : ''}"  key="${post.postId}" isliked="${!!post?.likedBy?.likes[puid]}">
+                                    <svg class="heart" width="24" height="24" viewBox="0 0 24 24">
+                                        <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
+                                    </svg>
+                                    <div class="particles" style="--total-particles: 6">
+                                    <div class="particle" style="--i: 1; --color: #7642F0"></div>
+                                   <div class="particle" style="--i: 2; --color: #AFD27F"></div>
+                                   <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
+                                   <div class="particle" style="--i: 4; --color: #D0516B"></div>
+                                   <div class="particle" style="--i: 5; --color: #5686F2"></div>
+                                  <div class="particle" style="--i: 6; --color: #D53EF3"></div>
+                                   </div>
+                                 </div>
+                             </button>
+                            
+                        </span>
+
+                    </li>
+                    <li>
+                    <p><span class="ins like-button" key="${post.postId}" >${post.likesCount}</span></p>
+                    </li>
+                </ul>
                     </div>
                     
                 </div>
@@ -77,7 +95,7 @@ fetch('https://atman.onrender.com/get-newsfeed')
                 ` : ''}
                 <div class="form">
                     <img src="../images/resources/defaultpic.jpg" alt="Your avatar" class="form__avatar">
-                    <input type="text" class="form__input" placeholder="add comment to this post" id="commentText_${post.postId}">
+                    <input type="text" class="form__input" placeholder="share your thoughts on this post" id="commentText_${post.postId}">
                     <button class="form__button" onclick="addcomment('${post.postId}','${localStorage.puid}')"></button>
                 </div>
             </card-with-comments>
@@ -106,16 +124,14 @@ fetch('https://atman.onrender.com/get-newsfeed')
                 if (isLiked == 'true') {
                   url = `https://atman.onrender.com/dislike-post?${queryParams.toString()}`;
                   ins.textContent = Math.max(parseInt(ins.textContent) - 1, 0);
-                  like.classList.remove('text-danger');
-                  like.classList.add('text-success')
+             
                   like.setAttribute('isliked', 'false');
                   showToast("like removed from post");
 
                 } else {
                   url = `https://atman.onrender.com/like-post?${queryParams.toString()}`;
                   ins.textContent = parseInt(ins.textContent) + 1;
-                  like.classList.remove('text-success')
-                  like.classList.add('text-danger');
+  
                   showToast(" your like added to post");
 
                   like.setAttribute('isliked', 'true');
@@ -125,10 +141,13 @@ fetch('https://atman.onrender.com/get-newsfeed')
                 const response = await fetch(url, {
                   method: 'POST'
                 });
-
-                if (response.ok) {
-                  like.setAttribute('isliked', (!isLiked).toString());
+                const result = await response.json();
+                if (result.message === 'Post liked successfully' ) {
+                  
+                  like.setAttribute('isliked', 'true');
                   // Optionally, update UI to reflect the change in like status
+                }else if(result.message === 'Post disliked successfully'){
+                  like.setAttribute('isliked', 'false');
                 } else {
                   console.error('Failed to send like request:', response.statusText);
                   // Optionally, display an error message to the user
