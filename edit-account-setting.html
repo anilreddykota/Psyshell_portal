@@ -145,7 +145,7 @@
 									<!-- settings widget -->										
 								</aside>
 							</div><!-- sidebar -->
-							<div class="col-lg-4 user-profile">
+							<div class="col-lg-4 user-profile card bg-light">
 								<form id="imageUploadForm" enctype="multipart/form-data">
 								  <label for="imageInput" id="imageInputLabel">
 									<div id="imagePreview">
@@ -159,6 +159,54 @@
 								  <button type="submit" class="btn btn-success" id="upload-btn">Upload Image</button><button id="removeImageButton" onclick="removeProfileImage()" class="btn btn-danger">Remove Image</button>
 
 								</form>
+
+
+								<div class="container d-flex flex-column">
+									<h2 class="mt-5">Update Details</h2>
+									<form id="userDetailsForm" method="post">
+										<div class="form-group">
+											<label for="name">Name:</label>
+											<input type="text" class="form-control" id="name" name="name">
+										</div>
+										<div class="form-group">
+											<label for="gender">Gender:</label>
+											<select class="form-control" id="gender" name="gender">
+												<option value="male">Male</option>
+												<option value="female">Female</option>
+												<option value="other">Other</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="age">Age:</label>
+											<input type="text" class="form-control" id="age" name="age">
+										</div>
+										<div class="form-group">
+											<label for="occupation">Occupation:</label>
+											<input type="text" class="form-control" id="occupation" name="occupation">
+										</div>
+										<div class="form-group">
+											<label for="relationshipStatus">Relationship Status:</label>
+											<select class="form-control" id="relationshipStatus" name="relationshipStatus">
+												<option value="single">Single</option>
+												<option value="in_relationship">In a Relationship</option>
+												<option value="complicated">It's Complicated</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="language">Language:</label>
+											<input type="text" class="form-control" id="language" name="language">
+										</div>
+										<div class="form-group">
+											<label for="dept">Department/ Branch:</label>
+											<input type="text" class="form-control" id="dept" name="dept">
+										</div>
+										<div class="form-group">
+											<label for="year">Year of study:</label>
+											<input type="text" class="form-control" id="year" name="year">
+										</div>
+										<button type="submit" class="btn btn-primary">UPDATE</button>
+									</form>
+								</div>
 							  </div>
 							<div class="col-lg-3">
 								<aside class="sidebar static">

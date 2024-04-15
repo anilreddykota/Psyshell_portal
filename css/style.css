@@ -1520,12 +1520,12 @@ a[href^="#"] {
     display: none;
   }
   
-  /* Hide scrollbar for IE, Edge and Firefox */
+
   .users-data {
     height: 300px;
     overflow: scroll !important;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
   }
 .new-postbox > figure {
     display: inline-block;

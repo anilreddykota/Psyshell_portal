@@ -59,7 +59,7 @@ function removeProfileImage() {
     var uid = localStorage.getItem('uid');
 
     // Send POST request to removeprofileimage endpoint
-    axios.post('  https://atman.onrender.com/removeprofileimage', { uid: uid })
+    axios.post('https://atman.onrender.com/removeprofileimage', { uid: uid })
         .then(response => {
             alert('Profile image removed successfully:', response.data);
             // Update profile image in localStorage to default
@@ -74,3 +74,45 @@ function removeProfileImage() {
             // Optionally, display an error message or perform other actions
         });
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const userDetails = JSON.parse(localStorage.getItem('userDetails')).details;
+
+  if (userDetails) {
+      document.getElementById('name').value = userDetails.name || '';
+      document.getElementById('gender').value = userDetails.gender || '';
+      document.getElementById('age').value = userDetails.age || '';
+      document.getElementById('occupation').value = userDetails.occupation || '';
+      document.getElementById('relationshipStatus').value = userDetails.relationshipStatus || '';
+      document.getElementById('language').value = userDetails.language || '';
+      document.getElementById('dept').value = userDetails.dept || '';
+      document.getElementById('year').value = userDetails.year || '';
+  }
+});
+
+document.getElementById('userDetailsForm').addEventListener('submit', async function(event) {
+  event.preventDefault();
+
+  const formData = new FormData(this);
+
+  const userDetails = {};
+  formData.forEach((value, key) => {
+      userDetails[key] = value;
+  });
+  userDetails['uid'] = localStorage.uid;
+
+  try {
+      const response = await axios.post('http://localhost:3002/userdetails', userDetails);
+
+      if (response.data.message === 'User details saved successfully') {
+          localStorage.setItem('userDetails', JSON.stringify(response.data));
+          alert('User details saved successfully');
+      }
+
+      // Optionally, you can handle success response here (e.g., show a success message to the user)
+  } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+  }
+});
+

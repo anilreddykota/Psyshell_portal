@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("uid", response.data.userData.uid);
         localStorage.setItem("nickname", response.data.userData?.nickname);
         localStorage.setItem("token", response.data.userData.token);
+        localStorage.setItem('userDetails', JSON.stringify(response.data));
         alert(response.data.message);
 
         window.location.href = "index.html";
@@ -182,6 +183,8 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("puid", response.data.userData.uid);
         localStorage.setItem("nickname", response.data.userData?.nickname);
         localStorage.setItem("token", response.data.userData?.token);
+        localStorage.setItem('doctorDetails', JSON.stringify(response.data));
+
 
         window.location.href = "/index2.html";
       }
