@@ -27,7 +27,7 @@ fetch('https://atman.onrender.com/get-newsfeed')
         <div class="user-post">
             <div class="friend-info">
                 <figure>
-                    <img src="${post?.userDetails?.profile || "./images/resources/defaultpic.jpg"}" alt="">
+                    <img src="${post?.userDetails?.profile || "./images/resources/defaultpic.jpg"}" alt="" class="profile-round">
                 </figure>
                 <div class="friend-name">
                     <ins><a  title="">${post.userDetails?.nickname || "unknown user"}</a>  
