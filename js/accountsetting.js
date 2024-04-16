@@ -103,7 +103,7 @@ document.getElementById('userDetailsForm').addEventListener('submit', async func
   userDetails['uid'] = localStorage.uid;
 
   try {
-      const response = await axios.post('http://localhost:3002/userdetails', userDetails);
+      const response = await axios.post('  https://atman.onrender.com/userdetails', userDetails);
 
       if (response.data.message === 'User details saved successfully') {
           localStorage.setItem('userDetails', JSON.stringify(response.data));

@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     
       axios
-        .post("http://localhost:3002/updatedoctorprofile", formData)
+        .post("  https://atman.onrender.com/updatedoctorprofile", formData)
         .then((response) => {
           alert("Image uploaded successfully:", response.data);
           // Update profile image in localStorage
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var uid = localStorage.getItem('puid');
   
       // Send POST request to removeprofileimage endpoint
-      axios.post('http://localhost:3002/removedoctorprofileimage', { uid: uid })
+      axios.post('  https://atman.onrender.com/removedoctorprofileimage', { uid: uid })
           .then(response => {
               alert('Profile image removed successfully:', response.data);
               // Update profile image in localStorage to default
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
     userDetails['uid'] = localStorage.puid;
   
     try {
-        const response = await axios.post('http://localhost:3002/doctordetails', userDetails);
+        const response = await axios.post('  https://atman.onrender.com/doctordetails', userDetails);
   
         if (response.data.message === 'User details saved successfully') {
             localStorage.setItem('doctorDetails', JSON.stringify(response.data));
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
     data['services'] = data['services'].split(',').map(serv => serv.trim());
 
     // Send data to backend using Axios
-    axios.post('http://localhost:3002/doctor/portfolioupdate', data)
+    axios.post('  https://atman.onrender.com/doctor/portfolioupdate', data)
       .then(response => {
         console.log(response.data);
         
