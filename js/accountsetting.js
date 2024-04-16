@@ -77,7 +77,7 @@ function removeProfileImage() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  const userDetails = JSON.parse(localStorage.getItem('userDetails')).details;
+  const userDetails = JSON.parse(localStorage.getItem('userDetails')).details ||  JSON.parse(localStorage.getItem('userDetails'))?.userData?.details;
 
   if (userDetails) {
       document.getElementById('name').value = userDetails.name || '';

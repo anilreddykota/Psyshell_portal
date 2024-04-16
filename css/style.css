@@ -1521,6 +1521,164 @@ a[href^="#"] {
   }
   
 
+.portfolio-main{
+   
+  
+    margin-top: 15%;
+width: 100%;
+
+    
+    padding: 0 10%;
+}
+
+#portfolioimg{
+    width: 250px;
+    height: 300px;
+    display: flex;
+   margin-left: 25px;
+   justify-content: end;
+   border: solid 5px #3782ab;
+   
+}ma
+.quotes h1{
+    font-size: 50px;
+    color: #3782ab;
+}
+#quote1,#quote2{
+    font-style: italic;
+    padding-top: 15px;
+    font-size: 25px;
+}
+#para1,#para2, #para3{
+    font-size: 25px;
+    padding-top: 25px;
+}
+
+#mainquote{
+    color: #3782ab;
+    font-size: 40px;
+align-items: center;
+    padding: 50px 0;
+    border-top: double 3px #3782ab ;
+    border-bottom: double 3px #3782ab;
+    margin: 70px 0;
+}
+.quotes{
+    width: 65%;
+}
+
+
+@media (width< 768px){
+
+    #portfolioimg{
+        width: 100px;
+        height: 150px;
+        display: flex;
+       justify-content: end;
+       border: solid 5px #3782ab;
+       
+    }
+    .quotes h1{
+        font-size: 20px;
+        color: #3782ab;
+       
+    }
+    .quotes{
+        width: 50%;
+    }
+    #quote1,#quote2{
+        font-style: italic;
+        padding-top: 15px;
+        font-size: 15px;
+    
+    }
+    #para1,#para2, #para3{
+        font-size: 15px;
+        padding-top: 25px;
+    }
+    
+    #mainquote{
+        color: #3782ab;
+        font-size: 20px;
+    align-items: center;
+        padding: 50px 0;
+        border-top: double 3px #3782ab ;
+        border-bottom: double 3px #3782ab;
+        margin: 70px 0;
+    }
+
+}
+@media (max-width: 768px) {
+    #portfolioimg {
+        width: 100px;
+        height: 150px;
+        display: flex;
+        justify-content: center; /* Center the image horizontally */
+        border: solid 5px #3782ab;
+        margin: 0 auto 20px; /* Add margin to separate image from quotes and center it */
+    }
+}
+
+.portfolio-container {
+    display: flex;
+    flex-direction: row; /* Ensure items are laid out horizontally */
+    align-items: center; /* Vertically center items */
+}
+
+.quotes {
+    flex: 1; 
+}
+
+.image-container {
+    margin-left: 25px; /* Adjust spacing between quotes and image */
+}
+
+@media (max-width: 768px) {
+
+
+    .image-container {
+        margin-left: 0; /* Remove left margin on small screens */
+        margin-top: 20px; /* Add top margin to separate image from quotes */
+        text-align: center; /* Center image horizontally */
+    }
+    .main-headers2{
+        display: none;
+    }
+}
+
+
+.main-headers{
+    align-items: right;
+}
+.main-headers2{
+    position: fixed;
+    background-color: white;
+    padding: 5px;
+    color: #0077b5;
+}
+.main-headers h3{
+ padding: 0;
+ margin: 0;
+ font-size: 5vw;
+
+}
+.main-headers h5{
+    padding: 0;
+    margin: 0;
+    font-size: 4vw;
+    align-items: left;
+
+}
+.main-headers hr{
+    margin: 0;
+}
+.main-headers2 hr{
+    margin: 0;
+}
+
+
+
+
   .users-data {
     height: 300px;
     overflow: scroll !important;
