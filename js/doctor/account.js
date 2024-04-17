@@ -247,10 +247,19 @@ document.getElementById('copy-link').addEventListener('click', async () => {
 
   try {
     // Use the Clipboard API to copy the text to the clipboard
-    await navigator.clipboard.writeText(linkToCopy);
+  
 
-    // Show a notification or perform any other action to indicate that the text has been copied
-    alert('Link copied to clipboard!');
+
+const data = {
+  url:linkToCopy,
+  text: " this is my portfolio on psyshell portal",
+  title: "my portfolio"
+}
+
+await navigator.share(data)
+
+
+ 
   } catch (error) {
     // Handle any errors that may occur during copying
     console.error('Error copying link to clipboard:', error);

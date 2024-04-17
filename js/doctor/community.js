@@ -267,6 +267,8 @@ async function addcomment(postid, puid) {
 
   if (response.data.message === "Comment added successfully.") {
     showToast(response.data.message)
+    commentTextElement.value = ""
+
   }
 
 

@@ -13,6 +13,10 @@
     display: flex;
     margin-bottom: 10px;
     padding: -15px !important;
+    overflow-x: scroll !important;
+    scrollbar-width: none !important;
+   
+    
   }
 
 
