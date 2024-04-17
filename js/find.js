@@ -33,9 +33,8 @@ fetch("https://atman.onrender.com/admin/doctors", {
         users = data.users;
         docValue = params["doc"];
     
-       var filtred = users.filter((user) => { return user.email === docValue; }); 
-       
-       selectedpsy.textContent = filtred[0]?.name;
+       var filtred = users.filter((user) => { return user.uid === docValue; }); 
+       selectedpsy.textContent = filtred[0]?.nickname;
        selectedpsychat.setAttribute('href','messages.html?puid='+filtred[0]?.uid+'&uname='+filtred[0]?.name);
         
         // Iterate through the fetched data and create list items
@@ -47,9 +46,9 @@ fetch("https://atman.onrender.com/admin/doctors", {
         <div class="row g-0">
        
             <div class="col-sm-2">
-                <img src="images/resources/friend-avatar.jpg" class="" alt="Doctor Avatar">
+                <img src="${doctor.profile|| './images/resources/defaultpic.jpg'}" class="" alt="Doctor Avatar">
             </div>
-            <div class="col-sm-8"> <a href="groups.html?doc=${doctor.email}#appoint" id="select" >
+            <div class="col-sm-8"> <a href="groups.html?doc=${doctor.uid}#appoint" id="select" >
 
                
                 <h5 class="card-title">${doctor?.nickname}</h5>
@@ -66,7 +65,7 @@ fetch("https://atman.onrender.com/admin/doctors", {
               <p class="card-text">Next Available : <br> ${doctor.nextAvailableTime}</p>
             </div>
             <div class="col-sm-6">
-                <a href="?doc=${doctor.email}#appoint" title="" class="add-butn" data-ripple="">Book Appointment</a>
+                <a href="?doc=${doctor.uid}#appoint" title="" class="add-butn" data-ripple="">Book Appointment</a>
             </div>
        
     </div>
@@ -93,10 +92,7 @@ function getParams() {
     return params;
 }
 
-// Get the parameters
 
-
-// Output the value of the "doc" parameter
 
 
 

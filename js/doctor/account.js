@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Set UID from localStorage
     var uid = localStorage.getItem("puid");
-  
+    document.getElementById('portfoliolink').innerHTML = `<a href='./portfolio.html?p=${localStorage.nickname}' target='_blank' class="link"></a>`
+
     if (uid) {
       document.getElementById(
         "profileImage"
@@ -140,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(response => {
         console.log(response.data);
         alert('Portfolio created or updated successfully!');
+        document.getElementById('portfoliolink').innerHTML = `<a href='/portfolio.html?p=${localStorage.nickname}' target='_blank'></a>`
       })
       .catch(error => {
         console.error('Error creating portfolio:', error);
@@ -162,3 +164,97 @@ document.addEventListener("DOMContentLoaded", function () {
     
     return true;
   }
+
+
+
+
+  const form = document.getElementById('addtime');
+
+  // Add event listener for form submission
+// Add event listener for form submission
+form.addEventListener('submit', async (event) => {
+  event.preventDefault(); // Prevent the default form submission
+
+  // Get current date and time
+  const now = new Date();
+  
+  // Get form data
+  const date = document.getElementById('date').value;
+  const from = document.getElementById('from').value;
+  const to = document.getElementById('to').value;
+
+if(!date || !from || !to){
+  alert('Please enter a valid date');
+  return false
+}
+
+  const selectedDate = new Date(date);
+  const selectedFromTime = new Date(`${date}T${from}`);
+  const selectedToTime = new Date(`${date}T${to}`);
+
+  // Validate selected date
+  if (selectedDate <= now) {
+    alert('Please choose a date that is not in the past.');
+    return;
+  }
+
+ 
+  if (selectedFromTime < now.getTime() || selectedToTime < now.getTime()) {
+    alert('Please choose a time that is not in the past.');
+    return;
+  }
+
+  // Ensure 'to' time is after 'from' time
+  if (selectedToTime <= selectedFromTime) {
+    alert('The end time should be after the start time.');
+    return;
+  }
+
+  // Ensure 'from' time is at least 30 minutes before 'to' time
+  const timeDifference = (selectedToTime - selectedFromTime) / (1000 * 60);
+  if (timeDifference < 30) {
+    alert('The time slot should be at least 30 minutes.');
+    return;
+  }
+
+  // Get puid from localStorage
+  const puid = localStorage.getItem('puid');
+
+  console.log(puid, date, from, to);
+
+  try {
+    
+    const response = await axios.post('https://atman.onrender.com/doctor/settime', { puid, from, to, date });
+
+    // Check if request was successful
+    if (response.status === 200) {
+      // Show confirmation alert
+      alert('Time has been set successfully!');
+    } else {
+      // Show error alert
+      alert('Failed to set time. Please try again later.');
+    }
+  } catch (error) {
+    console.error('Error setting available time:', error);
+    // Show error alert
+    alert('An error occurred. Please try again later.');
+  }
+});
+
+
+document.getElementById('copy-link').addEventListener('click', async () => {
+  const linkToCopy = `https://psyshell-portal.vercel.app/portfolio.html?p=${localStorage.nickname}`; 
+
+  try {
+    // Use the Clipboard API to copy the text to the clipboard
+    await navigator.clipboard.writeText(linkToCopy);
+
+    // Show a notification or perform any other action to indicate that the text has been copied
+    alert('Link copied to clipboard!');
+  } catch (error) {
+    // Handle any errors that may occur during copying
+    console.error('Error copying link to clipboard:', error);
+    // Show error notification or perform appropriate error handling
+    alert('Failed to copy link to clipboard.');
+  }
+});

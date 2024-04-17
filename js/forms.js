@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       // Post the login data to the server using Axios
       const response = await axios.post(
-        "http://localhost:3002/psychologistLogin",
+        "https://atman.onrender.com/psychologistLogin",
         loginData
       );
 

@@ -226,8 +226,13 @@
                                                         class="btn btn-primary">UPDATE</button>
                                                 </form>
                                             </div>
+                                            <div class="card" id="copy-link">
+                                             click here to share your portfolio
+                                             <div id="portfoliolink"></div>
+                                            </div>
 
                                         </aside>
+                                        
                                     </div>
                                     <!-- sidebar -->
                                     <div class="col-lg-5">
@@ -406,6 +411,25 @@
 
                                                 </ul>
                                             </div><!-- recent activites -->
+                                            <div class="widget">
+                                                <form id="addtime">
+                                                    <div class="card">
+                                                        <h4 class="widget-title">Set Available Times</h4>
+                                                        <input type="date" id="date" name="date">
+                                                         
+                                                        <br>
+                                                        From 
+                                                        <input type="time" id="from" name="from">
+                                                        To 
+                                                        <input type="time" id="to" name="to">
+                                                        <p>Every slot length is 30 minutes.</p>
+                                                        <!-- Hidden input field for puid -->
+                                                        <input type="hidden" id="puid" name="puid">
+                                                        <input type="submit" value="Add">
+                                                    </div>
+                                                </form>
+                                            </div><!-- recent activities -->
+                                            
 
                                         </aside>
                                     </div><!-- centerl meta -->

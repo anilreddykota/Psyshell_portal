@@ -1530,6 +1530,15 @@ width: 100%;
     
     padding: 0 10%;
 }
+.portfolio-main-contact{
+   
+  
+  
+width: 100%;
+
+    
+   padding: 5% 0;
+}
 
 #portfolioimg{
     width: 250px;
@@ -1676,7 +1685,11 @@ align-items: center;
     margin: 0;
 }
 
-
+#contact{
+    background-color: #60b7e0;
+    margin-top: 100px;
+    color: while;
+}
 
 
   .users-data {

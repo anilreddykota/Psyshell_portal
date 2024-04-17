@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 document.getElementById('pendingbtn').addEventListener('click', () => {
                    
-                    displayAppointments(pendingAppointments);
+                    displayAppointments(pendingAppointments,"pending");
                     document.getElementById('approvedbtn').classList.remove('slot');
                     document.getElementById('pendingbtn').classList.add('slot');
                 });
@@ -43,7 +43,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function displayAppointments(appointments) {
+    function displayAppointments(appointments ,ispending) {
+
+        document.getElementById('countofstudents').textContent = appointments?.length ;
         const appointmentsDiv = document.getElementById('appointments');
         document.getElementById('appointments').innerHTML = "";
 
@@ -64,8 +66,9 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <h5>Age: ${appointment.userDetails.age}</h5>
                                 <h5>Occupation: ${appointment.userDetails.occupation}</h5>
                                 <span class="slot">Time Slot: ${appointment.date} /  ${appointment.timeSlot}</span><br>
+
+                                ${ispending === "pending" ?  `<div><button class="btn btn-success" onclick="approve('${appointment.uid}','approved')">Accept</button><button class="btn btn-danger ms-3" onclick="approve('${appointment.uid}','deny')">Deny</button> </div>`:"" }
                                 <br>
-                                <a href="inbox.html" class="appointment-title">View more</a>
                             </div>
                         </div>
                     </div>
@@ -77,3 +80,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     getAppointments();
 });
+
+
+
+async function approve(uid,status){
+    const puid = localStorage.puid;
+    console.log(uid);
+    const response = await axios.post('https://atman.onrender.com/updateAppointmentStatus',{uid,puid,status})
+
+
+    if(response.data){
+        alert(response.data.message)
+        window.location.reload();
+    }
+
+
+
+}
