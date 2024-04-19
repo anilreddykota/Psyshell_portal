@@ -83,7 +83,7 @@ async function getasks(todayDate = getTodayDate()) {
     };
 
     try {
-        const response = await axios.post('http://localhost:3002/get-records', data);
+        const response = await axios.post('https://atman.onrender.com/get-records', data);
 
         if (response.data) {
             console.log(response.data);
