@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <li class="unread appointment" data-uid="${appointment.uid}">
                 <div class="d-flex">
                     <div class="w-25">
-                        <img src="${appointment.userDetails.profile || "./images/resources/defaultpic.jpg"}" alt="" class="pt-3">
+                        <img src="${appointment.userDetails.profile || "./images/resources/defaultpic.jpg"}" alt="" class="pt-3 user-avatar clients">
                     </div>
                     <div class="newpst-input  groups">
                         <h3 class="appointment-title"> ${appointment.userDetails.nickname?.toUpperCase()}</h3>
@@ -101,7 +101,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     if (selectedUser) {
                         document.getElementById('chat-link').setAttribute('href', `chatting.html?uid=${selectedUser.uid}&uname=${selectedUser.userDetails?.nickname}`)
-                        document.getElementById('user-image').setAttribute('src', selectedUser.userDetails?.profile || './images/resources/defaultpic.jpg')
+                        document.getElementById('user-image').setAttribute('src', selectedUser.userDetails?.profile || './images/resources/defaultpic.jpg');
+                        document.getElementById('user-image').classList.add('user-avatar', 'clients-profile');
 
                         const userDetails = selectedUser.userDetails;
                         const userFields = [

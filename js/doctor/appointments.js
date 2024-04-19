@@ -58,7 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="central-meta p-0 appointment-card">
                         <div class="new-postbox">
                             <div class="w-25 mt-5">
-                                <img src="${appointment.userDetails.profile|| "./images/resources/defaultpic.jpg"}" alt="" class="pt-3">
+                           
+                                <img src="${appointment.userDetails.profile|| "./images/resources/defaultpic.jpg"}" alt="" class="pt-3 user-avatar appoint" >
+                               
                             </div>
                             <div class="newpst-input p-5 groups">
                                 <h1 class="appointment-title"> ${appointment.userDetails.name?.toUpperCase()}</h1>

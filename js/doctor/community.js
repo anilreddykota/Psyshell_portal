@@ -26,7 +26,7 @@ fetch('https://atman.onrender.com/get-newsfeed')
         <div class="user-post">
             <div class="friend-info">
                 <figure>
-                    <img src="${post?.userDetails?.profile || "./images/resources/defaultpic.jpg"}" alt="">
+                    <img src="${post?.userDetails?.profile || "./images/resources/defaultpic.jpg"}" alt="" class='card__avatar profile-round'>
                 </figure>
                 <div class="friend-name">
                 <ins><a  title="">${post.userDetails?.nickname || "unknown user"}</a>  
@@ -82,7 +82,7 @@ fetch('https://atman.onrender.com/get-newsfeed')
                     ${post.comments.map(comment => `
                         <div class="comment">
                             <div class="comment__header">
-                                <img src="${comment.commenterDetails.profile || "./images/resources/defaultpic.jpg"}" alt="Comment writer image" class="comment__avatar">
+                                <img src="${comment.commenterDetails.profile || "./images/resources/defaultpic.jpg"}" alt="Comment writer image" class="comment__avatar profile-round">
                                 <p class="comment__user-name">${comment.commenterDetails.nickname || "unknown user"}</p>
                                 <p class="comment__time text-success">${formatTimeDifferences(comment.timestamp)}</p>
                                 <p class="comment__chip">${comment.commenterDetails.role || "Psycholigist"}</p>
@@ -94,10 +94,11 @@ fetch('https://atman.onrender.com/get-newsfeed')
                 </div>
                 ` : ''}
                 <div class="form">
-                    <img src="../images/resources/defaultpic.jpg" alt="Your avatar" class="form__avatar">
-                    <input type="text" class="form__input" placeholder="share your thoughts on this post" id="commentText_${post.postId}">
-                    <button class="form__button" onclick="addcomment('${post.postId}','${localStorage.puid}')"></button>
-                </div>
+                <img src="${`https://firebasestorage.googleapis.com/v0/b/psycove-4ebf5.appspot.com/o/profilepics%2F${localStorage.puid}?alt=media` || "../images/resources/defaultpic.jpg"}" alt="Your avatar" class="comment__avatar">
+                <input type="text" class="form__input" placeholder="Share your thoughts on this post" id="commentText_${post.postId}">
+                <button class="form__button" onclick="addcomment('${post.postId}','${localStorage.puid}')"></button>
+            </div>
+            
             </card-with-comments>
         </div>
         

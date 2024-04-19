@@ -84,7 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Optionally, you can handle the response data here
       if (response.data.message) {
-        alert("student registration successful", response.data.message);
+        alert(response.data.message);
+        console.log(response.data);
         window.location.reload();
       } else if (response.data.message === "nickname already exist") {
         alert(response.data.message);
