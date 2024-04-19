@@ -122,7 +122,7 @@
 											<div class="page-likes">
 												<ul class="nav nav-tabs likes-btn">
 													<li class="nav-item"><a class="active" href="#link1" data-toggle="tab">Clients</a></li>
-													 <li class="nav-item"><a class="" href="#link2" data-toggle="tab">Routine</a></li>
+													 <li class="nav-item"><a class="" href="#link2" data-toggle="tab">Register</a></li>
 												</ul>
 												<!-- Tab panes -->
 												<div class="tab-content">
@@ -135,10 +135,23 @@
 												  </div>
 												  <div class="tab-pane fade" id="link2" >
 													  
-													  <a href="#" title="weekly-likes">this is your daily routine</a>
-													  <div class="users-thumb-list">
-														 
-													  </div>
+													  <a href="#" title="weekly-likes">Note daily Register</a>
+													  <div class="docs-register">
+														Date : <input type="date" name="selecteddate" id="selecteddate">
+														
+														<div class="tasks-container">
+															<div id="tasks">
+																
+																<ul id="task-list"></ul>
+															</div>
+															<div class="addtask">
+																<input type="text" id="task-value" placeholder="Event Title"><br><br>
+																from:<input type="time" id="start-time" placeholder="start-time">
+																to:<input type="time" id="end-time" placeholder="end-time">
+																<button type="button" id="addtask" class="btn"><i class="bi bi-plus"></i></button>
+															</div>
+														</div>
+													</div>
 												  </div>
 												</div>
 											</div>
@@ -243,6 +256,7 @@
 	<script src="js/map-init.js"></script>
 	<script src="./js/doctor/activity.js"></script>
 	<script src="./js/doctor/appointments.js"></script>
+	<script src="./js/doctor/record.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
 
 </body>	
