@@ -102,11 +102,11 @@
 						<div id="feature2">
 							<a id="username"><i class="ti-user"></i></a>
 
-							<div id="moodChartSelect"></div>
+							<!-- <div id="moodChartSelect"></div>
 							<canvas id="moodChart"></canvas>
-							<div id="moodChartControl" class="d-flex justify-content-space-between"></div>
+							<div id="moodChartControl" class="d-flex justify-content-space-between"></div> -->
 
-							<div id="averagemoodscore"></div>
+							
 							<div id="streak-data"> </div>
 							<div id="no-graph-message"></div>
 						</div>
@@ -188,7 +188,7 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="row" id="page-contents">
-								<div class="col-lg-2 d-md-none d-lg-block">
+								<div class="col-lg-3 d-md-none d-lg-block">
 									<aside class="sidebar static ">
 										<div class="widget ">
 											<h4 class="widget-title">Shortcuts</h4>
@@ -217,12 +217,30 @@
 										<!-- who's following -->
 									</aside>
 								</div><!-- sidebar -->
-								<div class="col-lg-4">
-									<div class="d-flex flex-column">
-										<div class="navsbanner">
+								<div class="col-lg-9">
+                                     <div class="banners">
+
+									
+									<div>
+										<canvas id="moodChart" style="width:50vw"></canvas>
+										<div id="moodChartControl" class="d-flex justify-content-space-between"></div>
+									</div>
+						
+									<div id="averagemoodscore" class="averagemoodscore"></div>
+								</div>
+
+
+
+
+
+
+								
+								
+									<div class=" banners">
+										<!-- <div class="navsbanner">
 											<img id="banner" alt="banner image" src="./images/logo2.png">
-										</div>
-										<div class="navsbanner">
+										</div> -->
+										<div class="navsbanner ">
 											<main id="selftest" data-ripple>
 												<h2>Self Test</h2>
 												<h4>working on problem ans self<br> examination is sign of
@@ -264,8 +282,9 @@
 
 										</div>
 									</div>
-								</div>
-								<div class="col-lg-6">
+								
+							</div>
+								<div class="col-lg-6 d-none">
 									<!-- add post new box -->
 									<div class="loadMore">
 										<div class="central-meta item" id="posts-container">

@@ -1,48 +1,4 @@
-/*
 
-[Master Stylesheet]
-
-Project Name: PsyShell (HMTL Template)
-Version:    1.1
-Last change:  4/september/18
-
-====INDEX=====
-
-01- general styling
-02- sticky header 
-03- login/landing page
-04- home page topbar
-05- timeline area
-06- messages dropdowns
-07- sidebar widgets
-08- post sharing area
-09- social icons
-10- comment area 
-11- search area
-12- footer
-13- widgets
-14- side panel
-15- short profile widget
-16- svg button styling
-17- 404 error page 
-18- contact page
-19- knowledge base page 
-20- faq's page
-21- photos page
-22- favourit page 
-23- edit basic info page
-24- notification page
-25- message page
-26- loadmore 
-27- responsive header
-28- main menu
-39- blog pages
-40- blog detail
-
-*/
-
-
-/*=============== Fonts source Muli, Hobostd ===================*/
 
 @import url('https://fonts.googleapis.com/css?family=Muli:300,400,400i,500,700,800');
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
@@ -914,6 +870,28 @@ img {
     position: relative;
     width: 100%;
 }
+.overflow-auto::-webkit-scrollbar{
+   
+    display: none;
+    
+}
+.overflow-auto{
+    overflow-y: scroll;
+   
+
+}
+
+#averagemoodscore{
+    width: 50%;
+}
+
+@media  screen and (width <800px){
+    #averagemoodscore{
+        width: 100%;
+    }
+    
+}
+
 
 .user-avatar > figure > img {
     width: 100%
@@ -1568,7 +1546,7 @@ a[href^="#"] {
 .portfolio-main{
    
   
-    margin-top: 15%;
+margin-top: 50px;
 width: 100%;
 
     
@@ -1704,9 +1682,7 @@ align-items: center;
     align-items: right;
 }
 .main-headers2{
-    position: fixed;
-    background-color: white;
-    padding: 5px;
+   
     color: #0077b5;
 }
 .main-headers h3{
@@ -6818,6 +6794,18 @@ figure.alignleft,
     margin-bottom: 8px;
     margin-right: 20px;
 }
+.navsbanner main{
+  width: 390px;
+}
+.banners{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap; 
+    width: 100%;  
+    gap: 2px;
+}
+
+
 
 figure.aligncenter,
 .aligncenter {

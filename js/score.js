@@ -73,8 +73,8 @@ function displayMoodChart() {
     const ctx = document.getElementById("moodChart").getContext("2d");
     const canvas = document.getElementById("moodChart")
     canvas.classList.add('card')
-    canvas.style.width = '290px'
-    canvas.style.height = '175px'
+    canvas.style.width = '100%'
+    canvas.style.height = '225px'
     const labels = [...subLabels[week]];
 
     const data = {
@@ -185,8 +185,7 @@ function displayMoodChart() {
         moodChart.data.labels = [...subLabels[selectedweek]];
         moodChart.data.datasets[0].data = [...subScores[selectedweek]];
         moodChart.update();
-        weekdata.innerHTML = `<p>${days[selectedweek][0]} <br>${days[selectedweek][days[selectedweek].length - 1]
-            }<p>`;
+        weekdata.innerHTML = `<p>${days[selectedweek][0]} <br>${days[selectedweek][days[selectedweek].length - 1]}<p>`;
     }
 }
 
@@ -248,9 +247,9 @@ function streakdata(longest, current) {
             </div>
         </div>
     `;
-    document.getElementById('averagemoodscore').innerHTML = `<div class='card mt-2'> <div class='card-title widget-title'>Resilience points</div> <div class='card-body'><h1>${graphdata?.data?.moodDate.length *5}</h1><img src='./images/points_coin.png' class="points_logo"></div></div>`;
+    document.getElementById('averagemoodscore').innerHTML = `<div class='card mt-2 ml-2'> <div class='card-title widget-title'>Resilience points</div> <div class='card-body'><h1>${graphdata?.data?.moodDate.length *5}</h1><img src='./images/points_coin.png' class="points_logo"></div></div>`;
 
-    document.getElementById('averagemoodscore').innerHTML += `<div class='card mt-2'> <div class='card-title widget-title'>Average Mood Score</div> <div class='card-body'><h1>${graphdata?.data?.analyticsResult?.averageMoodScore}</h1></div></div>`; 
+    // document.getElementById('averagemoodscore').innerHTML += `<div class='card mt-2 ml-2'> <div class='car widget-title'>Average Mood Score</div> <div class='card-body'><h6>${graphdata?.data?.analyticsResult?.averageMoodScore}</h6></div></div>`; 
 
 }
 Date.prototype.getWeek = function () {

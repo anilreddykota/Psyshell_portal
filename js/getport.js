@@ -50,7 +50,7 @@ function pushPortfolioContent(data) {
   document.getElementById("para3").innerHTML = data?.user?.paragraph3;
   document.getElementById("emailid").innerHTML = "email : "+data?.details?.email;
   document.getElementById("phonenumber").innerHTML = "phone number : "+ data?.details?.phone;
-
+document.title = `${data?.user?.fullName} | ${data?.user?.designation} | ${data?.user?.email}`; 
   document.getElementById("mainquote").innerHTML =
     data?.user?.mainquote ||
     ` “Only when we are brave enough to explore the darkness
