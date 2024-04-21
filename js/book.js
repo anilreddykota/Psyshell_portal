@@ -63,8 +63,7 @@ function renderTimeSlots(timeSlots) {
 
         slotItem.addEventListener("click", function(event) {
             event.preventDefault();
-
-            alert("You selected time slot: " + timeSlot);
+      showToast("You selected time slot: " + timeSlot)
             timeslot = timeSlot; // Update the value of timeslot when a time slot is clicked
 
             selectedSlot.textContent = timeSlot;
@@ -77,7 +76,7 @@ function renderTimeSlots(timeSlots) {
     bookButton.addEventListener('click', async function() {
         console.log("Book clicked");
         if (!timeslot) {
-            alert("Please select a time slot.");
+            showToast("Please select a time slot.")
             return;
         }
 
@@ -87,7 +86,7 @@ function renderTimeSlots(timeSlots) {
 
 
             if(response.data){
-                alert(response.data.message)
+                showToast(response.data.message)
             }
             
           
@@ -124,6 +123,8 @@ date = selectedDate;
 
         var timeSlots = generateTimeSlots(startTime, endTime, interval);
         renderTimeSlots(timeSlots);
+        document.getElementById("nomessage").innerHTML ="";
+
     } else {
         console.log("No available times for selected date");
         document.getElementById("nomessage").innerHTML ="No available times for selected date";
@@ -133,3 +134,21 @@ date = selectedDate;
 
 
 
+function showToast(message) {
+    const messageToast = document.getElementById('messageToast');
+    messageToast.innerText = message;
+    messageToast.style.display = 'block'; // Show the message
+    setTimeout(() => {
+      closeToast(); // Automatically close after 5 seconds
+    }, 5000);
+  }
+  
+  // Function to close the toast message
+  function closeToast() {
+    const messageToast = document.getElementById('messageToast');
+    messageToast.style.animation = 'slideOutRight 1s forwards'; // Animation for exit
+    setTimeout(() => {
+      messageToast.style.display = 'none'; // Hide the message after animation
+      messageToast.style.animation = ''; // Reset animation
+    }, 500); // Wait for animation to complete
+  }

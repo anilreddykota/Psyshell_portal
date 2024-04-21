@@ -101,11 +101,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const uids = selectedAppointments; 
 
         if (!message) {
-            alert('Please enter a message');
+
+            showToast('Please enter a message','red')
             return;
         }
         if(uids.length ===0){
-            alert("select users");
+            showToast("select users",'red');
             return;
         }
 
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 message: message
             });
             if(response.data){
-                alert(response.data.message);
+                showToast(response.data.message);
             }
             // Optionally, you can clear the text area after sending the reminder
             document.getElementById('message-reminder').value = '';
@@ -132,3 +133,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     getAppointments();
 });
+
+
+
+
+function showToast(message,color) {
+    const messageToast = document.getElementById('messageToast');
+    messageToast.innerText = message;
+    messageToast.style.backgroundColor = color;
+    messageToast.style.display = 'block'; // Show the message
+    setTimeout(() => {
+      closeToast(); // Automatically close after 5 seconds
+    }, 5000);
+  }
+  
+  
+  // Function to close the toast message
+  function closeToast() {
+    const messageToast = document.getElementById('messageToast');
+    messageToast.style.animation = 'slideOutRight 1s forwards'; // Animation for exit
+    setTimeout(() => {
+      messageToast.style.display = 'none'; // Hide the message after animation
+      messageToast.style.animation = ''; // Reset animation
+    }, 500); // Wait for animation to complete
+  }

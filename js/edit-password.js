@@ -35,7 +35,7 @@ async function updatePassword() {
         // Handle success response
 
         if(response.data){
-            alert(response.data.message);
+            showToast(response.data.message)
             window.location.href = '/';
         }
        

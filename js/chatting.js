@@ -6,6 +6,9 @@ if(!getParams()['uid']){
     // window.location.href = '/groups.html';
 }
 
+var uid = getParams()['uid'];
+var puid = localStorage.puid;
+
 function getParams() {
     const params = {};
     const queryString = window.location.search.substring(1);
@@ -42,16 +45,21 @@ function appendMessage(message) {
    
     // Create figure element for the user avatar
     const figureElement = document.createElement('figure');
+    figureElement.style.height = '52px';
+    figureElement.style.width = '52px';
+   
     const imgElement = document.createElement('img');
-    
+    imgElement.style.height = '30px';
+    imgElement.style.width = '30px';
+    imgElement.style.objectFit = 'cover';
     // Update the image source based on sender or receiver
     imgElement.alt = ""; // Set alt attribute if needed
     if (message.sender === localStorage.puid) {
         messageElement.classList.add('me');
-        imgElement.src = "images/resources/userlist-1.jpg";
+        imgElement.src = `https://firebasestorage.googleapis.com/v0/b/psycove-4ebf5.appspot.com/o/profilepics%2F${puid}?alt=media`||'./images/resources/defaultpic.jpeg';
     } else {
         messageElement.classList.add('you');
-        imgElement.src = "images/resources/friend-avatar.jpg";
+        imgElement.src = `https://firebasestorage.googleapis.com/v0/b/psycove-4ebf5.appspot.com/o/profilepics%2F${uid}?alt=media`||'./images/resources/defaultpic.jpeg';
     }
     figureElement.appendChild(imgElement);
 
@@ -95,6 +103,8 @@ function sendMessage() {
         socket.emit('newmessage', data);
         messageInput.value = '';
         appendMessage(data);
+    }else{
+        showToast("enter message !","red")
     }
 }
 
@@ -109,3 +119,24 @@ document.addEventListener("keydown", function(event) {
         sendMessage();
     }
 });
+
+
+function showToast(message,color) {
+    const messageToast = document.getElementById('messageToast');
+    messageToast.innerText = message;
+    messageToast.style.backgroundColor = color;
+    messageToast.style.display = 'block'; // Show the message
+    setTimeout(() => {
+      closeToast(); // Automatically close after 5 seconds
+    }, 5000);
+  }
+  
+  // Function to close the toast message
+  function closeToast() {
+    const messageToast = document.getElementById('messageToast');
+    messageToast.style.animation = 'slideOutRight 1s forwards'; // Animation for exit
+    setTimeout(() => {
+      messageToast.style.display = 'none'; // Hide the message after animation
+      messageToast.style.animation = ''; // Reset animation
+    }, 500); // Wait for animation to complete
+  }

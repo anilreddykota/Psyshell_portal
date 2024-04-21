@@ -378,7 +378,7 @@ jQuery(document).ready(function ($) {
 	});
 
 
-	//------- offcanvas menu 
+	
 
 	const menu = document.querySelector('#toggle');
 	const menuItems = document.querySelector('#overlay');

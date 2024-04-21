@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const response = await axios.post('https://atman.onrender.com/getAppointmentsByDoctor', { puid });
             const appointments = response.data;
             approvedAppointments = [...appointments.approvedAppointments, ...appointments.addedAppointmentsData];
-            displayAppointments([...appointments.approvedAppointments, ...appointments.addedAppointmentsData]);
+            displayAppointments([...appointments.addedAppointmentsData]);
         } catch (error) {
             console.error('Error fetching appointments:', error);
         }
@@ -433,7 +433,6 @@ function streakdata(longest, current) {
 
     // Generate calendar HTML
     const generateCalendarHTML = (dates) => {
-
 
         const calendar = {};
 

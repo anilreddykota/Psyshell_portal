@@ -14,14 +14,16 @@
     <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/responsive.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js" integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- <script src="./js/doctor/unauth.js"></script> -->
+    <script src="./js/doctor/unauth.js"></script>
 
 
 </head>
 <body>
 <!--<div class="se-pre-con"></div>-->
 <div class="theme-layout">
-	
+	<div class="message-toast" id="messageToast">
+		<button class="close-btn" onclick="closeToast()">X</button>
+	</div>
 	<div class="responsive-header">
 		<div class="mh-head first Sticky">
 			<span class="mh-btns-left">
@@ -37,7 +39,7 @@
 			<ul>
 				<li><a href="index2.html" title="">Home</a></li>
 				<li><a href="community.html" title="">news feed</a></li>
-				<li><a href="chatting.html" title="">Your message box</a></li>
+				<li><a href="chatting.html" title="">Messages</a></li>
 				<li><a href="clients.html" title="">Students</a></li>
 
 				<li><a href="doctorlogout.html" title="">Logout</a></li>
@@ -56,7 +58,7 @@
 				
 				<li><a href="index2.html" title="">Home</a></li>
 				<li><a href="community.html" title="">news feed</a></li>
-				<li><a href="chatting.html" title="">Your message box</a></li>
+				<li><a href="chatting.html" title="">Messages</a></li>
 				<li><a href="clients.html" title="">Students</a></li>
 				<li><a href="inbox.html" title="">send reminder</a></li>
 				<li><a href="doctorlogout.html" title="">Logout</a></li>

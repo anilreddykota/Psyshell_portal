@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     trackButton.addEventListener('click', async function () {
         const mood = this.getAttribute('data-mood');
-        alert('Tracking mood: ' + mood);
+        showToast(mood)
 
         document.getElementById('popup-button').textContent = setmood(mood) || "open";
 
@@ -25,8 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 answer: mood,
             })
             if (response.data) {
-
-                alert(response.data.message)
+              showToast(response.data.message)
                 const uid = localStorage.uid;
                 localStorage.setItem('mood', mood)
                 localStorage.setItem('moodDate', `${date.getDate()}${date.getMonth() + 1}${date.getFullYear()}`)
@@ -87,3 +86,28 @@ function setmood(mood) {
 
 
 }
+
+
+
+
+
+
+
+function showToast(message) {
+    const messageToast = document.getElementById('messageToast');
+    messageToast.innerText = message;
+    messageToast.style.display = 'block'; // Show the message
+    setTimeout(() => {
+      closeToast(); // Automatically close after 5 seconds
+    }, 5000);
+  }
+  
+  // Function to close the toast message
+  function closeToast() {
+    const messageToast = document.getElementById('messageToast');
+    messageToast.style.animation = 'slideOutRight 1s forwards'; // Animation for exit
+    setTimeout(() => {
+      messageToast.style.display = 'none'; // Hide the message after animation
+      messageToast.style.animation = ''; // Reset animation
+    }, 500); // Wait for animation to complete
+  }

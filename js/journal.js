@@ -22,8 +22,7 @@ async function SubmitJournalAnswer () {
         })
 
         if (response.data) {
-           
-            alert(response.data.message)
+           showToast(response.data.message);
             window.location.href = './';
         }
     } catch (error) {
@@ -32,3 +31,22 @@ async function SubmitJournalAnswer () {
 
 
 }
+
+function showToast(message) {
+    const messageToast = document.getElementById('messageToast');
+    messageToast.innerText = message;
+    messageToast.style.display = 'block'; // Show the message
+    setTimeout(() => {
+      closeToast(); // Automatically close after 5 seconds
+    }, 5000);
+  }
+  
+  // Function to close the toast message
+  function closeToast() {
+    const messageToast = document.getElementById('messageToast');
+    messageToast.style.animation = 'slideOutRight 1s forwards'; // Animation for exit
+    setTimeout(() => {
+      messageToast.style.display = 'none'; // Hide the message after animation
+      messageToast.style.animation = ''; // Reset animation
+    }, 500); // Wait for animation to complete
+  }
