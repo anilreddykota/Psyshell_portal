@@ -36,12 +36,28 @@ fetch('https://atman.onrender.com/get-newsfeed')
                </ins>
                     <span>published: ${formattedDateTime}</span>
                 </div>
-                <div class="post-meta">
+
+
+                
+                <div class="post-meta post-container">
                     <ins><a title="">${post.title}</a></ins>
                     <img src="${post.imageUrl}" alt="" class='h-50'>
                     <div class="description">
                         <p>${post.description}</p>
                     </div>
+                    <div class="menu-container">
+        <div class="menu">
+            <div class="dot-menu-p">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="menu-content-p">
+                <button onclick="deletePost('${post.postId}')">Delete</button>
+                <button onclick="savePost()">Save</button>
+            </div>
+        </div>
+    </div>
                     <div class="we-video-info">
                     <ul style="height:30px;">
                     <li>
@@ -282,8 +298,8 @@ function showToast(message) {
   messageToast.innerText = message;
   messageToast.style.display = 'block'; // Show the message
   setTimeout(() => {
-    closeToast(); // Automatically close after 5 seconds
-  }, 5000);
+    closeToast(); // Automatically close after 4 seconds
+  }, 4000);
 }
 
 // Function to close the toast message
@@ -293,6 +309,24 @@ function closeToast() {
   setTimeout(() => {
     messageToast.style.display = 'none'; // Hide the message after animation
     messageToast.style.animation = ''; // Reset animation
-  }, 500); // Wait for animation to complete
+  }, 1000); // Wait for animation to complete
 }
 
+
+async function deletePost(id) {
+  const response = await fetch("https://atman.onrender.com/deletePost", {
+    method: "POST",
+    body: JSON.stringify({ postId: id }),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  const responseData = await response.json();
+  console.log(responseData);
+
+  if (response.ok) {
+    showToast(responseData.message);
+    window.location.reload();
+  } else {
+    console.error("Failed to delete post:", responseData);
+  }
+}

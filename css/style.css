@@ -1561,6 +1561,64 @@ width: 100%;
     
    padding: 5% 0;
 }
+.menu-container{
+    position: absolute !important;
+    height: 50px !important;
+    width: 50px !important;
+    top: 0 !important;
+    right: 0 !important;
+    background-color: white !important;
+    border: none !important;
+color: #000 !important;
+}
+
+.menu-p{
+    position: relative;
+    width: fit-content;
+    z-index: 1;
+}
+
+.menu-content-p {
+    display: none;
+    flex-direction: column;
+}
+.menu-container:hover .menu-content-p {
+    display: flex;
+    position: absolute !important;
+    background-color: #0077b5;
+
+}
+
+.menu-content-p button {
+    padding: 8px 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-content-p button:hover {
+    background-color: white;
+}
+
+.dot-menu-p {
+    cursor: pointer;
+    padding: 30px;
+
+}
+
+.dot {
+    height: 6px;
+    width: 6px;
+    background-color: #0c0808 !important;
+    margin: 2px 0;
+    border-radius: 50%;
+}
+
+.dot:hover {
+    background-color: #da1b1b;
+}
+
 
 #portfolioimg{
     width: 250px;

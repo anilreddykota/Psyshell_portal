@@ -15,7 +15,7 @@ document.getElementById('addButton').addEventListener("click", async () => {
         return;
      }
     try {
-        const response = await axios.post('http://localhost:3002/addAppointmentToDoctorList', {
+        const response = await axios.post('https://atman.onrender.com/addAppointmentToDoctorList', {
             nickname: nickname,
             puid : localStorage.puid
         });

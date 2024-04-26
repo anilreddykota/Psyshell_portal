@@ -2,6 +2,36 @@ const loadingdiv = document.getElementById("loading-div");
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  
+  const showpass = document.getElementsByClassName("showpass");
+
+  // Convert HTMLCollection to an array
+  const showpassArray = Array.from(showpass);
+
+showpassArray.forEach((pass) => {
+    pass.addEventListener("change", function() {
+        const passwordField = document.querySelector(pass.getAttribute("data-target"));
+        if (pass.checked) {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const loginForm = document.getElementById("loginFormu");
 
   loginForm.addEventListener("submit", async function (event) {

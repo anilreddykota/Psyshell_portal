@@ -38,9 +38,13 @@
 											class="mtrl-select"></i>
 									</div>
 									<div class="form-group">
-										<input type="password" required="required" />
+										<input type="password" required="required" id="psypassshow" />
 										<label class="control-label" for="input">Password</label><i
 											class="mtrl-select"></i>
+									</div>
+									<div class="form-check ">
+										<input type="checkbox" class="form-check-input showpass" data-target="#psypassshow">
+										<label class="form-check-label">Show password</label>
 									</div>
 									<div class="checkbox">
 										<label>
@@ -76,9 +80,13 @@
 											class="mtrl-select"></i>
 									</div>
 									<div class="form-group">
-										<input type="password" required="required" name="password" />
+										<input type="password" required="required" name="password" id="psyregisterpass"/>
 										<label class="control-label" for="input">Password</label><i
 											class="mtrl-select"></i>
+									</div>
+									<div class="form-check ">
+										<input type="checkbox" class="form-check-input showpass" data-target="#psyregisterpass">
+										<label class="form-check-label">Show password</label>
 									</div>
 									<div class="form-group">
 										<input type="text" required="required" name="aoe"/>
@@ -112,10 +120,17 @@
 											class="mtrl-select"></i>
 									</div>
 									<div class="form-group">
-										<input type="password" required="required" id="collegePassword" name="college-password"/>
-										<label class="control-label" for="collegePassword">Password</label><i
-											class="mtrl-select"></i>
+										<input type="password" required="required" id="collegePassword" name="college-password" class="form-control"/>
+										<label class="control-label" for="collegePassword">Password</label>
+										<i class="mtrl-select form-control-feedback"></i>
+										
 									</div>
+									<div class="form-check ">
+										<input type="checkbox" class="form-check-input showpass" data-target="#collegePassword">
+										<label class="form-check-label">Show password</label>
+									</div>
+									
+									
 									<a href="#" class="forgot-pwd">Forgot Password?</a>
 									<div class="submit-btns">
 										<button class="mtr-btn signin" type="submit"><span>Login</span></button>
@@ -142,10 +157,14 @@
 										<input type="password" id="password" required="required" />
 										<label class="control-label" for="password">Password</label>
 									</div>
+									<div class="form-check ">
+										<input type="checkbox" class="form-check-input showpass" data-target="#password">
+										<label class="form-check-label">Show password</label>
+									</div>
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" id="rememberMe" checked="checked" />
-											<span>Always Remember Me.</span>
+											<input type="checkbox" checked="checked" /><i
+												class="check-box"></i>Always Remember Me.
 										</label>
 									</div>
 									<div class="submit-btns">
@@ -171,9 +190,13 @@
 											class="mtrl-select"></i>
 									</div>
 									<div class="form-group">
-										<input type="password" required="required" name="upassword" />
+										<input type="password" required="required" name="upassword" id="userpass"/>
 										<label class="control-label" for="input">Password</label><i
 											class="mtrl-select"></i>
+									</div>
+									<div class="form-check ">
+										<input type="checkbox" class="form-check-input showpass" data-target="#userpass">
+										<label class="form-check-label">Show password</label>
 									</div>
 									<div class="form-group">
 										<input type="number" required="required" name="uage" />
