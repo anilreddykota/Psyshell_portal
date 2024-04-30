@@ -39,7 +39,6 @@ showpassArray.forEach((pass) => {
     loadingdiv.classList.add("spinner-loading");
     const username = document.getElementById("username").value?.trim();
     const password = document.getElementById("password").value;
-    const rememberMe = document.getElementById("rememberMe").checked;
 
     // Create an object with the login data
     const loginData = {

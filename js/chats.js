@@ -1,4 +1,5 @@
 const socket = io('https://atman.onrender.com');
+// const socket = io('http://localhost:3002');
 
 
 if(!getParams()['puid']){
@@ -102,3 +103,13 @@ document.addEventListener("keydown", function(event) {
         sendMessage();
     }
 });
+
+
+
+function opencall() {
+    const params = getParams();
+    const sender = localStorage.uid;
+    const receiver = params['puid'];
+    window.open(`callwindow.html?puid=${puid}`, 'CallWindow', 'width=600,height=400');
+}
+
