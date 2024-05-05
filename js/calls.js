@@ -1,115 +1,199 @@
-
-
+const socket = io("http://localhost:3002");
 
 // Get video elements
-const localVideo = document.getElementById('local-video');
-const remoteVideo = document.getElementById('remote-video');
+const localVideo = document.getElementById("local-video");
+const remoteVideo = document.getElementById("remote-video");
 
 
 let peerConnection;
+document.addEventListener("DOMContentLoaded", () => {
+    createPeerConnection();
+  navigator.mediaDevices
+    .getUserMedia({ video: true, audio: true })
+    .then((stream) => {
+      localVideo.srcObject = stream;
+      stream
+        .getTracks()
+        .forEach((track) => peerConnection.addTrack(track, stream));
+    
+    })
+    .catch((error) => console.error("Error accessing media devices:", error));
+
+
+});
+
 
 function createPeerConnection() {
-    // Initialize peer connection
-    peerConnection = new RTCPeerConnection();
-
-    // Add event handlers
-    peerConnection.onicecandidate = handleICECandidateEvent;
-    peerConnection.ontrack = handleTrackEvent;
+    console.log("Creating peer connection...");
+    const configuration = {'iceServers': [{'urls': 'stun:stun.l.google.com:19302'}]};
+    try {
+        peerConnection = new RTCPeerConnection(configuration);
+        peerConnection.onicecandidate = handleICECandidateEvent;
+        peerConnection.ontrack = handleTrackEvent;
+        console.log("Peer connection created successfully.");
+    } catch (error) {
+        console.error("Error creating peer connection:", error);
+    }
 }
 
+
+
 function handleICECandidateEvent(event) {
+    console.log("ICE candidate event received:", event);
     if (event.candidate) {
-        // Send ICE candidate to the other peer
-        socket.emit('iceCandidate', event.candidate);
+        console.log("Sending ICE candidate:", event.candidate);
+        socket.emit("iceCandidate", event.candidate);
+    } else {
+        console.log("No more ICE candidates to send.");
     }
 }
 
 function handleTrackEvent(event) {
-    // Display remote video stream
-    const remoteVideoElement = document.getElementById('remote-video');
-    remoteVideoElement.srcObject = event.streams[0];
+  
+    const remoteVideo = document.getElementById("remote-video");
+    if (!remoteVideo.srcObject) {
+      remoteVideo.srcObject = event.streams[0];
+    }
+  }
+
+function getParams() {
+  const params = {};
+  const queryString = window.location.search.substring(1);
+  const pairs = queryString.split("&");
+  for (let i = 0; i < pairs.length; i++) {
+    const pair = pairs[i].split("=");
+    params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+  }
+  return params;
 }
 
 function initiateCall() {
-    const params = getParams();
-    const sender = localStorage.uid;
-    const receiver = params['puid'];
-    openCallWindow(receiver);
-    createPeerConnection();
-console.log(localVideo)
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-    .then(stream => {
-        localVideo.srcObject = stream;
-        stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
-        console.log(localVideo,stream);
+  const params = getParams();
+  const sender = params["sender"];
+  const receiver = params["receiver"];
 
+  createPeerConnection();
+
+  navigator.mediaDevices
+    .getUserMedia({ video: true, audio: true })
+    .then((stream) => {
+      localVideo.srcObject = stream;
+      stream
+        .getTracks()
+        .forEach((track) => peerConnection.addTrack(track, stream));
     })
-    .catch(error => console.error('Error accessing media devices:', error));
+    .catch((error) => console.error("Error accessing media devices:", error));
 
-    // Create offer
-    peerConnection.createOffer()
-        .then(offer => {
-            return peerConnection.setLocalDescription(offer);
-        })
-        .then(() => {
-            socket.emit('offer',{ connection:peerConnection.localDescription,sender, receiver});
-        })
-        .catch(error => {
-            console.error('Error creating offer:', error);
-        });
-}
-
-// Function to accept an incoming call
-function acceptCall() {
-    createPeerConnection();
-
-    // Handle offer from the other peer
-    socket.on('offer', (offer) => {
-        peerConnection.setRemoteDescription(offer)
-            .then(() => {
-                // Create answer
-                return peerConnection.createAnswer();
-            })
-            .then(answer => {
-                return peerConnection.setLocalDescription(answer);
-            })
-            .then(() => {
-                // Send answer to the other peer
-                socket.emit('answer', peerConnection.localDescription);
-            })
-            .catch(error => {
-                console.error('Error creating answer:', error);
-            });
+  peerConnection
+    .createOffer()
+    .then((offer) => {
+      return peerConnection.setLocalDescription(offer);
+    })
+    .then(() => {
+      socket.emit("offer", {
+        connection: peerConnection.localDescription,
+        sender,
+        receiver,
+      });
+    })
+    .catch((error) => {
+      console.error("Error creating offer:", error);
     });
 }
 
-// Function to reject an incoming call
-function rejectCall() {
-    // Send rejection to the other peer
-    socket.emit('rejectCall');
-}
 
-// Event listener for incoming call notification
-socket.on('incomingCall', (callData) => {
-    // Display UI notification for incoming call
+socket.on("offer", async (offer) => {
+    
+    const params = getParams();
+    const sender = params["sender"];
+    const receiver = params["receiver"];
+    console.log(offer)
+    createPeerConnection();
+    if (confirm("Incoming call. Do you want to accept?")) {
+      try {
+        // Set the remote description
+        await peerConnection.setRemoteDescription(offer.connection);
+  
+        // Create answer
+        const answer = await peerConnection.createAnswer();
+  
+        // Set local description
+        await peerConnection.setLocalDescription(answer);
+  
+        // Send answer to the other peer
+        socket.emit("answer", {connection:peerConnection.localDescription,sender,receiver});
+  
+        // Once the call is accepted, add the remote stream to the remote video element
+        peerConnection.ontrack = (event) => {
+            console.log(event);
+          const remoteVideo = document.getElementById("remote-video");
+          if (!remoteVideo.srcObject) {
+            remoteVideo.srcObject = event.streams[0];
+          }
+        };
+      } catch (error) {
+        console.error("Error accepting call:", error);
+      }
+    } else {
+      
+    
+      const data = {
+        sender: sender,
+        receiver: receiver,
+      };
+      socket.emit("decline", data);
+    }
+  });
+  
+socket.on("decline", () => {
+  alert("The call has been declined by the other party.");
+  endCall();
 });
 
-// Initialize peer connection
+socket.on("answer", async (answer) => {
+    console.log(answer);
+    try {
+      // Set the remote description from the answer
+      const remoteDesc = new RTCSessionDescription(answer);
+      await peerConnection.setRemoteDescription(remoteDesc);
+     
+      
+      // Listen for the 'track' event to add remote video stream
+      console.log(peerConnection,answer)
+      peerConnection.ontrack = (event) => {
+        if (!remoteVideo.srcObject) {
+          remoteVideo.srcObject = event.streams[0];
+        }
+      };
+    } catch (error) {
+      console.error("Error setting remote description:", error);
+    }
+  });
+  
+socket.on("alert",(data)=>{
+    alert(data.message)
+})
 
 
+function join() {
+  const params = getParams();
+  const sender = params["sender"];
+  const receiver = params["receiver"];
 
-
-
-
-
+  const data = {
+    sender: sender,
+    receiver: receiver,
+  };
+  socket.emit("join", data);
+}
 
 function endCall() {
-    if (peerConnection) {
-        peerConnection.close();
-        peerConnection = null;
-    }
-    
-    localVideo.srcObject.getTracks().forEach(track => track.stop());
-    localVideo.srcObject = null;
-    remoteVideo.srcObject = null;
+  if (peerConnection) {
+    peerConnection.close();
+    peerConnection = null;
+  }
+
+  localVideo.srcObject.getTracks().forEach((track) => track.stop());
+  localVideo.srcObject = null;
+  remoteVideo.srcObject = null;
 }

@@ -110,6 +110,6 @@ function opencall() {
     const params = getParams();
     const sender = localStorage.uid;
     const receiver = params['puid'];
-    window.open(`callwindow.html?puid=${puid}`, 'CallWindow', 'width=600,height=400');
+    window.open(`callwindow.html?receiver=${receiver}&sender=${sender}`, 'CallWindow', 'width=600,height=400');
 }
 

@@ -140,3 +140,11 @@ function showToast(message,color) {
       messageToast.style.animation = ''; // Reset animation
     }, 500); // Wait for animation to complete
   }
+
+
+  function opencall() {
+    const params = getParams();
+    const sender = localStorage.puid;
+    const receiver = params['uid'];
+    window.open(`callwindow.html?receiver=${receiver}&sender=${sender}`, 'CallWindow', 'width=600,height=400');
+}

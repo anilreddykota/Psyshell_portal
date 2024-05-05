@@ -512,7 +512,7 @@ header.sticky {
 }
 
 .login-reg-bg {
-    background: #f4f7f6 none repeat scroll 0 0;
+    background: #1fb6ff none repeat scroll 0 0;
     float: left;
     height: 100vh;
     position: relative;
@@ -1474,7 +1474,7 @@ width: auto;
 @keyframes slideAndFade {
     0% {
         transform: translate(-50%, 50px);
-        bottom: 50%
+      
     }
     100% {
         transform: translate(-50%, 50px);
