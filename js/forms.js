@@ -191,7 +191,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .getElementById("input")
       .value?.toLowerCase()
       .trim();
-    const password = document.querySelector('input[type="password"]').value;
+    const password = document.querySelector('#psypassshow').value;
+    console.log(password);
     const rememberMe = document.querySelector('input[type="checkbox"]').checked;
 
     // Create an object with the login data
@@ -203,10 +204,11 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       // Post the login data to the server using Axios
       const response = await axios.post(
-        "https://atman.onrender.com/psychologistLogin",
+        "http://localhost:3002/psychologistLogin",
         loginData
       );
 
+      console.log(response.data)
       // Handle success response
       if (response.data.message === "Login successful") {
         localStorage.clear();
