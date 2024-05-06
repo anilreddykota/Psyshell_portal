@@ -17,18 +17,20 @@ style.textContent = `
     }
 `;
 
-// Append the style element to the document's head
+
 document.head.appendChild(style);
 
-// Create a div element for the network backdrop
+
 const backdrop = document.createElement('div');
 backdrop.id = 'network-backdrop';
 backdrop.textContent = 'Network Disconnected. Please check your connection.';
 
-// Append the backdrop element to the document body
-document.body.appendChild(backdrop);
 
-// Function to toggle the visibility of the backdrop based on network status
+const body = document.getElementsByTagName('body');
+console.log(body);
+console.log(body[0])
+body.appendChild(backdrop);
+
 function toggleBackdrop() {
     if (!navigator.onLine) {
         backdrop.style.display = 'flex'; // Show the backdrop if offline
@@ -37,7 +39,5 @@ function toggleBackdrop() {
     }
 }
 
-// Initial check for network status and set up event listener for changes
-toggleBackdrop();
 window.addEventListener('online', toggleBackdrop);
 window.addEventListener('offline', toggleBackdrop);
