@@ -21,17 +21,6 @@ showpassArray.forEach((pass) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const loginForm = document.getElementById("loginFormu");
 
   loginForm.addEventListener("submit", async function (event) {
@@ -204,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       // Post the login data to the server using Axios
       const response = await axios.post(
-        "http://localhost:3002/psychologistLogin",
+        "https://atman.onrender.com/psychologistLogin",
         loginData
       );
 
@@ -233,6 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .getElementById("loginForm")
     .addEventListener("submit", async function (event) {
       event.preventDefault(); // Prevent default form submission
+      loadingdiv.classList.add("spinner-loading");
 
       const formData = new FormData(this); // Get form data
 
@@ -259,6 +249,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       } catch (error) {
         console.error("Error:", error);
+      }finally {
+        loadingdiv.classList.remove("spinner-loading");
       }
     });
 });
