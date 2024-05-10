@@ -120,6 +120,11 @@ function addClickEventListeners() {
 
       const urlParams = new URLSearchParams(window.location.search);
       urlParams.set("uid", uid);
+
+           // Remove the uid parameter if it exists
+           if (urlParams.has("id")) {
+            urlParams.delete("id");
+        }
       window.history.replaceState(
         {},
         "",
@@ -174,6 +179,11 @@ async function fetchAnalytics(uid) {
       graphdata = response;
       displayMoodChart();
     }
+    document.getElementById('togglepsystu').classList.remove('d-none');
+    document.getElementById('psydata').classList.add('d-none');
+
+
+
   } catch (error) {
     console.error("Error fetching analytics data:", error);
     return Promise.reject(error);
@@ -377,7 +387,6 @@ Date.prototype.getWeek = function () {
 
 fetchDoctorsByCollege(code)
 .then((doctorsData) => {
-        console.log("Doctors data:", doctorsData);
         displayDoctorsDataInTable(doctorsData); // Display the doctors data in the table
     })
     .catch((error) => {
@@ -385,14 +394,24 @@ fetchDoctorsByCollege(code)
         // Handle errors
     });
 async function fetchDoctorsByCollege(collegeCode) {
-    try {
-        const response = await axios.get(`https://atman.onrender.com/admin/doctorforcollege/${collegeCode}`);
-        return response.data; // Return the data received from the server
-    } catch (error) {
-        console.error("Error fetching doctors data:", error);
-        throw error; // Propagate the error for handling
+        // Check if data exists in local storage
+        const storedData = localStorage.getItem('doctorsData');
+        if (storedData) {
+            return JSON.parse(storedData); // Return the stored data
+        }
+    
+        // If data doesn't exist in local storage, fetch it from the server
+        try {
+            const response = await axios.get(`https://atman.onrender.com/admin/doctorforcollege/${collegeCode}`);
+            const doctorsData = response.data; // Extract data from the response
+            localStorage.setItem('doctorsData', JSON.stringify(doctorsData)); // Store data in local storage
+            return doctorsData; // Return the data received from the server
+        } catch (error) {
+            console.error("Error fetching doctors data:", error);
+            throw error; // Propagate the error for handling
+        }
     }
-}
+    
 
 
 
@@ -407,13 +426,37 @@ function displayDoctorsDataInTable(doctorsData) {
                 <td>${doctor?.nickname || doctor?.name}</td>
                 <td>${doctor.area_of_expertise}</td>
                 <td>${doctor?.phonenumber || "?"}</td>
-
-            
-               
             </tr>`;
         tableBody.insertAdjacentHTML("beforeend", row);
     });
+
+    // Add event listener to all rows
+    const rows = tableBody.querySelectorAll("tr");
+    rows.forEach((row, index) => {
+        row.addEventListener("click", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            var puid = doctorsData[index].id
+            // Set the id parameter based on the doctor's data
+            urlParams.set("id", puid);
+    
+            // Remove the uid parameter if it exists
+            if (urlParams.has("uid")) {
+                urlParams.delete("uid");
+            }
+    
+            // Replace the current URL with the updated parameters
+            window.history.replaceState(
+                {},
+                "",
+                `${window.location.pathname}?${urlParams}`
+            );
+            getAppointments(puid)
+        });
+    });
+    
 }
+
+
 
 
 function getStudentAnalytics(students) {
@@ -525,3 +568,66 @@ deptChartContainer.appendChild(text2);
     });
 }
 
+
+
+var approvedAppointments = [];
+var pendingAppointments = [];
+
+async function getAppointments(puid) {
+  
+    try {
+        const response = await axios.post('https://atman.onrender.com/getAppointmentsByDoctor', { puid });
+        const appointments = response.data;
+
+        if(appointments){
+            approvedAppointments = [...appointments.approvedAppointments]
+            pendingAppointments = [...appointments.pendingAppointments]  
+            displayAppointments([...appointments.approvedAppointments,...appointments.pendingAppointments] );
+          
+
+        }else{
+            document.getElementById('psydata').textContent = 'No appointments found for this doctor.';
+
+        }
+     
+    } catch (error) {
+        document.getElementById('psydata').textContent = 'No appointments found for this doctor.';
+
+        console.error('Error fetching appointments:', error);
+    }
+}
+
+function displayAppointments(appointments) {
+document.getElementById('togglepsystu').classList.add('d-none')
+    const appointmentsDiv = document.getElementById('psydata');
+    appointmentsDiv.innerHTML = "";
+
+    if (appointments.length === 0) {
+        appointmentsDiv.textContent = 'No appointments found for this doctor.';
+    } else {
+        
+        appointments.map(appointment => {
+            const appointmentHTML = `
+                <div class="central-meta p-0 appointment-card">
+                    <div class="new-postbox">
+                        <div class="w-25 mt-5">
+                       
+                            <img src="${appointment.userDetails.profile|| "./images/resources/defaultpic.jpg"}" alt="" class="pt-3 user-avatar appoint" >
+                           
+                        </div>
+                        <div class="newpst-input p-5 groups">
+                            <h1 class="appointment-title"> ${appointment.userDetails.name?.toUpperCase()}</h1>
+                            <h5>Gender: ${appointment.userDetails.gender}</h5>
+                            <h5>Age: ${appointment.userDetails.age}</h5>
+                            <h5>Occupation: ${appointment.userDetails.occupation}</h5>
+                            <span class="slot">Time Slot: ${appointment.date} /  ${appointment.timeSlot}</span><br>
+
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            `;
+            appointmentsDiv.innerHTML += appointmentHTML;
+        });
+    }
+}
