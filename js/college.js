@@ -18,12 +18,14 @@ async function fetchData() {
   try {
     if (localStorage.students) {
       students = JSON.parse(localStorage.students);
+    
     } else {
       students = await fetchStudentsByCollege();
       
       localStorage.setItem("students", JSON.stringify(students));
     }
-
+    const { ageAnalytics, deptAnalytics } = getStudentAnalytics(students);
+    addAnalyticsToCard(ageAnalytics, deptAnalytics);
     displayStudents(students);
     addClickEventListeners();
   } catch (error) {
@@ -412,3 +414,114 @@ function displayDoctorsDataInTable(doctorsData) {
         tableBody.insertAdjacentHTML("beforeend", row);
     });
 }
+
+
+function getStudentAnalytics(students) {
+    // Initialize objects to store analytics
+    const ageAnalytics = {};
+    const deptAnalytics = {};
+
+    // Iterate over each student
+    students.forEach(student => {
+        // Extract student details
+        const { age, dept } = student.details.fulldetails;
+
+        // Update age analytics
+        if (age in ageAnalytics) {
+            ageAnalytics[age]++;
+        } else {
+            ageAnalytics[age] = 1;
+        }
+
+        // Update department analytics
+        if (dept in deptAnalytics) {
+            deptAnalytics[dept]++;
+        } else {
+            deptAnalytics[dept] = 1;
+        }
+    });
+
+    return { ageAnalytics, deptAnalytics };
+}
+
+
+function addAnalyticsToCard(ageAnalytics, deptAnalytics) {
+    // Select the flex div inside the card
+    const flexDiv = document.querySelector(".card .flex");
+
+   flexDiv.innerHTML= "";
+    const ageChartContainer = document.createElement("div");
+    const deptChartContainer = document.createElement("div");
+const text1 = document.createElement("h4");
+text1.textContent= "Students vs Ages"
+const text2 = document.createElement("h4");
+text2.textContent= "Students vs Departments"
+  
+ageChartContainer.appendChild(text1);
+deptChartContainer.appendChild(text2);
+    // Append chart containers to the flex div
+
+    flexDiv.appendChild(ageChartContainer);
+    flexDiv.appendChild(deptChartContainer);
+
+    // Create canvas elements for the charts
+    const ageCanvas = document.createElement("canvas");
+    const deptCanvas = document.createElement("canvas");
+
+    // Append canvas elements to the chart containers
+    ageChartContainer.appendChild(ageCanvas);
+    deptChartContainer.appendChild(deptCanvas);
+
+    // Generate data and labels for the age chart
+    const ageData = Object.values(ageAnalytics);
+    const ageLabels = Object.keys(ageAnalytics);
+
+    // Generate data and labels for the department chart
+    const deptData = Object.values(deptAnalytics);
+    const deptLabels = Object.keys(deptAnalytics);
+
+    // Create and render the age chart
+    new Chart(ageCanvas, {
+        type: 'bar',
+        data: {
+            labels: ageLabels,
+            datasets: [{
+                label: 'Number of Students',
+                data: ageData,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)', // Blue color with transparency
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Create and render the department chart
+    new Chart(deptCanvas, {
+        type: 'bar',
+        data: {
+            labels: deptLabels,
+            datasets: [{
+                label: 'Number of Students',
+                data: deptData,
+                backgroundColor: 'rgba(255, 99, 132, 0.5)', // Red color with transparency
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
