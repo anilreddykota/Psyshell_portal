@@ -197,32 +197,75 @@ function streakdata(longest, current) {
         const options = { month: "short", day: "numeric", year: "numeric" };
         return new Date(date).toLocaleDateString("en-US", options);
     };
+    var navigateMonth ;
 
     const generateCalendarHTML = (dates) => {
         const calendar = {};
-
+    
         dates.forEach((date) => {
             const key = formatDate(date);
             calendar[key] = true;
         });
-
+    
         let html = '<div class="calendar">';
         const today = new Date();
-        for (
-            let date = new Date(today.getFullYear(), today.getMonth(), 1);
-            date.getMonth() === today.getMonth();
-            date.setDate(date.getDate() + 1)
-        ) {
-            const key = formatDate(date);
-            const isStreakDay = calendar[key] ? "streak-day" : "";
-            const isCompletedDay = calendar[key]
-                ? ""
-                : date <= today
+        const currentMonth = today.getMonth();
+        let currentYear = today.getFullYear();
+        let monthIndex = currentMonth;
+    
+         navigateMonth = (increment) => {
+            monthIndex += increment;
+            if (monthIndex < 0) {
+                monthIndex = 11; // Previous year
+                currentYear--;
+            } else if (monthIndex > 11) {
+                monthIndex = 0; // Next year
+                currentYear++;
+            }
+            renderCalendar();
+        };
+    
+        const updateCalendar = () => {
+            const firstDayOfMonth = new Date(currentYear, monthIndex, 1);
+            const lastDayOfMonth = new Date(currentYear, monthIndex + 1, 0);
+    
+            html = '<div class="calendar">';
+            for (let date = new Date(firstDayOfMonth); date <= lastDayOfMonth; date.setDate(date.getDate() + 1)) {
+                const key = formatDate(date);
+                const isStreakDay = calendar[key] ? "streak-day" : "";
+                const isCompletedDay = calendar[key]
+                    ? ""
+                    : date <= today
                     ? "completed-day"
                     : ""; // Check if day is completed (past)
-            html += `<div class="calendar-day ${isStreakDay} ${isCompletedDay}">${date.getDate()}</div>`;
-        }
-        html += "</div>";
+                html += `<div class="calendar-day ${isStreakDay} ${isCompletedDay}">${date.getDate()}</div>`;
+            }
+            html += "</div>";
+        };
+    
+        const renderCalendar = () => {
+            updateCalendar();
+            const monthNames = [
+                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+            ];
+            const monthName = monthNames[monthIndex];
+            const year = currentYear;
+            const prevMonth = monthIndex === 0 ? 11 : monthIndex - 1;
+            const nextMonth = monthIndex === 11 ? 0 : monthIndex + 1;
+    
+            const navigation = `
+                <div class="calendar-navigation">
+                    <button class="prevMonthBtn">Previous</button>
+                    <span>${monthName} ${year}</span>
+                    <button class="nextMonthBtn">Next</button>
+                </div>
+            `;
+          
+            html = navigation + html;
+        };
+    
+        renderCalendar(); 
+    
         return html;
     };
 
@@ -247,11 +290,14 @@ function streakdata(longest, current) {
             </div>
         </div>
     `;
+
+    // Add event listeners after inserting HTML into the DOM
+    document.querySelectorAll('.prevMonthBtn').forEach(btn => btn.addEventListener('click', () => navigateMonth(-1)));
+    document.querySelectorAll('.nextMonthBtn').forEach(btn => btn.addEventListener('click', () => navigateMonth(1)));
+
     document.getElementById('averagemoodscore').innerHTML = `<div class='card mt-2 ml-2'> <div class='card-title widget-title'>Resilience points</div> <div class='card-body'><h1>${graphdata?.data?.moodDate.length *5}</h1><img src='./images/points_coin.png' class="points_logo"></div></div>`;
-
-    // document.getElementById('averagemoodscore').innerHTML += `<div class='card mt-2 ml-2'> <div class='car widget-title'>Average Mood Score</div> <div class='card-body'><h6>${graphdata?.data?.analyticsResult?.averageMoodScore}</h6></div></div>`; 
-
 }
+
 Date.prototype.getWeek = function () {
     const onejan = new Date(this.getFullYear(), 0, 1);
     const weekStart = new Date(

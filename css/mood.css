@@ -63,6 +63,7 @@
 
 .navsbanner{
   width: 400px;
+  height: 162px !important;
 }
 #banner{
     margin-bottom: 10px;
@@ -152,12 +153,28 @@ main {
   }
   #performancearrow{
     position: absolute;
-    bottom: 60px;
+    bottom: 90px;
     right: 50px;
     height: 0px;
     width: 0px; 
  
 
   } 
-  
+#performance{
+  height: 152px;
+  padding-top: 20px;
+  align-items: center;
+  align-content: center;
+}
+
+img.performancegraph{
+  position: absolute;
+  padding-left: 80px;
+  bottom: -90px;
+  right: 40px;
+  object-fit: fill;
+
+  background-image: url("../images/graph.png");
+
+}
   

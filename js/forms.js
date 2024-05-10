@@ -240,11 +240,14 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         );
 
-        if (response) {
-          // Successful login, handle accordingly (e.g., redirect)
-          alert(response.data.message);
+        if (response.data.message="Login successful") {
+          localStorage.clear();
+          let value= response.data.collegeData.collegecode
+          localStorage.setItem('Collegecode',value)
+          window.location.href = "index-2.html";
+
         } else {
-          // Failed login, display error message
+         
           console.error("Login failed:", response.data.error);
         }
       } catch (error) {
@@ -296,3 +299,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("Error:", error);
   }
 });
+
+
+
