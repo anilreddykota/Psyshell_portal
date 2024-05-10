@@ -1824,9 +1824,9 @@ align-items: center;
     margin-bottom: 20px; 
 }
 figure .profile-round{ 
-    height: 52px !important;
+    height: 45px !important;
     width: 52px !important;
-    object-fit: cover !important;
+    object-fit: fill !important;
 
 }
 
@@ -1842,11 +1842,19 @@ figure .profile-round:hover{
    position: fixed !important;
    left: 50%;
    top: 50%;
+   object-fit: contain !important;
+
    transform: translate(-50%,-50%);
    transform: scale(6);
    transition: ease-in ;
 
 }
+.profile-round:hover {
+    backdrop-filter: blur(5px); /* Adjust the blur radius as needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Black box shadow with 50% opacity */
+}
+
+ 
 
 .comment__avatar.profile-round:hover{
     position: fixed !important;

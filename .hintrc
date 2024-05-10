@@ -14,7 +14,8 @@
       {
         "ignore": [
           "width: fit-content",
-          "scrollbar-width"
+          "scrollbar-width",
+          "backdrop-filter"
         ]
       }
     ],
