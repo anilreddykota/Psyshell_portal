@@ -632,7 +632,7 @@ function displayAppointments(appointments) {
 // Function to fetch posts of a user
 async function fetchPosts(uid, page = 1) {
   try {
-    const response = await axios.get("http://localhost:3002/filterPostByUid", {
+    const response = await axios.get("https://atman.onrender.com/filterPostByUid", {
       params: { uid, page },
     });
     return response.data;
