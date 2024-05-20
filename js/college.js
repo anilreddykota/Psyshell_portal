@@ -1,27 +1,24 @@
-if(localStorage.Collegecode == null){
-    window.location.href = "landing.html";
+if (localStorage.Collegecode == null) {
+  window.location.href = "landing.html";
 }
-
 
 var graphdata;
 var students;
 let moodChart = null;
 const query = getParams();
 
-
-document.getElementById('refresh-list').addEventListener("click", () =>{
-    console.log('refresh');
-    localStorage.removeItem("students");
-    fetchData();
-})
+document.getElementById("refresh-list").addEventListener("click", () => {
+  console.log("refresh");
+  localStorage.removeItem("students");
+  fetchData();
+});
 async function fetchData() {
   try {
     if (localStorage.students) {
       students = JSON.parse(localStorage.students);
-    
     } else {
       students = await fetchStudentsByCollege();
-      
+
       localStorage.setItem("students", JSON.stringify(students));
     }
     const { ageAnalytics, deptAnalytics } = getStudentAnalytics(students);
@@ -35,7 +32,7 @@ async function fetchData() {
 fetchData();
 const code = localStorage.getItem("Collegecode");
 async function fetchStudentsByCollege() {
-    let code = localStorage.getItem("Collegecode");
+  let code = localStorage.getItem("Collegecode");
 
   const response = await axios.post(
     "https://atman.onrender.com/get-students-by-college",
@@ -55,7 +52,6 @@ async function fetchStudentsByCollege() {
 let timeoutId;
 
 function displayStudents(students) {
-
   renderFilteredStudents(students);
 }
 const handleInputChange = () => {
@@ -69,7 +65,7 @@ function filterStudents() {
   const searchInput = document.getElementById("searchstudent");
   const searchText = searchInput.value.toLowerCase().trim();
   console.log(searchText);
-  const filtredstudents= students.filter((student) => {
+  const filtredstudents = students.filter((student) => {
     const name = student.details.fulldetails.nickname.toLowerCase();
     const email = student.details.fulldetails.email.toLowerCase();
     const occupation =
@@ -83,11 +79,8 @@ function filterStudents() {
       dept.includes(searchText)
     );
   });
-  renderFilteredStudents(filtredstudents)
+  renderFilteredStudents(filtredstudents);
 }
-
-
-
 
 function renderFilteredStudents(filteredStudents) {
   const tableBody = document.querySelector("#studentsTable tbody");
@@ -121,10 +114,10 @@ function addClickEventListeners() {
       const urlParams = new URLSearchParams(window.location.search);
       urlParams.set("uid", uid);
 
-           // Remove the uid parameter if it exists
-           if (urlParams.has("id")) {
-            urlParams.delete("id");
-        }
+      // Remove the uid parameter if it exists
+      if (urlParams.has("id")) {
+        urlParams.delete("id");
+      }
       window.history.replaceState(
         {},
         "",
@@ -139,6 +132,7 @@ function addClickEventListeners() {
         addDataToTable(details);
       }
       await fetchAnalytics(uid);
+      loadPosts(query["uid"], 1, false);
     });
   });
 }
@@ -156,7 +150,7 @@ function getParams() {
 
 if (query["uid"]) {
   fetchAnalytics(query["uid"]);
-
+  loadPosts(query["uid"], 1, false);
   const selectedstudent = students.filter((student) => {
     return student.uid === query["uid"];
   });
@@ -179,11 +173,8 @@ async function fetchAnalytics(uid) {
       graphdata = response;
       displayMoodChart();
     }
-    document.getElementById('togglepsystu').classList.remove('d-none');
-    document.getElementById('psydata').classList.add('d-none');
-
-
-
+    document.getElementById("togglepsystu").classList.remove("d-none");
+    document.getElementById("psydata").classList.add("d-none");
   } catch (error) {
     console.error("Error fetching analytics data:", error);
     return Promise.reject(error);
@@ -371,8 +362,11 @@ function displayMoodChart() {
       days[selectedweek][days[selectedweek].length - 1]
     }<p>`;
   }
-  document.getElementById('averagemoodscore').innerHTML = `<div class='card mt-2 ml-2'> <div class='card-title widget-title'>Resilience points</div> <div class='card-body'><h1>${graphdata?.data?.moodDate.length *5}</h1><img src='./images/points_coin.png' class="points_logo"></div></div>`;
-
+  document.getElementById(
+    "averagemoodscore"
+  ).innerHTML = `<div class='card mt-2 ml-2'> <div class='card-title widget-title'>Resilience points</div> <div class='card-body'><h1>${
+    graphdata?.data?.moodDate.length * 5
+  }</h1><img src='./images/points_coin.png' class="points_logo"></div></div>`;
 }
 Date.prototype.getWeek = function () {
   const onejan = new Date(this.getFullYear(), 0, 1);
@@ -386,248 +380,376 @@ Date.prototype.getWeek = function () {
 };
 
 fetchDoctorsByCollege(code)
-.then((doctorsData) => {
-        displayDoctorsDataInTable(doctorsData); // Display the doctors data in the table
-    })
-    .catch((error) => {
-        console.error("Error fetching doctors data:", error);
-        // Handle errors
-    });
+  .then((doctorsData) => {
+    displayDoctorsDataInTable(doctorsData); // Display the doctors data in the table
+  })
+  .catch((error) => {
+    console.error("Error fetching doctors data:", error);
+    // Handle errors
+  });
 async function fetchDoctorsByCollege(collegeCode) {
-        // Check if data exists in local storage
-        const storedData = localStorage.getItem('doctorsData');
-        if (storedData) {
-            return JSON.parse(storedData); // Return the stored data
-        }
-    
-        // If data doesn't exist in local storage, fetch it from the server
-        try {
-            const response = await axios.get(`https://atman.onrender.com/admin/doctorforcollege/${collegeCode}`);
-            const doctorsData = response.data; // Extract data from the response
-            localStorage.setItem('doctorsData', JSON.stringify(doctorsData)); // Store data in local storage
-            return doctorsData; // Return the data received from the server
-        } catch (error) {
-            console.error("Error fetching doctors data:", error);
-            throw error; // Propagate the error for handling
-        }
-    }
-    
+  // Check if data exists in local storage
+  const storedData = localStorage.getItem("doctorsData");
+  if (storedData) {
+    return JSON.parse(storedData); // Return the stored data
+  }
 
-
+  // If data doesn't exist in local storage, fetch it from the server
+  try {
+    const response = await axios.get(
+      `https://atman.onrender.com/admin/doctorforcollege/${collegeCode}`
+    );
+    const doctorsData = response.data; // Extract data from the response
+    localStorage.setItem("doctorsData", JSON.stringify(doctorsData)); // Store data in local storage
+    return doctorsData; // Return the data received from the server
+  } catch (error) {
+    console.error("Error fetching doctors data:", error);
+    throw error; // Propagate the error for handling
+  }
+}
 
 function displayDoctorsDataInTable(doctorsData) {
-    const tableBody = document.querySelector("#doctorsTable tbody");
-    tableBody.innerHTML = ""; // Clear existing table data
+  const tableBody = document.querySelector("#doctorsTable tbody");
+  tableBody.innerHTML = ""; // Clear existing table data
 
-    doctorsData.forEach((doctor) => {
-        const row = `
+  doctorsData.forEach((doctor) => {
+    const row = `
             <tr>
                 <td>${doctor.email}</td>
                 <td>${doctor?.nickname || doctor?.name}</td>
                 <td>${doctor.area_of_expertise}</td>
                 <td>${doctor?.phonenumber || "?"}</td>
             </tr>`;
-        tableBody.insertAdjacentHTML("beforeend", row);
-    });
+    tableBody.insertAdjacentHTML("beforeend", row);
+  });
 
-    // Add event listener to all rows
-    const rows = tableBody.querySelectorAll("tr");
-    rows.forEach((row, index) => {
-        row.addEventListener("click", () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            var puid = doctorsData[index].id
-            // Set the id parameter based on the doctor's data
-            urlParams.set("id", puid);
-    
-            // Remove the uid parameter if it exists
-            if (urlParams.has("uid")) {
-                urlParams.delete("uid");
-            }
-    
-            // Replace the current URL with the updated parameters
-            window.history.replaceState(
-                {},
-                "",
-                `${window.location.pathname}?${urlParams}`
-            );
-            getAppointments(puid)
-        });
+  // Add event listener to all rows
+  const rows = tableBody.querySelectorAll("tr");
+  rows.forEach((row, index) => {
+    row.addEventListener("click", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      var puid = doctorsData[index].id;
+      // Set the id parameter based on the doctor's data
+      urlParams.set("id", puid);
+
+      // Remove the uid parameter if it exists
+      if (urlParams.has("uid")) {
+        urlParams.delete("uid");
+      }
+
+      // Replace the current URL with the updated parameters
+      window.history.replaceState(
+        {},
+        "",
+        `${window.location.pathname}?${urlParams}`
+      );
+      getAppointments(puid);
     });
-    
+  });
 }
-
-
-
 
 function getStudentAnalytics(students) {
-    // Initialize objects to store analytics
-    const ageAnalytics = {};
-    const deptAnalytics = {};
+  // Initialize objects to store analytics
+  const ageAnalytics = {};
+  const deptAnalytics = {};
 
-    // Iterate over each student
-    students.forEach(student => {
-        // Extract student details
-        const { age, dept } = student.details.fulldetails;
+  // Iterate over each student
+  students.forEach((student) => {
+    // Extract student details
+    const { age, dept } = student.details.fulldetails;
 
-        // Update age analytics
-        if (age in ageAnalytics) {
-            ageAnalytics[age]++;
-        } else {
-            ageAnalytics[age] = 1;
-        }
+    // Update age analytics
+    if (age in ageAnalytics) {
+      ageAnalytics[age]++;
+    } else {
+      ageAnalytics[age] = 1;
+    }
 
-        // Update department analytics
-        if (dept in deptAnalytics) {
-            deptAnalytics[dept]++;
-        } else {
-            deptAnalytics[dept] = 1;
-        }
-    });
+    // Update department analytics
+    if (dept in deptAnalytics) {
+      deptAnalytics[dept]++;
+    } else {
+      deptAnalytics[dept] = 1;
+    }
+  });
 
-    return { ageAnalytics, deptAnalytics };
+  return { ageAnalytics, deptAnalytics };
 }
-
 
 function addAnalyticsToCard(ageAnalytics, deptAnalytics) {
-    // Select the flex div inside the card
-    const flexDiv = document.querySelector(".card .flex");
+  // Select the flex div inside the card
+  const flexDiv = document.querySelector(".card .flex");
 
-   flexDiv.innerHTML= "";
-    const ageChartContainer = document.createElement("div");
-    const deptChartContainer = document.createElement("div");
-const text1 = document.createElement("h4");
-text1.textContent= "Students vs Ages"
-const text2 = document.createElement("h4");
-text2.textContent= "Students vs Departments"
-  
-ageChartContainer.appendChild(text1);
-deptChartContainer.appendChild(text2);
-    // Append chart containers to the flex div
+  flexDiv.innerHTML = "";
+  const ageChartContainer = document.createElement("div");
+  const deptChartContainer = document.createElement("div");
+  const text1 = document.createElement("h4");
+  text1.textContent = "Students vs Ages";
+  const text2 = document.createElement("h4");
+  text2.textContent = "Students vs Departments";
 
-    flexDiv.appendChild(ageChartContainer);
-    flexDiv.appendChild(deptChartContainer);
+  ageChartContainer.appendChild(text1);
+  deptChartContainer.appendChild(text2);
+  // Append chart containers to the flex div
 
-    // Create canvas elements for the charts
-    const ageCanvas = document.createElement("canvas");
-    const deptCanvas = document.createElement("canvas");
+  flexDiv.appendChild(ageChartContainer);
+  flexDiv.appendChild(deptChartContainer);
 
-    // Append canvas elements to the chart containers
-    ageChartContainer.appendChild(ageCanvas);
-    deptChartContainer.appendChild(deptCanvas);
+  // Create canvas elements for the charts
+  const ageCanvas = document.createElement("canvas");
+  const deptCanvas = document.createElement("canvas");
 
-    // Generate data and labels for the age chart
-    const ageData = Object.values(ageAnalytics);
-    const ageLabels = Object.keys(ageAnalytics);
+  // Append canvas elements to the chart containers
+  ageChartContainer.appendChild(ageCanvas);
+  deptChartContainer.appendChild(deptCanvas);
 
-    // Generate data and labels for the department chart
-    const deptData = Object.values(deptAnalytics);
-    const deptLabels = Object.keys(deptAnalytics);
+  // Generate data and labels for the age chart
+  const ageData = Object.values(ageAnalytics);
+  const ageLabels = Object.keys(ageAnalytics);
 
-    // Create and render the age chart
-    new Chart(ageCanvas, {
-        type: 'bar',
-        data: {
-            labels: ageLabels,
-            datasets: [{
-                label: 'Number of Students',
-                data: ageData,
-                backgroundColor: 'rgba(54, 162, 235, 0.5)', // Blue color with transparency
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
+  // Generate data and labels for the department chart
+  const deptData = Object.values(deptAnalytics);
+  const deptLabels = Object.keys(deptAnalytics);
+
+  // Create and render the age chart
+  new Chart(ageCanvas, {
+    type: "bar",
+    data: {
+      labels: ageLabels,
+      datasets: [
+        {
+          label: "Number of Students",
+          data: ageData,
+          backgroundColor: "rgba(54, 162, 235, 0.5)", // Blue color with transparency
+          borderColor: "rgba(54, 162, 235, 1)",
+          borderWidth: 1,
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    // Create and render the department chart
-    new Chart(deptCanvas, {
-        type: 'bar',
-        data: {
-            labels: deptLabels,
-            datasets: [{
-                label: 'Number of Students',
-                data: deptData,
-                backgroundColor: 'rgba(255, 99, 132, 0.5)', // Red color with transparency
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }]
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+      },
+    },
+  });
+
+  // Create and render the department chart
+  new Chart(deptCanvas, {
+    type: "bar",
+    data: {
+      labels: deptLabels,
+      datasets: [
+        {
+          label: "Number of Students",
+          data: deptData,
+          backgroundColor: "rgba(255, 99, 132, 0.5)", // Red color with transparency
+          borderColor: "rgba(255, 99, 132, 1)",
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 }
-
-
 
 var approvedAppointments = [];
 var pendingAppointments = [];
 
 async function getAppointments(puid) {
-  
-    try {
-        const response = await axios.post('https://atman.onrender.com/getAppointmentsByDoctor', { puid });
-        const appointments = response.data;
+  try {
+    const response = await axios.post(
+      "https://atman.onrender.com/getAppointmentsByDoctor",
+      { puid }
+    );
+    const appointments = response.data;
 
-        if(appointments){
-            approvedAppointments = [...appointments.approvedAppointments]
-            pendingAppointments = [...appointments.pendingAppointments]  
-            displayAppointments([...appointments.approvedAppointments,...appointments.pendingAppointments] );
-          
-
-        }else{
-            document.getElementById('psydata').textContent = 'No appointments found for this doctor.';
-
-        }
-     
-    } catch (error) {
-        document.getElementById('psydata').textContent = 'No appointments found for this doctor.';
-
-        console.error('Error fetching appointments:', error);
+    if (appointments) {
+      approvedAppointments = [...appointments.approvedAppointments];
+      pendingAppointments = [...appointments.pendingAppointments];
+      displayAppointments([
+        ...appointments.approvedAppointments,
+        ...appointments.pendingAppointments,
+      ]);
+    } else {
+      document.getElementById("psydata").textContent =
+        "No appointments found for this doctor.";
     }
+  } catch (error) {
+    document.getElementById("psydata").textContent =
+      "No appointments found for this doctor.";
+
+    console.error("Error fetching appointments:", error);
+  }
 }
 
 function displayAppointments(appointments) {
-document.getElementById('togglepsystu').classList.add('d-none')
-    const appointmentsDiv = document.getElementById('psydata');
-    appointmentsDiv.innerHTML = "";
+  document.getElementById("togglepsystu").classList.add("d-none");
+  const appointmentsDiv = document.getElementById("psydata");
+  appointmentsDiv.innerHTML = "";
 
-    if (appointments.length === 0) {
-        appointmentsDiv.textContent = 'No appointments found for this doctor.';
-    } else {
-        
-        appointments.map(appointment => {
-            const appointmentHTML = `
+  if (appointments.length === 0) {
+    appointmentsDiv.textContent = "No appointments found for this doctor.";
+  } else {
+    appointments.map((appointment) => {
+      const appointmentHTML = `
                 <div class="central-meta p-0 appointment-card">
                     <div class="new-postbox">
                         <div class="w-25 mt-5">
                        
-                            <img src="${appointment.userDetails.profile|| "./images/resources/defaultpic.jpg"}" alt="" class="pt-3 user-avatar appoint" >
-                           
+                            <img src="${
+                              appointment.userDetails.profile ||
+                              "./images/resources/defaultpic.jpg"
+                            }" alt="" class="pt-3 user-avatar appoint">
                         </div>
                         <div class="newpst-input p-5 groups">
                             <h1 class="appointment-title"> ${appointment.userDetails.name?.toUpperCase()}</h1>
                             <h5>Gender: ${appointment.userDetails.gender}</h5>
                             <h5>Age: ${appointment.userDetails.age}</h5>
-                            <h5>Occupation: ${appointment.userDetails.occupation}</h5>
-                            <span class="slot">Time Slot: ${appointment.date} /  ${appointment.timeSlot}</span><br>
-
+                            <h5>Occupation: ${
+                              appointment.userDetails.occupation
+                            }</h5>
+                            <span class="slot">Time Slot: ${
+                              appointment.date
+                            } /  ${appointment.timeSlot}</span><br>
                             <br>
                         </div>
                     </div>
                 </div>
             `;
-            appointmentsDiv.innerHTML += appointmentHTML;
-        });
+      appointmentsDiv.innerHTML += appointmentHTML;
+    });
+  }
+}
+
+// Function to fetch posts of a user
+async function fetchPosts(uid, page = 1) {
+  try {
+    const response = await axios.get("http://localhost:3002/filterPostByUid", {
+      params: { uid, page },
+    });
+    return response.data;
+  } catch (error) {
+    console.log("Error fetching posts:", error);
+    return null;
+  }
+}
+var currentPage = 0;
+// Function to display posts
+function displayPosts(posts, append = false) {
+  const postsContainer = document.getElementById("posts-container");
+  if (!append) {
+    postsContainer.innerHTML = ""; // Clear previous posts only if not appending
+    return;
+  }
+
+  if (posts.length > 0) {
+    posts.forEach((post) => {
+      const postElement = document.createElement("div");
+      postElement.classList.add("col-md-6", "col-sm-6", "col-12", "mb-4");
+      console.log(post);
+      // Create post content
+      let postContent = `
+        <div class="card">
+        <div class="card-header text-center">
+        <h5 class="card-title">${post.title?.toUpperCase()}</h5>
+      </div>
+
+          ${
+            post.imageUrl
+              ? `<img src="${post.imageUrl}" class="card-img-top" alt="Post Image" loading='lazy'>`
+              : ""
+          }
+          <div class="card-body row">
+           
+            <p class="card-text ">${post.description}</p>
+          </div>
+          <div class="card-footer text-muted text-center">
+        ${formatTimeDifferences(post.date)}
+
+        </div>
+        </div>
+      `;
+
+      postElement.innerHTML = postContent;
+      postsContainer.appendChild(postElement);
+      currentPage = 1;
+    });
+  } else if (!append) {
+    postsContainer.innerHTML = "<p>No posts found</p>";
+  }
+}
+
+async function loadPosts(uid, page, append = false) {
+  try {
+    const data = await fetchPosts(uid, page);
+
+    if (data) {
+      displayPosts(data.posts, append);
+      if (data.posts.length === 0) {
+        // If no more posts, disconnect the observer
+        observer.disconnect();
+      }
+    } else {
+      observer.disconnect();
     }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+// IntersectionObserver to load more posts when reaching the bottom
+const loadMoreTrigger = document.getElementById("load-more-trigger");
+const observer = new IntersectionObserver(
+  (entries) => {
+    if (entries[0].isIntersecting) {
+      currentPage += 1;
+      loadPosts(query["uid"], currentPage, true);
+    }
+  },
+  { threshold: 1.0 }
+);
+
+// Initial call to load posts for a user
+
+// Start observing the load-more-trigger element
+observer.observe(loadMoreTrigger);
+
+function formatTimeDifferences(timestamp) {
+  const currentTime = new Date();
+  const commentTime = new Date(
+    timestamp._seconds * 1000 + Math.round(timestamp._nanoseconds / 1000000)
+  );
+
+  const differenceInSeconds = Math.floor((currentTime - commentTime) / 1000);
+  const differenceInMinutes = Math.floor(differenceInSeconds / 60);
+  const differenceInHours = Math.floor(differenceInMinutes / 60);
+  const differenceInDays = Math.floor(differenceInHours / 24);
+  if (differenceInDays > 7) {
+    // If it crosses more than a week, display the date
+    const options = { year: "numeric", month: "short", day: "numeric" };
+    return commentTime.toLocaleDateString("en-US", options);
+  } else if (differenceInDays > 0) {
+    // If it's within a week, but more than a day, display days ago
+    return differenceInDays === 1
+      ? "1 day ago"
+      : `${differenceInDays} days ago`;
+  } else if (differenceInHours > 0) {
+    // If it's within a day, but more than an hour, display hours ago
+    return differenceInHours === 1
+      ? "1 hr ago"
+      : `${differenceInHours} hrs ago`;
+  } else {
+    // If it's within an hour, display minutes ago
+    return differenceInMinutes <= 1
+      ? "just now"
+      : `${differenceInMinutes} mins ago`;
+  }
 }

@@ -98,45 +98,60 @@
 							
 							<div class="col-lg-4">
 								<div class="central-meta">
-									<h2 style="text-align: center;">Students List</h2> <br>	
-									search <input type="text" name="searchstudent" id="searchstudent"> <button id="refresh-list" class="btn btn-outline-primary"><i class="ti ti-reload"></i> </button>
-								
-									<div class="new-postbox">
+									<!-- Nav tabs -->
+									<ul class="nav nav-pills">
+										<li class="nav-item">
+											<a class="nav-link active" data-toggle="tab" href="#students-list">Students List</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#psychologist-list">Psychologist List</a>
+										</li>
+									</ul>
 									
-								
-
-                                     <table id="studentsTable" class="table table-responsive table-hover">
-										<thead>
-											<tr>
-												<th>Name</th>
-												<th>E-mail</th>
-												<th>Status</th>
-												<th>Dept</th>
-											</tr>
-										</thead>
-										<tbody>
-											
-										</tbody>
-									</table>
-									
-								</div><!-- add post new box -->
-								<h2 style="text-align: center;">Psychologist List</h2> <br>	
-								<table id="doctorsTable" class="table table-responsive">
-									<thead>
-										<tr>
-											<th>ID</th>
-											<th>Name</th>
-											<th>Specialization</th>
-											<th>Mobile</th>
-											<!-- Add more table headers for other doctor details as needed -->
-										</tr>
-									</thead>
-									<tbody>
-										<!-- Doctors data will be displayed here -->
-									</tbody>
-								</table>
+									<!-- Tab panes -->
+									<div class="tab-content">
+										<div id="students-list" class="tab-pane fade show active">
+											<!-- <h2 style="text-align: center;">Students List</h2> -->
+											<br>
+											<div class="new-postbox">
+												<input type="text" name="searchstudent" id="searchstudent" placeholder="Search...">
+												<button id="refresh-list" class="btn btn-outline-primary"><i class="ti ti-reload"></i> Refresh</button>
+											</div>
+											<table id="studentsTable" class="table table-responsive table-hover">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>E-mail</th>
+														<th>Status</th>
+														<th>Dept</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!-- Student list items will be populated here -->
+												</tbody>
+											</table>
+										</div>
+										<div id="psychologist-list" class="tab-pane fade">
+											<!-- <h2 style="text-align: center;">Psychologist List</h2> -->
+											<br>
+											<table id="doctorsTable" class="table table-responsive">
+												<thead>
+													<tr>
+														<th>ID</th>
+														<th>Name</th>
+														<th>Specialization</th>
+														<th>Mobile</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!-- Psychologist list items will be populated here -->
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
 							</div><!-- centerl meta -->
+							
 							<div class="col-lg-8">
 								<div id="togglepsystu">
 									<div id="feature">
@@ -152,12 +167,30 @@
 
 
 									</div>
-									<div>
-										<table id="dataTable" class="table table-hover">
-											
-											<tbody></tbody>
-										</table>
-										
+									<ul class="nav nav-tabs">
+										<li class="nav-item">
+											<a class="nav-link active" data-toggle="tab" href="#table-view">User Details</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#posts-view">Student Posts</a>
+										</li>
+									</ul>
+									<div class="tab-content">
+										<div id="table-view" class="tab-pane fade show active">
+											<div>
+												<table id="dataTable" class="table table-hover">
+													<tbody></tbody>
+												</table>
+											</div>
+										</div>
+										<div id="posts-view" class="tab-pane fade">
+											<div>
+												<div class="mt-3">
+													<div id="posts-container" class="row"></div>
+												</div>
+												<div id="load-more-trigger"></div>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div id="psydata">
@@ -240,6 +273,7 @@
 		
 	<script src="js/main.min.js"></script>
 	<script src="js/script.js"></script>
+	
 	<script src="./js/college.js"></script>
 
 </body>	
