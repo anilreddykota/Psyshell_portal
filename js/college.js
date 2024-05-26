@@ -64,7 +64,7 @@ searchInput.addEventListener("input", handleInputChange);
 function filterStudents() {
   const searchInput = document.getElementById("searchstudent");
   const searchText = searchInput.value.toLowerCase().trim();
-  console.log(searchText);
+
   const filtredstudents = students.filter((student) => {
     const name = student.details.fulldetails.nickname.toLowerCase();
     const email = student.details.fulldetails.email.toLowerCase();
@@ -92,11 +92,13 @@ function renderFilteredStudents(filteredStudents) {
     const occupation = student.details.fulldetails?.occupation || "?";
     const dept = student.details.fulldetails?.dept || "?";
     const uid = student.uid;
+    const status = student.details.fulldetails?.token;
+    const lastLogin = student.details.fulldetails?.lastLogin;
 
     const row = `<tr data-uid="${uid}">
                         <td>${name}</td>
                         <td>${email}</td>
-                        <td>${occupation}</td>
+                        <td class=${status? "text-success" : "text-danger"}>${status ? "active ("+formatFirestoreTimestamp(lastLogin)+")":"inactive ("+formatFirestoreTimestamp(lastLogin)+")"  }</td>
                         <td>${dept}</td>
                     </tr>`;
     tableBody.insertAdjacentHTML("beforeend", row);
@@ -171,6 +173,7 @@ async function fetchAnalytics(uid) {
 
     if (response) {
       graphdata = response;
+      console.log(graphdata);
       displayMoodChart();
     }
     document.getElementById("togglepsystu").classList.remove("d-none");
@@ -352,7 +355,7 @@ function displayMoodChart() {
       week = selectedweek;
       updateGraph();
     }
-  });
+  }); 
 
   function updateGraph() {
     moodChart.data.labels = [...subLabels[selectedweek]];
@@ -362,11 +365,20 @@ function displayMoodChart() {
       days[selectedweek][days[selectedweek].length - 1]
     }<p>`;
   }
+  var modes = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+var today  = new Date(graphdata?.data?.currentStreak?.dates[graphdata?.data?.currentStreak?.dates.length-1] );
   document.getElementById(
     "averagemoodscore"
-  ).innerHTML = `<div class='card mt-2 ml-2'> <div class='card-title widget-title'>Resilience points</div> <div class='card-body'><h1>${
+  ).innerHTML = `<div class='card mt-2 '> <div class='card-title widget-title'>Resilience points</div> <div class='card-body'><h1>${
     graphdata?.data?.moodDate.length * 5
   }</h1><img src='./images/points_coin.png' class="points_logo"></div></div>`;
+  document.getElementById(
+    "analytics"
+  ).innerHTML = `<div class='card mt-2 ml-2 '> <div class='card-title widget-title'>last login</div> <div class='card-body'><h2>${
+    
+    today.toLocaleDateString("en-US", modes)
+       
+  }</h2></div></div>`;
 }
 Date.prototype.getWeek = function () {
   const onejan = new Date(this.getFullYear(), 0, 1);
@@ -632,9 +644,12 @@ function displayAppointments(appointments) {
 // Function to fetch posts of a user
 async function fetchPosts(uid, page = 1) {
   try {
-    const response = await axios.get("https://atman.onrender.com/filterPostByUid", {
-      params: { uid, page },
-    });
+    const response = await axios.get(
+      "https://atman.onrender.com/filterPostByUid",
+      {
+        params: { uid, page },
+      }
+    );
     return response.data;
   } catch (error) {
     console.log("Error fetching posts:", error);
@@ -654,7 +669,6 @@ function displayPosts(posts, append = false) {
     posts.forEach((post) => {
       const postElement = document.createElement("div");
       postElement.classList.add("col-md-6", "col-sm-6", "col-12", "mb-4");
-      console.log(post);
       // Create post content
       let postContent = `
         <div class="card">
@@ -752,4 +766,46 @@ function formatTimeDifferences(timestamp) {
       ? "just now"
       : `${differenceInMinutes} mins ago`;
   }
+}
+
+
+function formatFirestoreTimestamp(firestoreTimestamp) {
+  if (!firestoreTimestamp) {
+    return "not loggedin";
+  }
+  const { _seconds, _nanoseconds } = firestoreTimestamp
+
+  // Create a JavaScript Date object from the seconds and nanoseconds
+  const milliseconds = _seconds * 1000 + _nanoseconds / 1000000;
+  const dateObject = new Date(milliseconds);
+
+  // Get the current time
+  const currentTime = new Date();
+
+  // Calculate the difference in milliseconds between the current time and the Firestore timestamp
+  const difference = currentTime - dateObject;
+
+  // Define time intervals in milliseconds
+  const minute = 60 * 1000;
+  const hour = minute * 60;
+  const day = hour * 24;
+
+  // Calculate the time difference in minutes, hours, and days
+  const minutesAgo = Math.floor(difference / minute);
+  const hoursAgo = Math.floor(difference / hour);
+  const daysAgo = Math.floor(difference / day);
+
+  // Determine the appropriate time ago message
+  let timeAgoMessage;
+  if (daysAgo > 0) {
+    timeAgoMessage = `${daysAgo} day${daysAgo === 1 ? "" : "s"} ago`;
+  } else if (hoursAgo > 0) {
+    timeAgoMessage = `${hoursAgo} hour${hoursAgo === 1 ? "" : "s"} ago`;
+  } else if (minutesAgo > 0) {
+    timeAgoMessage = `${minutesAgo} minute${minutesAgo === 1 ? "" : "s"} ago`;
+  } else {
+    timeAgoMessage = "no";
+  }
+
+  return timeAgoMessage;
 }

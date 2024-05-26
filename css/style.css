@@ -882,11 +882,19 @@ img {
 }
 
 #averagemoodscore{
-    width: 50%;
+    width: 49%;
+    
+}
+#analytics{
+    width: 49%;
+
 }
 
 @media  screen and (width <800px){
     #averagemoodscore{
+        width: 100%;
+    }
+    #analytics{
         width: 100%;
     }
     

@@ -56,7 +56,7 @@ function handleOptionClick(optionIndex, score, set) {
     scores[set] += score;
     handleNextClick();
     const nextBtn = document.getElementById('nextBtn');
-    nextBtn.classList.remove('hidden'); // Show the "Next Question" button
+    nextBtn?.classList?.remove('hidden'); // Show the "Next Question" button
     // Update score or perform other actions based on selected option
 }
 
@@ -92,6 +92,26 @@ function showResults() {
             <button class="btn result" onclick="history.back()">Done</button>
         </div>
     `;
+   let uid = localStorage.uid
+    saveResults(scores,uid)
+}
+
+
+function saveResults(results,uid) {
+    fetch('https://atman.onrender.com/saveSelfTestResults', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ results,uid })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 }
 
 
