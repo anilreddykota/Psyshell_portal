@@ -5,7 +5,7 @@ if (localStorage.Collegecode == null) {
 var graphdata;
 var students;
 let moodChart = null;
-const query = getParams();
+var query = getParams();
 
 document.getElementById("refresh-list").addEventListener("click", () => {
   console.log("refresh");
@@ -26,7 +26,7 @@ async function fetchData() {
     displayStudents(students);
     addClickEventListeners();
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.log("Error fetching data:", error);
   }
 }
 fetchData();
@@ -52,6 +52,7 @@ async function fetchStudentsByCollege() {
 let timeoutId;
 
 function displayStudents(students) {
+ 
   renderFilteredStudents(students);
 }
 const handleInputChange = () => {
@@ -98,11 +99,15 @@ function renderFilteredStudents(filteredStudents) {
     const row = `<tr data-uid="${uid}">
                         <td>${name}</td>
                         <td>${email}</td>
-                        <td class=${status? "text-success" : "text-danger"}>${status ? "active ("+formatFirestoreTimestamp(lastLogin)+")":"inactive ("+formatFirestoreTimestamp(lastLogin)+")"  }</td>
+                        <td class=${status ? "text-success" : "text-danger"}>${status
+        ? "active (" + formatFirestoreTimestamp(lastLogin) + ")"
+        : "inactive (" + formatFirestoreTimestamp(lastLogin) + ")"
+      }</td>
                         <td>${dept}</td>
                     </tr>`;
     tableBody.insertAdjacentHTML("beforeend", row);
   });
+  new DataTable("#studentsTable",{searching: true,info: false,paging:true,});
 }
 
 function addClickEventListeners() {
@@ -125,7 +130,7 @@ function addClickEventListeners() {
         "",
         `${window.location.pathname}?${urlParams}#feature`
       );
-      let query = getParams();
+      query = getParams();
       const selectedstudent = students.filter((student) => {
         return student.uid === query["uid"];
       });
@@ -173,13 +178,12 @@ async function fetchAnalytics(uid) {
 
     if (response) {
       graphdata = response;
-      console.log(graphdata);
       displayMoodChart();
     }
     document.getElementById("togglepsystu").classList.remove("d-none");
     document.getElementById("psydata").classList.add("d-none");
   } catch (error) {
-    console.error("Error fetching analytics data:", error);
+    console.log("Error fetching analytics data:", error);
     return Promise.reject(error);
   }
 }
@@ -343,9 +347,8 @@ function displayMoodChart() {
   // Create and append Week Data
 
   const weekdata = document.getElementById("weekdata");
-  weekdata.innerHTML = ` <p>${days[week][0]} <br> ${
-    days[week][days[week].length - 1]
-  }</p>`;
+  weekdata.innerHTML = ` <p>${days[week][0]} <br> ${days[week][days[week].length - 1]
+    }</p>`;
 
   // Create and append Next Week button
 
@@ -355,30 +358,36 @@ function displayMoodChart() {
       week = selectedweek;
       updateGraph();
     }
-  }); 
+  });
 
   function updateGraph() {
     moodChart.data.labels = [...subLabels[selectedweek]];
     moodChart.data.datasets[0].data = [...subScores[selectedweek]];
     moodChart.update();
-    weekdata.innerHTML = `<p>${days[selectedweek][0]} <br>${
-      days[selectedweek][days[selectedweek].length - 1]
-    }<p>`;
+    weekdata.innerHTML = `<p>${days[selectedweek][0]} <br>${days[selectedweek][days[selectedweek].length - 1]
+      }<p>`;
   }
-  var modes = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-var today  = new Date(graphdata?.data?.currentStreak?.dates[graphdata?.data?.currentStreak?.dates.length-1] );
+  var modes = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  var today = new Date(
+    graphdata?.data?.currentStreak?.dates[
+    graphdata?.data?.currentStreak?.dates.length - 1
+    ]
+  );
   document.getElementById(
     "averagemoodscore"
-  ).innerHTML = `<div class='card mt-2 '> <div class='card-title widget-title'>Resilience points</div> <div class='card-body'><h1>${
-    graphdata?.data?.moodDate.length * 5
-  }</h1><img src='./images/points_coin.png' class="points_logo"></div></div>`;
+  ).innerHTML = `<div class='card mt-2 '> <div class='card-title widget-title'>Resilience points</div> <div class='card-body'><h1>${graphdata?.data?.moodDate.length * 5
+    }</h1><img src='./images/points_coin.png' class="points_logo"></div></div>`;
   document.getElementById(
     "analytics"
-  ).innerHTML = `<div class='card mt-2 ml-2 '> <div class='card-title widget-title'>last login</div> <div class='card-body'><h2>${
-    
-    today.toLocaleDateString("en-US", modes)
-       
-  }</h2></div></div>`;
+  ).innerHTML = `<div class='card mt-2 ml-2 '> <div class='card-title widget-title'>last login</div> <div class='card-body'><h3>${today.toLocaleDateString(
+    "en-US",
+    modes
+  )}</h3></div></div>`;
 }
 Date.prototype.getWeek = function () {
   const onejan = new Date(this.getFullYear(), 0, 1);
@@ -396,7 +405,7 @@ fetchDoctorsByCollege(code)
     displayDoctorsDataInTable(doctorsData); // Display the doctors data in the table
   })
   .catch((error) => {
-    console.error("Error fetching doctors data:", error);
+    console.log("Error fetching doctors data:", error);
     // Handle errors
   });
 async function fetchDoctorsByCollege(collegeCode) {
@@ -415,7 +424,7 @@ async function fetchDoctorsByCollege(collegeCode) {
     localStorage.setItem("doctorsData", JSON.stringify(doctorsData)); // Store data in local storage
     return doctorsData; // Return the data received from the server
   } catch (error) {
-    console.error("Error fetching doctors data:", error);
+    console.log("Error fetching doctors data:", error);
     throw error; // Propagate the error for handling
   }
 }
@@ -598,7 +607,7 @@ async function getAppointments(puid) {
     document.getElementById("psydata").textContent =
       "No appointments found for this doctor.";
 
-    console.error("Error fetching appointments:", error);
+    console.log("Error fetching appointments:", error);
   }
 }
 
@@ -616,21 +625,18 @@ function displayAppointments(appointments) {
                     <div class="new-postbox">
                         <div class="w-25 mt-5">
                        
-                            <img src="${
-                              appointment.userDetails.profile ||
-                              "./images/resources/defaultpic.jpg"
-                            }" alt="" class="pt-3 user-avatar appoint">
+                            <img src="${appointment.userDetails.profile ||
+        "./images/resources/defaultpic.jpg"
+        }" alt="" class="pt-3 user-avatar appoint">
                         </div>
                         <div class="newpst-input p-5 groups">
                             <h1 class="appointment-title"> ${appointment.userDetails.name?.toUpperCase()}</h1>
                             <h5>Gender: ${appointment.userDetails.gender}</h5>
                             <h5>Age: ${appointment.userDetails.age}</h5>
-                            <h5>Occupation: ${
-                              appointment.userDetails.occupation
-                            }</h5>
-                            <span class="slot">Time Slot: ${
-                              appointment.date
-                            } /  ${appointment.timeSlot}</span><br>
+                            <h5>Occupation: ${appointment.userDetails.occupation
+        }</h5>
+                            <span class="slot">Time Slot: ${appointment.date
+        } /  ${appointment.timeSlot}</span><br>
                             <br>
                         </div>
                     </div>
@@ -676,11 +682,10 @@ function displayPosts(posts, append = false) {
         <h5 class="card-title">${post.title?.toUpperCase()}</h5>
       </div>
 
-          ${
-            post.imageUrl
-              ? `<img src="${post.imageUrl}" class="card-img-top" alt="Post Image" loading='lazy'>`
-              : ""
-          }
+          ${post.imageUrl
+          ? `<img src="${post.imageUrl}" class="card-img-top" alt="Post Image" loading='lazy'>`
+          : ""
+        }
           <div class="card-body row">
            
             <p class="card-text ">${post.description}</p>
@@ -768,12 +773,11 @@ function formatTimeDifferences(timestamp) {
   }
 }
 
-
 function formatFirestoreTimestamp(firestoreTimestamp) {
   if (!firestoreTimestamp) {
     return "not loggedin";
   }
-  const { _seconds, _nanoseconds } = firestoreTimestamp
+  const { _seconds, _nanoseconds } = firestoreTimestamp;
 
   // Create a JavaScript Date object from the seconds and nanoseconds
   const milliseconds = _seconds * 1000 + _nanoseconds / 1000000;
@@ -808,4 +812,44 @@ function formatFirestoreTimestamp(firestoreTimestamp) {
   }
 
   return timeAgoMessage;
+}
+
+document
+  .getElementById("convertToExcel")
+  .addEventListener("click", downloadExcel);
+function downloadExcel() {
+  const data = students;
+  const allKeys = new Set();
+  data.forEach((item) => {
+    Object.keys(item.details.fulldetails || {}).forEach((key) =>
+      allKeys.add(key)
+    );
+  });
+
+  // Convert the set to an array
+  const allKeysArray = Array.from(allKeys);
+  const keysToExclude = new Set(["password", "token", "profile", "lastLogin"]);
+
+  // Transform the data to a flat structure suitable for Excel
+  const transformedData = data.map((item) => {
+    const details = item.details.fulldetails || {};
+
+    const transformedItem = {};
+    allKeysArray.forEach((key) => {
+      if (!keysToExclude.has(key)) {
+        transformedItem[key] = details[key] || "";
+      }
+    });
+    return transformedItem;
+  });
+
+  const time = new Date().toLocaleDateString().replaceAll("/", "_");
+
+  console.log(time, transformedData);
+  const worksheet = XLSX.utils.json_to_sheet(transformedData);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, `Students_${time}`);
+
+  // Generate Excel file and trigger download
+  XLSX.writeFile(workbook, `Students_details_on_${time}.xlsx`);
 }

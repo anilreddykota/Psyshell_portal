@@ -109,25 +109,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if(questionsArray.length <1){
             alert(" please add a new question completely");
+            return
+        }
+        var college = document.getElementById("collegecode").value;
+
+        if(!college){
+           var ok =  confirm("college code is required to group questions");
+           if(!ok){
+            return
+           }
+
+           
         }
 
-        fetch('https://atman.onrender.com/postQuestions', {
+
+
+
+        fetch('http://localhost:3002/postQuestions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
 
 
-            body: JSON.stringify({ questions: questionsArray })
+            body: JSON.stringify({college:college, questions: questionsArray })
         })
         .then(response => response.json())
         .then(data => {
 
             if(data.message === "Questions added successfully")
                 {
-                    
+                    console.log('Success:', data);    
                 }
-            console.log('Success:', data);
+           
         })
         .catch((error) => {
             console.error('Error:', error);

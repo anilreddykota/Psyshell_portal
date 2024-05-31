@@ -37,7 +37,7 @@ function renderQuestion() {
     <div class="questions-container">
         <div class="questions">${index + 1}. ${currentQuestion?.text}</div>
         <div class="options">
-            ${currentQuestion.options.map((option, i) => `
+            ${currentQuestion?.options?.map((option, i) => `
                 <div class="option" onclick="handleOptionClick(${i}, ${currentQuestion.scores[i]}, '${currentQuestion.set}')"> <span class="opt">${String.fromCharCode(97 + i).toUpperCase()}</span> ${option}</div><br>
             `).join('')}
         </div>

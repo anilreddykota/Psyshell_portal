@@ -899,6 +899,27 @@ img {
     }
     
 }
+.static-pane {
+    max-height: 100vh;
+    overflow-x: scroll;
+    scrollbar-width: 2px;
+  
+}
+
+
+.static-pane::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+
+.static-pane::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px #97dffd;
+	background-color: #a9dffa;
+}
 
 
 .user-avatar > figure > img {
