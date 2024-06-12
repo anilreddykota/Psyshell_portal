@@ -9,10 +9,21 @@ async function startQuiz() {
 
 // Function to fetch questions from the API
 async function fetchQuestions() {
+
+var url = "https://atman.onrender.com/random-questions";
+
+    var test = document.getElementById("testname").value;
+if(test!= ""){
+   url =  `https://atman.onrender.com/random-questions?college=${test}`;
+}
+console.log(url);
+
     try {
-        const response = await fetch('https://atman.onrender.com/random-questions');
+        const response = await fetch(url);
         const data = await response.json();
         questions = data;
+
+        console.log(questions);
         renderQuestion();
 
     } catch (error) {

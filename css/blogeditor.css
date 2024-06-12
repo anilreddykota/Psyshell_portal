@@ -1,0 +1,247 @@
+.editor-container {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+}
+.btn.btn-primary{
+    background-color: #87ceeb !important;
+    color: black;
+    border: none !important;
+
+}
+
+.btn.btn-success{
+    background-color: #2f3f9f !important;
+    border: none !important;
+
+
+}
+a.nav-link{
+    color: #2f3f9f;
+    font-weight: bold !important;
+}
+body{
+
+    background-color: #e1ebfa;
+}
+#editor {
+    min-height: 500px;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    background-color: white;
+}
+
+#editor img{
+    max-width:100%;
+}
+
+.hidden {
+    display: none;
+}
+
+#shortcut-help {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    z-index: 1050;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    max-width: 90%;
+}
+
+#shortcut-help kbd {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 #adb5bd;
+    display: inline-block;
+    padding: 2px 4px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #495057;
+    white-space: nowrap;
+}
+#blogbanner-section {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    position: relative;
+    background-color: #f4f2ee;
+    min-height: 300px;
+    justify-content: center;
+    align-items: center;
+}
+.fixed-nav{
+    position: sticky;
+    top:10px;
+    background-color: #f5f7ff;
+    z-index: 50000;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+@media screen  and (width <= 768px){
+    .fixed-nav{
+        position:static ;
+    }
+    
+}
+
+#blogbanner-section input[type="file"] {
+    display: none;
+}
+
+#blogbanner-section label {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#blogbanner-section .recommended-size {
+    color: #666;
+    margin-top: 10px;
+}
+
+#blogbanner-preview-container {
+    position: relative;
+}
+
+#blogbanner-preview {
+    width: 100%;
+    margin-top: 10px;
+    height: auto; 
+
+}
+.preview-container{
+
+    display: none;
+}
+.preview-container img{
+    width: 100%;
+}
+
+.banneroptions {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 40;
+}
+
+#blogbanner-preview-container:hover .banneroptions {
+    display: block;
+}
+#blogTitle {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    border: none !important;
+}
+#blogTitle:active{
+    border: none !important;
+}
+
+.preview-container {
+    background-color: #f9f9f9;
+}
+
+#preview-banner {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#preview-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#preview-content {
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+button[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    width: max-content;
+    bottom: -150%;
+    left: 0;
+    background-color: #293138;
+    color: #fff; /* Text color */
+    padding: 6px;
+    font-size: small;
+    border: 1px solid #293138; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow */
+    white-space: nowrap; /* Prevent text wrapping */
+    z-index: 1000; /* Ensure tooltip is above other elements */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition for appearance */
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Prevent hover issue */
+}
+
+button[title]:hover::after {
+    opacity: 1; /* Show tooltip on hover */
+}
+
+.user-details-dialog {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.user-details-dialog form {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 600px; /* Maximum width */
+}
+
+.user-details-dialog .form-group {
+    margin-bottom: 15px;
+}
+
+.user-details-dialog .form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.user-details-dialog .form-group input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.user-details-dialog .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
