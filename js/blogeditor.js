@@ -236,9 +236,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
   
     var userDetails;
     // Handle form submission
+
     document
       .getElementById("userDetailsForm")
       .addEventListener("submit", async (e) => {
+       const submit =  document.querySelector("button[type=submit]")
+       submit.value = "posting";
+       submit.disabled =true;
+
         e.preventDefault();
   
         const email = document.getElementById("email").value;
@@ -264,6 +269,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
   
         postBlog(userDetails);
+        submit.value = "done";
+        submit.disabled =false;
       });
   }
   

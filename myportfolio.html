@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content />
+    <meta name="keywords" content />
+    <title>PsyShell - Bridge gap to inner peace</title>
+    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16" />
+
+    <link rel="stylesheet" href="css/main.min.css" />
+    <link rel="stylesheet" href="css/strip.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/color.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+      integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="theme-layout">
+      <div class="responsive-header">
+        <div class="mh-head first Sticky">
+          <span class="mh-btns-left">
+            <a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
+          </span>
+          <span class="mh-text">
+            <a href="community.html" title=""
+              ><img
+                src="images/fav.png"
+                alt=""
+                style="width: 70px; height: auto"
+            /></a>
+          </span>
+        </div>
+
+        <nav id="menu" class="res-menu">
+          <ul>
+            <li><a href="index2.html" title="">Home</a></li>
+            <li><a href="community.html" title="">Community</a></li>
+            <li><a href="chatting.html" title="">Messages</a></li>
+            <li><a href="clients.html" title="">Students</a></li>
+            <li><a href="inbox.html" title="">Send reminder</a></li>
+            <li><a href="account.html" title="">Account settings</a></li>
+
+            <li><a href="doctorlogout.html" title="">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+      <!-- responsive header -->
+
+      <div class="topbar stick">
+        <div class="logo">
+          <a title="" href="index2.html"
+            ><img src="images/fav.png" alt="" style="width: 70px; height: auto"
+          /></a>
+        </div>
+
+        <div class="top-area">
+          <ul class="main-menu">
+            <li><a href="index2.html" title="">Home</a></li>
+            <li><a href="community.html" title="">Community</a></li>
+            <li><a href="clients.html" title="">Students</a></li>
+            <li><a href="library.html" title="">library</a></li>
+            <li><a href="account.html" title="">Account settings</a></li>
+          </ul>
+          <ul class="setting-area">
+            <li>
+              <a href="community.html" title="Home" data-ripple
+                ><i class="ti-home"></i
+              ></a>
+            </li>
+          </ul>
+          <div class="user-img">
+            <img
+              src="images/resources/defaultpic.jpg"
+              alt
+              onclick="window.location.href='account.html'"
+              class="adminlogo"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- topbar -->
+
+      <div class="fixed-sidebar right d-none">
+        <div class="chat-friendz">
+          <ul class="chat-users"></ul>
+        </div>
+      </div>
+      <!-- right sidebar user chat -->
+
+      <div class="fixed-sidebar left">
+        <div class="menu-left">
+          <ul class="left-menu">
+            <li>
+              <a href="./index2.html" title="Home" data-ripple=""
+                ><i class="ti-home"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="community.html"
+                title="Community"
+                data-toggle="tooltip"
+                data-placement="right"
+                ><i class="bi bi-people-fill"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="inbox.html"
+                title="send reminder"
+                data-toggle="tooltip"
+                data-placement="right"
+                ><i class="bi bi-send-fill"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="chatting.html"
+                title="your Messages"
+                data-toggle="tooltip"
+                data-placement="right"
+                ><i class="ti-comment-alt"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="clients.html"
+                title="Students"
+                data-toggle="tooltip"
+                data-placement="right"
+                ><i class="bi bi-person-vcard-fill"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="account.html"
+                title="account settings"
+                data-toggle="tooltip"
+                data-placement="right"
+                ><i class="bi bi-gear"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="doctorlogout.html"
+                title="logout"
+                data-toggle="tooltip"
+                data-placement="right"
+                ><i class="ti-power-off"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- left sidebar menu -->
+
+      <div >
+        <section>
+          <div class="gap2 gray-bg">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="row merged20" id="page-contents">
+                    <!-- sidebar -->
+                    <div class="col-lg-9" id="body">
+                      <section
+                        class="portfolio-main d-flex flex-column border-rounded"
+                      >
+                        <span class="main-headers2">
+                          <h3 id="fullname">doctor name</h3>
+                          <hr />
+                          <h5 id="position">position</h5>
+                        </span>
+                        <div class="portfolio-container mt-5">
+                          <div class="quotes">
+                            <h1>Welcome!</h1>
+                            <div id="quote1">
+                              Is emotional pain, shame, and struggle getting in
+                              the way of living the life you really want?
+                            </div>
+                            <div id="quote2">
+                              Would you like to change unwanted behaviors,
+                              feelings, and improve the quality of your
+                              relationships?
+                            </div>
+                          </div>
+                          <div class="image-container">
+                            <img
+                              src="./images/resources/defaultpic.jpg"
+                              alt="Portfolio Image"
+                              id="portfolioimg"
+                              style="object-fit: cover"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div id="para1">
+                            I’m Danielle, a licensed psychotherapist in Northern
+                            California and I am here to help. It’s often
+                            overwhelming trying to find the right therapist,
+                            especially when you aren’t feeling your best. I’ve
+                            been there.
+                          </div>
+                          <div id="para2">
+                            I hope that this site can give you a feel for who I
+                            am and what our work together will be like. If you
+                            think we might be a good fit, I encourage you to
+                            reach out and schedule a phone consultation with me,
+                            free of charge.
+                          </div>
+                          <div id="para3">
+                            I work with clients in person at my San Rafael
+                            office, as well as offering convenient Online
+                            Therapy.
+                          </div>
+                        </div>
+                        <div>
+                          <h4 id="mainquote">
+                            “Only when we are brave enough to explore the
+                            darkness will we discover the infinite power of our
+                            light.” ~Brene Brown
+                          </h4>
+                        </div>
+                    
+                      </section>
+
+                      <section id="services">
+                        <div class="portfolio-main">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="section-heading">
+                                <h2>Services</h2>
+                              </div>
+                            </div>
+                            <div
+                              id="service"
+                              class="col-lg-12 row text-center"
+                            ></div>
+                          </div>
+                        </div>
+                      </section>
+                      <hr />
+                      <section id="contact">
+                        <div class="portfolio-main-contact">
+                          <div class="text-center h1">Contact Me:</div>
+                          <div id="emailid" class="email text-center h3"></div>
+                          <div
+                            id="phonenumber"
+                            class="phonenumber text-center h3"
+                          ></div>
+                        </div>
+                     
+                        
+                      </section>
+                      <div class="text-center">
+                        <h1> create or update portfolio </h1><a href="./account.html"> here</a>
+                      </div>
+                      
+                    </div>
+                    <div class="col-lg-3">
+                      <aside class="sidebar static right">
+                        <div class="widget">
+                          <h4 class="widget-title">Shortcuts</h4>
+                          <ul class="naves">
+                            <li>
+                              <i class="ti-home"></i>
+                              <a href="index2.html" title="">Home</a>
+                            </li>
+                            <li>
+                              <i class="bi bi-people-fill"></i>
+                              <a href="community.html" title="">Community</a>
+                            </li>
+                            <li>
+                              <i class="bi bi-send-fill"></i>
+                              <a href="inbox.html" title="">Send Reminder</a>
+                            </li>
+
+                            <li>
+                              <i class="bi bi-chat-left-text-fill"></i>
+                              <a href="chatting.html" title="">Messages</a>
+                            </li>
+                            <li>
+                              <i class="bi bi-person-vcard-fill"></i>
+                              <a href="clients.html" title="">Students</a>
+                            </li>
+
+                            <li>
+                              <i class="ti-power-off"></i>
+                              <a href="doctorlogout.html" title="">Logout</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <!-- Shortcuts -->
+                        <div class="widget">
+                          <h4 class="widget-title">Recent Activity</h4>
+                          <ul
+                            class="activitiez"
+                            style="max-height: 400px; overflow: scroll"
+                            id="activity-log"
+                          >
+                            <li>
+                              <div class="activity-meta">
+                                <i>10 hours Ago</i>
+                                <span
+                                  ><a href="#" title=""
+                                    >Commented on Video posted
+                                  </a></span
+                                >
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <!-- recent activites -->
+                      </aside>
+                    </div>
+                    <!-- centerl meta -->
+                    <!-- sidebar -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <footer>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4 col-md-4">
+                <div class="widget">
+                  <div class="foot-logo">
+                    <div class="logo">
+                      <a href="index-2.html" title
+                        ><img src="images/logo.png" alt class="logo-img"
+                      /></a>
+                    </div>
+                    <p>
+                      The trio took this simple idea and built it into the
+                      world’s leading carpooling platform.
+                    </p>
+                  </div>
+                  <ul class="location">
+                    <li>
+                      <i class="ti-map-alt"></i>
+                      <p>
+                        33 new montgomery st.750 san francisco, CA USA 94105.
+                      </p>
+                    </li>
+                    <li>
+                      <i class="ti-mobile"></i>
+                      <p>+91 91214 22554</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-4"></div>
+
+              <div class="col-lg-2 col-md-4">
+                <div class="widget">
+                  <div class="widget-title"><h4>download apps</h4></div>
+                  <ul class="colla-apps">
+                    <li>
+                      <a href="https://play.google.com/store?hl=en" title
+                        ><i class="fa fa-android"></i>android</a
+                      >
+                    </li>
+                    <li>
+                      <a href="https://www.apple.com/lae/ios/app-store/" title
+                        ><i class="ti-apple"></i>iPhone</a
+                      >
+                    </li>
+                    <li>
+                      <a href="https://www.microsoft.com/store/apps" title
+                        ><i class="fa fa-windows"></i>Windows</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- footer -->
+      </div>
+    </div>
+
+    <script src="js/main.min.js"></script>
+    <script src="js/backgroundVideo.js"></script>
+    <script src="js/strip.pkgd.min.js"></script>
+    <script src="./js/doctor/activity.js"></script>
+    <script src="js/script.js"></script>
+    <script src="./js/getport.js"></script>
+  </body>
+</html>
