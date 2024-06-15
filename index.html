@@ -1,422 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content />
-	<meta name="keywords" content />
-	<title>PsyShell - Bridge gap to inner peace</title>
-	<link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content />
+		<meta name="keywords" content />
+		<title>PsyShell - Bridge gap to inner peace</title>
+		<link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
 
-	<link rel="stylesheet" href="css/main.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/color.css">
-	<link rel="stylesheet" href="css/responsive.css">
-	<link rel="stylesheet" href="./css/mood.css">
-	<link rel="stylesheet" href="./css/addstudent.css">
-	<link rel="stylesheet" href="./css/like.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"
-		integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg=="
-		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="./js/feed.js" defer></script>
-	<script src="./js/protected.js"></script>
-	<script src="./js/mood.js"></script>
-	<script src="./js/score.js"></script>
+		<link rel="stylesheet" href="css/main.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/color.css">
+		<link rel="stylesheet" href="css/responsive.css">
+		<link rel="stylesheet" href="./css/mood.css">
+		<link rel="stylesheet" href="./css/addstudent.css">
+		<link rel="stylesheet" href="./css/like.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"
+			integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg=="
+			crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="./js/feed.js" defer></script>
+		<script src="./js/protected.js"></script>
+		<script src="./js/mood.js"></script>
+		<script src="./js/score.js"></script>
 
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-		crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+			crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		<script src="./js/network.js" defer></script>
 
+	</head>
 
-</head>
+	<body>
 
-<body>
+		<button id="popup-button" class="popup-button"
+			title="change mood">Open</button>
 
-	<button id="popup-button" class="popup-button" title="change mood">Open</button>
-
-	<!-- Button trigger modal -->
-	<div class="mood-modal bg-light  popup-container" id="popup">
-		<div class="new-postbox">
-			<div class="newpst-input ">
-				<h6>How Are You Feeling Today?</h6>
-				<p>Click on an emoji to express your
-					mood:</p>
-				<div class="emojis-container">
-					<div class="emojis">
-						<span class="emoji" data-mood="amazing">😊</span>
-						<span class="emoji" data-mood="happy">😄</span>
-						<span class="emoji" data-mood="terrible">😩</span>
-						<span class="emoji" data-mood="sad">😢</span>
-						<span class="emoji" data-mood="bad">😞</span>
+		<!-- Button trigger modal -->
+		<div class="mood-modal bg-light  popup-container" id="popup">
+			<div class="new-postbox">
+				<div class="newpst-input ">
+					<h6>How Are You Feeling Today?</h6>
+					<p>Click on an emoji to express your
+						mood:</p>
+					<div class="emojis-container">
+						<div class="emojis">
+							<span class="emoji" data-mood="amazing">😊</span>
+							<span class="emoji" data-mood="happy">😄</span>
+							<span class="emoji" data-mood="terrible">😩</span>
+							<span class="emoji" data-mood="sad">😢</span>
+							<span class="emoji" data-mood="bad">😞</span>
+						</div>
+						<div class="mood-names">
+							<span class="mood-name">Amazing</span>
+							<span class="mood-name">Happy</span>
+							<span class="mood-name">Terrible</span>
+							<span class="mood-name">Sad</span>
+							<span class="mood-name">Bad</span>
+						</div>
 					</div>
-					<div class="mood-names">
-						<span class="mood-name">Amazing</span>
-						<span class="mood-name">Happy</span>
-						<span class="mood-name">Terrible</span>
-						<span class="mood-name">Sad</span>
-						<span class="mood-name">Bad</span>
-					</div>
+					<button class="track-button" style="display:none">Track</button>
 				</div>
-				<button class="track-button" style="display:none">Track</button>
-			</div>
-		</div>
-
-	</div>
-
-	<div class="theme-layout">
-		<div class="message-toast" id="messageToast">
-			<button class="close-btn" onclick="closeToast()">X</button>
-		</div>
-
-		<div class="responsive-header">
-			<div class="mh-head first Sticky">
-				<span class="mh-btns-left">
-					<a class href="#menu"><i class="fa fa-align-justify"></i></a>
-				</span>
-				<span class="mh-text">
-					<a href="newsfeed.html" title><img src="images/fav.png" alt style="width: 70px;height: auto;"></a>
-				</span>
-				<span class="mh-btns-right">
-					<a class="fa fa-sliders" href="#shoppingbag"></a>
-				</span>
 			</div>
 
-			<nav id="menu" class="res-menu">
-				
+		</div>
 
-				<ul>
-					<li><a id="username"><i class="ti-user"></i></a></li>
-					<li><a href="index.html" title>Home</a></li>
-					<li><a href="newsfeed.html" title>Community</a></li>
-					<li><a href="journal.html" title> Daily Journal</a></li>
+		<div class="theme-layout">
+			<div class="message-toast" id="messageToast">
+				<button class="close-btn" onclick="closeToast()">X</button>
+			</div>
 
-					<li><a href="groups.html" title>Book Appointment</a></li>
-					<li><a href="messages.html" title>Messages</a></li>
-					<li><a href="edit-account-setting.html" title>edit account
-							setting</a></li>
-					<li><a href="edit-password.html" title>edit-password</a></li>
-					<li><a href="logout.html" title>Logout</a></li>
-				</ul>
-			</nav>
-			<nav id="shoppingbag">
-				<div>
-					<div class>
-						<div id="feature2">
-							<a id="username"><i class="ti-user"></i></a>
+			<div class="responsive-header">
+				<div class="mh-head first Sticky">
+					<span class="mh-btns-left">
+						<a class href="#menu"><i class="fa fa-align-justify"></i></a>
+					</span>
+					<span class="mh-text">
+						<a href="newsfeed.html" title><img src="images/fav.png" alt
+								style="width: 70px;height: auto;"></a>
+					</span>
+					<span class="mh-btns-right">
+						<a class="fa fa-sliders" href="#shoppingbag"></a>
+					</span>
+				</div>
 
-							<!-- <div id="moodChartSelect"></div>
+				<nav id="menu" class="res-menu">
+
+					<ul>
+						<li><a id="username"><i class="ti-user"></i></a></li>
+						<li><a href="index.html" title>Home</a></li>
+						<li><a href="newsfeed.html" title>Community</a></li>
+						<li><a href="journal.html" title> Daily Journal</a></li>
+
+						<li><a href="groups.html" title>Book Appointment</a></li>
+						<li><a href="messages.html" title>Messages</a></li>
+						<li><a href="edit-account-setting.html" title>edit account
+								setting</a></li>
+						<li><a href="edit-password.html" title>edit-password</a></li>
+						<li><a href="logout.html" title>Logout</a></li>
+					</ul>
+				</nav>
+				<nav id="shoppingbag">
+					<div>
+						<div class>
+							<div id="feature2">
+								<a id="username"><i class="ti-user"></i></a>
+
+								<!-- <div id="moodChartSelect"></div>
 							<canvas id="moodChart"></canvas>
 							<div id="moodChartControl" class="d-flex justify-content-space-between"></div> -->
 
-							
-							<div id="streak-data"> </div>
-							<div id="no-graph-message"></div>
+								<div id="streak-data"> </div>
+								<div id="no-graph-message"></div>
+							</div>
+
 						</div>
-
 					</div>
+				</nav>
+			</div><!-- responsive header -->
+
+			<div class="topbar stick">
+				<div class="logo">
+					<a title href="newsfeed.html"><img src="images/fav.png" alt
+							style="width: 70px;height: auto;"></a>
 				</div>
-			</nav>
-		</div><!-- responsive header -->
 
-		<div class="topbar stick">
-			<div class="logo">
-				<a title href="newsfeed.html"><img src="images/fav.png" alt style="width: 70px;height: auto;"></a>
-			</div>
+				<div class="top-area">
+					<ul class="main-menu">
+						<li>
+							<a href="newsfeed.html" title>Community</a>
 
-			<div class="top-area">
-				<ul class="main-menu">
-					<li>
-						<a href="newsfeed.html" title>Community</a>
-					
-					</li>
-					<li><a href="journal.html" title> Daily Journal</a></li>
-					<li><a href="selftest.html" title>self test</a></li>
+						</li>
+						<li><a href="journal.html" title> Daily Journal</a></li>
+						<li><a href="selftest.html" title>self test</a></li>
 
-				
-					<li><a href="groups.html" title>book
-						Appointment</a></li>
-				
-			
+						<li><a href="groups.html" title>book
+								Appointment</a></li>
 
-
-				</ul>
+					</ul>
 					<ul class="main-menu menu-2">
 
-				
-				<li>
-					<a><img src="images/resources/defaultpic.jpg" alt class="adminlogo"></a>
+						<li>
+							<a><img src="images/resources/defaultpic.jpg" alt class="adminlogo"></a>
 
-					<ul>
-					
-						<li>
-							<a id="username"><i class="ti-user"></i></a>
+							<ul>
+
+								<li>
+									<a id="username"><i class="ti-user"></i></a>
+								</li>
+								<li>
+									<a href="edit-account-setting.html" title>edit account
+										setting</a>
+								</li>
+								<li>
+									<a href="edit-password.html" title>edit-password</a>
+								</li>
+								<li>
+									<a href="logout.html" title><i class="ti-power-off"></i>log out</a>
+								</li>
+
+							</ul>
+
 						</li>
 						<li>
-							<a href="edit-account-setting.html" title>edit account
-								setting</a>
+							<a class="fa fa-sliders" href="#shoppingbag"></a>
 						</li>
-						<li>
-							<a href="edit-password.html" title>edit-password</a>
-						</li>
-							<li>
-								<a href="logout.html" title><i class="ti-power-off"></i>log out</a>
-							</li>
-						
-							
-							
-							
-						
+
 					</ul>
 
-				</li>
-				<li>
-					<a class="fa fa-sliders" href="#shoppingbag"></a>
-				</li>
-				
-			</ul>
-			
-				
-			
-			</div>
-		</div><!-- topbar -->
+				</div>
+			</div><!-- topbar -->
 
-		<section>
+			<section>
 
-			<div class="gap gray-bg">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="row" id="page-contents">
-								<div class="col-lg-3 d-md-none d-lg-block">
-									<aside class="sidebar static ">
-										<div class="widget ">
-											<h4 class="widget-title">Shortcuts</h4>
-											<ul class="naves">
-												<li>
-													<i class="ti-clipboard"></i>
-													<a href="newsfeed.html" title>Community</a>
-												</li>
+				<div class="gap gray-bg">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="row" id="page-contents">
+									<div class="col-lg-3 d-md-none d-lg-block">
+										<aside class="sidebar static ">
+											<div class="widget ">
+												<h4 class="widget-title">Shortcuts</h4>
+												<ul class="naves">
+													<li>
+														<i class="ti-clipboard"></i>
+														<a href="newsfeed.html" title>Community</a>
+													</li>
 
-												<li>
-													<i class="ti-comments-smiley"></i>
-													<a href="messages.html" title>Messages</a>
-												</li>
-												<li>
-													<i class="ti-bell"></i>
-													<a href="notifications.html" title>Notifications</a>
-												</li>
+													<li>
+														<i class="ti-comments-smiley"></i>
+														<a href="messages.html" title>Messages</a>
+													</li>
+													<li>
+														<i class="ti-bell"></i>
+														<a href="notifications.html" title>Notifications</a>
+													</li>
 
-												<!-- <li>
+													<!-- <li>
 													<i class="ti-power-off"></i>
 													<a id="logout">Logout</a>
 												</li> -->
-											</ul>
-										</div><!-- Shortcuts -->
+												</ul>
+											</div><!-- Shortcuts -->
 
-										<!-- who's following -->
-									</aside>
-								</div><!-- sidebar -->
-								<div class="col-lg-9">
-                                     <div class="banners">
+											<!-- who's following -->
+										</aside>
+									</div><!-- sidebar -->
+									<div class="col-lg-9">
+										<div class="banners">
 
-									
-									<div>
-										<canvas id="moodChart" style="width:50vw"></canvas>
-										<div id="moodChartControl" class="d-flex justify-content-space-between"></div>
-									</div>
-						
-									<div id="averagemoodscore" class="averagemoodscore"></div>
-								</div>
+											<div class="mt-2 d-flex flex-column">
+												<canvas id="moodChart" style="width:50vw"></canvas>
+												<div id="moodChartControl"
+													class=" justify-content-space-between"></div>
+											</div>
 
+											<div id="averagemoodscore" class="averagemoodscore"></div>
+										</div>
 
-
-
-
-
-								
-								
-									<div class="banners">
-										<!-- <div class="navsbanner">
+										<div class="banners">
+											<!-- <div class="navsbanner">
 											<img id="banner" alt="banner image" src="./images/logo2.png">
 										</div> -->
-										<div class="navsbanner">
-											<main id="selftest" data-ripple>
-												<h2>Self Test</h2>
-												<h4>working on problem ans self<br> examination is sign of
-													strength</h4>
-												<button class="start" onclick="window.location.href='selftest.html'">Start</button>
-												<div id="selftestimg"></div>
-											</main>
-										</div>
-										<div class="navsbanner">
-											<main id="coping" data-ripple>
-												<h2>Coping Technique</h2>
-												<h4>Helps in your critical times and <br>gives strength</h4>
-												<button class="start" onclick="window.location.href='coping.html'"">Start</button>
-												<div id="copingimg"></div>
-											</main>
-										</div>
-										<div class="navsbanner">
-											<main id="journal">
-												<h2>Daily Journal</h2>
-												<h4>Unlock your Thoughts, write Your <br>Heart : Your Daily Diary
-													Companion</h4>
-												<button class="start"
-													onclick="window.location.href='journal.html'">Start</button>
-												<div id="journalimg"></div>
-											</main>
-										</div>
-										<div class="navsbanner">
+											<div class="navsbanner">
+												<main id="selftest" data-ripple>
+													<h2>Self Test</h2>
+													<h4>working on problem ans self<br> examination is sign of
+														strength</h4>
+													<button class="start"
+														onclick="window.location.href='selftest.html'">Start</button>
+													<div id="selftestimg"></div>
+												</main>
+											</div>
+											<div class="navsbanner">
+												<main id="coping" data-ripple>
+													<h2>Coping Technique</h2>
+													<h4>Helps in your critical times and <br>gives strength</h4>
+													<button class="start"
+														onclick="window.location.href='coping.html'"">Start</button>
+													<div id="copingimg"></div>
+												</main>
+											</div>
+											<div class="navsbanner">
+												<main id="journal">
+													<h2>Daily Journal</h2>
+													<h4>Unlock your Thoughts, write Your <br>Heart : Your Daily Diary
+														Companion</h4>
+													<button class="start"
+														onclick="window.location.href='journal.html'">Start</button>
+													<div id="journalimg"></div>
+												</main>
+											</div>
+											<div class="navsbanner">
 
-											<main id="performance">
+												<main id="performance">
 
-												<h2>check your performance</h2>
-												<h4>check yours with graph </h4>
+													<h2>check your performance</h2>
+													<h4>check yours with graph </h4>
 
-												<a href="#shoppingbag" id="performancearrow"><i
-														class="fa fa-arrow-right fa-beat fa-lg"
-														style="color: black"></i></a>
+													<a href="#shoppingbag" id="performancearrow"><i
+															class="fa fa-arrow-right fa-beat fa-lg"
+															style="color: black"></i></a>
 
-											</main>
-
-										</div>
-									</div>
-								
-							</div>
-								<div class="col-lg-6 d-none">
-									<!-- add post new box -->
-									<div class="loadMore">
-										<div class="central-meta item" id="posts-container">
-											<div class="user-post">
-												<div class="friend-info">
-													<figure>
-													</figure>
-													<div class="friend-name">
-														<ins><a href="time-line.html" title>Janice Griffith</a></ins>
-														<span>published: june,2 2018 19:PM</span>
-													</div>
-													<div class="post-meta">
-														<div class="we-video-info">
-															<ul>
-																<li>
-																	<span class="views" data-toggle="tooltip"
-																		title="views">
-																		<i class="fa fa-eye"></i>
-																		<ins>1.2k</ins>
-																	</span>
-																</li>
-																<li>
-																	<span class="comment" data-toggle="tooltip"
-																		title="Comments">
-																		<i class="fa fa-comments-o"></i>
-																		<ins>52</ins>
-																	</span>
-																</li>
-																<li>
-																	<span class="like" data-toggle="tooltip"
-																		title="like">
-																		<i class="ti-heart"></i>
-																		<ins>2.2k</ins>
-																	</span>
-																</li>
-																<li>
-																	<span class="dislike" data-toggle="tooltip"
-																		title="dislike">
-																		<i class="ti-heart-broken"></i>
-																		<ins>200</ins>
-																	</span>
-																</li>
-
-															</ul>
-														</div>
-														<div class="description">
-
-															<p>
-																World's most beautiful car in Curabitur <a href="#"
-																	title>#test
-																	drive booking !</a> the most beatuiful car available
-																in
-																america and the saudia arabia, you can book your test
-																drive by
-																our official website
-															</p>
-														</div>
-													</div>
-												</div>
+												</main>
 
 											</div>
 										</div>
+
 									</div>
-									<!-- centerl meta -->
+									<div class="col-lg-6 d-none">
+										<!-- add post new box -->
+										<div class="loadMore">
+											<div class="central-meta item" id="posts-container">
+												<div class="user-post">
+													<div class="friend-info">
+														<figure>
+														</figure>
+														<div class="friend-name">
+															<ins><a href="time-line.html" title>Janice Griffith</a></ins>
+															<span>published: june,2 2018 19:PM</span>
+														</div>
+														<div class="post-meta">
+															<div class="we-video-info">
+																<ul>
+																	<li>
+																		<span class="views" data-toggle="tooltip"
+																			title="views">
+																			<i class="fa fa-eye"></i>
+																			<ins>1.2k</ins>
+																		</span>
+																	</li>
+																	<li>
+																		<span class="comment" data-toggle="tooltip"
+																			title="Comments">
+																			<i class="fa fa-comments-o"></i>
+																			<ins>52</ins>
+																		</span>
+																	</li>
+																	<li>
+																		<span class="like" data-toggle="tooltip"
+																			title="like">
+																			<i class="ti-heart"></i>
+																			<ins>2.2k</ins>
+																		</span>
+																	</li>
+																	<li>
+																		<span class="dislike" data-toggle="tooltip"
+																			title="dislike">
+																			<i class="ti-heart-broken"></i>
+																			<ins>200</ins>
+																		</span>
+																	</li>
 
+																</ul>
+															</div>
+															<div class="description">
+
+																<p>
+																	World's most beautiful car in Curabitur <a href="#"
+																		title>#test
+																		drive booking !</a> the most beatuiful car available
+																	in
+																	america and the saudia arabia, you can book your test
+																	drive by
+																	our official website
+																</p>
+															</div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+										<!-- centerl meta -->
+
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-		</section>
+					</section>
 
-		<footer>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4 col-md-4">
-						<div class="widget">
-							<div class="foot-logo">
-								<div class="logo">
-									<a href="index.html" title><img src="images/fav.png" alt
-											style="width: 70px;height: auto;"></a>
+					<footer>
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-4 col-md-4">
+									<div class="widget">
+										<div class="foot-logo">
+											<div class="logo">
+												<a href="index.html" title><img src="images/fav.png" alt
+														style="width: 70px;height: auto;"></a>
+											</div>
+											<p>
+
+												We're always on the lookout to work with new colleges. If you're
+												interested in working with us, please get in touch in one of the
+												following ways
+											</p>
+										</div>
+										<ul class="location">
+											<li>
+												<i class="ti-email"></i>
+												<p>
+													contact@psyshell.help</p>
+											</li>
+											<li>
+												<i class="ti-mobile"></i>
+												<p>+91 91214 22554</p>
+
+											</li>
+										</ul>
+									</div>
 								</div>
-								<p>
-									
-									We're always on the lookout to work with new colleges. If you're interested in working with us, please get in touch in one of the following ways
-								</p>
-							</div>
-							<ul class="location">
-								<li>
-									<i class="ti-email"></i>
-									<p>
-										contact@psyshell.help</p>
-								</li>
-								<li>
-									<i class="ti-mobile"></i>
-									<p>+91 91214 22554</p>
-									
-								</li>
-							</ul>
-						</div>
-					</div>
 
-					<div class="col-lg-2 col-md-4">
-						<div class="widget">
-							<div class="widget-title">
-								<h4>download apps</h4>
+								<div class="col-lg-2 col-md-4">
+									<div class="widget">
+										<div class="widget-title">
+											<h4>download apps</h4>
+										</div>
+										<ul class="colla-apps">
+											<li><a href="https://play.google.com/store?hl=en" title><i
+														class="fa fa-android"></i>android</a></li>
+											<li><a href="https://www.apple.com/lae/ios/app-store/" title><i
+														class="ti-apple"></i>iPhone</a></li>
+											<li><a href="https://www.microsoft.com/store/apps" title><i
+														class="fa fa-windows"></i>Windows</a></li>
+										</ul>
+									</div>
+								</div>
 							</div>
-							<ul class="colla-apps">
-								<li><a href="https://play.google.com/store?hl=en" title><i
-											class="fa fa-android"></i>android</a></li>
-								<li><a href="https://www.apple.com/lae/ios/app-store/" title><i
-											class="ti-apple"></i>iPhone</a></li>
-								<li><a href="https://www.microsoft.com/store/apps" title><i
-											class="fa fa-windows"></i>Windows</a></li>
-							</ul>
 						</div>
-					</div>
+					</footer><!-- footer -->
 				</div>
-			</div>
-		</footer><!-- footer -->
-	</div>
 
+				<script data-cfasync="false"
+					src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script
+					src="js/main.min.js"></script>
+				<script src="js/script.js"></script>
+				<script src="js/map-init.js"></script>
 
-	<script data-cfasync="false"
-	src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script
-	src="js/main.min.js"></script>
-<script src="js/script.js"></script>
-<script src="js/map-init.js"></script>
+			</body>
 
-</body>
-
-</html>
+		</html>
