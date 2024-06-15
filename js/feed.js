@@ -4,7 +4,6 @@ fetch("https://atman.onrender.com/get-newsfeed")
   .then((response) => response.json())
   .then((data) => {
     // Process the received JSON data
-    console.log(data.posts);
     document.getElementById("posts-container").innerHTML = "";
     if (data?.posts && data.posts?.length > 0) {
       // Iterate over posts data

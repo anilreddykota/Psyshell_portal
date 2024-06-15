@@ -8,7 +8,6 @@ let moodChart = null;
 var query = getParams();
 
 document.getElementById("refresh-list").addEventListener("click", () => {
-  console.log("refresh");
   localStorage.removeItem("students");
   fetchData();
 });
@@ -845,7 +844,6 @@ function downloadExcel() {
 
   const time = new Date().toLocaleDateString().replaceAll("/", "_");
 
-  console.log(time, transformedData);
   const worksheet = XLSX.utils.json_to_sheet(transformedData);
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, `Students_${time}`);

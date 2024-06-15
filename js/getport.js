@@ -4,7 +4,6 @@ getportanddisplay()
 var port;
 async function getportanddisplay() {
   try {
-console.log(document.getElementById("body"))
 
     var p;
 

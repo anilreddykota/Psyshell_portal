@@ -74,7 +74,6 @@ function renderTimeSlots(timeSlots) {
 
     // Add event listener to the book button outside the forEach loop
     bookButton.addEventListener('click', async function() {
-        console.log("Book clicked");
         if (!timeslot) {
             showToast("Please select a time slot.")
             return;
@@ -82,7 +81,6 @@ function renderTimeSlots(timeSlots) {
 
         try {
             const response = await axios.post('https://atman.onrender.com/bookAppointment', { uid, date, timeSlot: timeslot, puid: getParams()['doc'] });
-            console.log(response);
 
 
             if(response.data){

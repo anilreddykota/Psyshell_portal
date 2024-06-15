@@ -359,7 +359,6 @@ async function deletePost(id) {
   });
 
   const responseData = await response.json();
-  console.log(responseData);
 
   if (response.ok) {
     showToast(responseData.message);

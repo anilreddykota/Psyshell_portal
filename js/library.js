@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(books => {
             // Generate HTML for each book
-            console.log(books);
             let booksHTML = '';
 
             books.forEach((book, index) => {

@@ -47,7 +47,7 @@ showpassArray.forEach((pass) => {
         localStorage.setItem("nickname", response.data.userData?.nickname);
         localStorage.setItem("token", response.data.userData.token);
         localStorage.setItem('userDetails', JSON.stringify(response.data));
-        alert(response.data.message);
+        // alert(response.data.message);
 
         window.location.href = "index.html";
       } else {
@@ -103,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Optionally, you can handle the response data here
       if (response.data.message) {
         alert(response.data.message);
-        console.log(response.data);
         window.location.reload();
       } else if (response.data.message === "nickname already exist") {
         alert(response.data.message);
@@ -181,7 +180,6 @@ document.addEventListener("DOMContentLoaded", function () {
       .value?.toLowerCase()
       .trim();
     const password = document.querySelector('#psypassshow').value;
-    console.log(password);
     const rememberMe = document.querySelector('input[type="checkbox"]').checked;
 
     // Create an object with the login data
@@ -197,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
         loginData
       );
 
-      console.log(response.data)
       // Handle success response
       if (response.data.message === "Login successful") {
         localStorage.clear();

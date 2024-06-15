@@ -21,7 +21,6 @@ async function fetchData(page) {
         const data = await response.json(); // Assuming the response is JSON
         // Get the activity log ul element
         activitys  = {...activitys,...data?.activityLog}
-        console.log(activitys);
         const activityLog = document.getElementById('activity-log');
 
         // Clear existing content

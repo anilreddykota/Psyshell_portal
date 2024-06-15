@@ -35,7 +35,6 @@ async function fetchProtectedRoute(token) {
 }
 
 function showLoadingAnimation() {
-    console.log('Loading animation');
     const loadingDiv = document.createElement('div');
     loadingDiv.classList.add('loading-div');
     loadingDiv.textContent = 'Loading...';

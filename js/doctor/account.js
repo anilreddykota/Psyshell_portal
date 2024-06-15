@@ -220,7 +220,6 @@ if(!date || !from || !to){
   // Get puid from localStorage
   const puid = localStorage.getItem('puid');
 
-  console.log(puid, date, from, to);
 
   try {
     

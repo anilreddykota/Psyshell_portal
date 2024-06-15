@@ -44,7 +44,6 @@ async function addTask() {
     }
      const response = await axios.post('https://atman.onrender.com/store-reminder',data);
 
-     console.log(response.data);
 
 
     

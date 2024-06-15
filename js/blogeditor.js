@@ -325,7 +325,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }),
       });
       const postData = await postResponse.json();
-      console.log(postData);
       if (postData.message === "Blog post created successfully") {
         localStorage.removeItem("autosave");
         localStorage.removeItem("content");

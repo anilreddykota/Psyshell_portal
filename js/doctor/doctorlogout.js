@@ -17,15 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 1000);
 
     async function logout() {
-        console.log('called logout');
         try {
             const body = {
                 puid: localStorage.puid
             };
-            console.log('called logout');
 
             const response = await axios.post('https://atman.onrender.com/psychologistLogout', body);
-            console.log('called logout');
 
             // Handle logout success response
             if(response.data?.message ==="Logout successful")
