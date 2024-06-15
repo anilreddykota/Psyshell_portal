@@ -1864,8 +1864,8 @@ align-items: center;
 }
 figure .profile-round{ 
     height: 45px !important;
-    width: 52px !important;
-    object-fit: fill !important;
+    width: 45px !important;
+    object-fit: cover !important;
 
 }
 
@@ -1881,8 +1881,8 @@ figure .profile-round:hover{
    position: fixed !important;
    left: 50%;
    top: 50%;
-   object-fit: contain !important;
-
+   object-fit: cover !important;
+z-index: 9999;
    transform: translate(-50%,-50%);
    transform: scale(6);
    transition: ease-in ;
@@ -1907,11 +1907,28 @@ figure .profile-round:hover{
 
 
 }
+@media screen and (max-width: 567px) {
+    .card-text {
+      margin-bottom: 0.5em;
+    }
+  }
+  
+  .card {
+    margin: 5%;
+    flex-direction: row;
+  }
+  .card-body {
+    padding: 0.5em 1em;
+  }
+  .card1.card img {
+    max-width: 12em;
+    height: 100%;
+    border-bottom-left-radius: calc(0.25rem - 1px);
+    border-top-left-radius: calc(0.25rem - 1px);
+  }
+  
 
-.comment__avatar{
 
-
-}
 
 
 

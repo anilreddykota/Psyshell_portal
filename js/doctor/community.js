@@ -30,7 +30,7 @@ fetch("https://atman.onrender.com/get-newsfeed")
                     <img src="${
                       post?.userDetails?.profile ||
                       "./images/resources/defaultpic.jpg"
-                    }" alt="" class='card__avatar profile-round'>
+                    }" alt="" class='card__avatar profile-round' loading="lazy">
                 </figure>
                 <div class="friend-name">
                 <ins><a  title="">${
@@ -40,7 +40,7 @@ fetch("https://atman.onrender.com/get-newsfeed")
                   post?.userDetails?.badges
                     ? post?.userDetails?.badges?.map(
                         (badge) =>
-                          ` <img src="./images/badges/${badge}.png" class="user-badges">`
+                          ` <img src="./images/badges/${badge}.png" class="user-badges" loading="lazy">`
                       )
                     : ""
                 }
@@ -52,7 +52,7 @@ fetch("https://atman.onrender.com/get-newsfeed")
                 
                 <div class="post-meta post-container">
                     <ins><a title="">${post.title}</a></ins>
-                    <img src="${post.imageUrl}" alt="" class='h-50'>
+                    <img src="${post.imageUrl}" alt="" class='h-50' loading="lazy">
                     <div class="description">
                         <p>${post.description}</p>
                     </div>
@@ -122,8 +122,8 @@ fetch("https://atman.onrender.com/get-newsfeed")
                             <div class="comment__header">
                                 <img src="${
                                   comment.commenterDetails.profile ||
-                                  "./images/resources/defaultpic.jpg"
-                                }" alt="Comment writer image" class="comment__avatar profile-round">
+                                  "./images/resources/defaultpic.jpg" 
+                                }" alt="Comment writer image" class="comment__avatar profile-round" loading="lazy">
                                 <p class="comment__user-name">${
                                   comment.commenterDetails.nickname ||
                                   "unknown user"
@@ -149,7 +149,7 @@ fetch("https://atman.onrender.com/get-newsfeed")
                 <img src="${
                   `https://firebasestorage.googleapis.com/v0/b/psycove-4ebf5.appspot.com/o/profilepics%2F${localStorage.puid}?alt=media` ||
                   "../images/resources/defaultpic.jpg"
-                }" alt="Your avatar" class="comment__avatar">
+                }" alt="Your avatar" class="comment__avatar" loading="lazy">
                 <input type="text" class="form__input" placeholder="Share your thoughts on this post" id="commentText_${
                   post.postId
                 }">

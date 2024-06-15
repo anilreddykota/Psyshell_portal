@@ -30,7 +30,7 @@ fetch("https://atman.onrender.com/get-newsfeed")
                     <img src="${
                       post?.userDetails?.profile ||
                       "./images/resources/defaultpic.jpg"
-                    }" alt="" class="profile-round rounded-circle">
+                    }" alt="" class="profile-round rounded-circle" loading="lazy">
                 </figure>
                 <div class="friend-name">
                     <ins><a  title="">${
@@ -40,7 +40,7 @@ fetch("https://atman.onrender.com/get-newsfeed")
                       post.userDetails?.badges
                         ? post?.userDetails?.badges?.map(
                             (badge) =>
-                              ` <img src="./images/badges/${badge}.png" class="user-badges rounded-circle" title="${badge} - badge">`
+                              ` <img src="./images/badges/${badge}.png" class="user-badges rounded-circle" title="${badge} - badge" loading="lazy">`
                           )
                         : ""
                     }
@@ -49,7 +49,7 @@ fetch("https://atman.onrender.com/get-newsfeed")
                 </div>
                 <div class="post-meta">
                     <ins><b>${post.title}</b></ins>
-                    <img src="${post.imageUrl}" alt="" class='h-50'>
+                    <img src="${post.imageUrl}" alt="" class='h-50' loading="lazy">
                     <div class="description">
                         <b>${post.description}</b>
                     </div>
@@ -106,7 +106,7 @@ fetch("https://atman.onrender.com/get-newsfeed")
                                 <img src="${
                                   comment.commenterDetails.profile ||
                                   "./images/resources/defaultpic.jpg"
-                                }" alt="Comment writer image" class="comment__avatar">
+                                }" alt="Comment writer image" class="comment__avatar" loading="lazy">
                                 <p class="comment__user-name">${
                                   comment.commenterDetails.nickname ||
                                   "unknown user"
