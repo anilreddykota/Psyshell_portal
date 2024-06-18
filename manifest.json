@@ -4,9 +4,9 @@
     "display": "fullscreen",
     "name": "psyshell",
     "orientation": "any",
-    "scope": "/*",
+    "scope": "/",
     "short_name": "psyshell",
-    "start_url": "/*",
+    "start_url": "/",
     "theme_color": "#efeff3",
     "icons": [
         {
