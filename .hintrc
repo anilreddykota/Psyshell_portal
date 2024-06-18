@@ -47,6 +47,8 @@
         "aria-required-children": "off",
         "aria-required-parent": "off"
       }
-    ]
+    ],
+    "apple-touch-icons": "off",
+    "meta-charset-utf-8": "off"
   }
 }

@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "help.psyshell.portal",
+        "sha256_cert_fingerprints": ["27:DD:45:B5:E9:3A:46:67:35:DA:39:D3:F7:63:75:CB:FD:3F:BD:A1:B7:5F:3F:B3:8A:BB:EF:CC:4B:E7:DA:E5"]
+      }
+    }]
