@@ -263,6 +263,7 @@ jQuery(document).ready(function ($) {
 				position: 'right'
 			},
 		});
+		
 
 		//	fire the plugin
 		$('.mh-head.first').mhead({
@@ -291,6 +292,14 @@ jQuery(document).ready(function ($) {
 
 
 	});
+
+	$('#shoppingbag .widget a').on("click",  function () {
+		console.log("clicked")
+		$('.theme-layout').removeClass('active');
+		$(".side-panel").removeClass('active');
+
+
+	})
 
 
 	// login & register form

@@ -19946,7 +19946,7 @@ a.text-dark:hover {
 }
 
 .form-group input {
-    height: 1.9rem
+    height: 2.1rem
 }
 
 .form-group textarea {
@@ -19970,7 +19970,8 @@ a.text-dark:hover {
     position: absolute;
     top: .25rem;
     pointer-events: none;
-    padding-left: .125rem;
+    left: 0;
+    padding-left: 1rem;
     z-index: 1;
     color: #b7b7b7;
     font-size: 1rem;
@@ -20044,9 +20045,9 @@ a.text-dark:hover {
 .form-group textarea.has-value~.control-label,
 .form-group textarea:focus~.control-label,
 .form-group textarea:valid~.control-label {
-    font-size: .8rem;
+    font-size: 1rem;
     color: gray;
-    top: -1rem;
+    top: -1.5rem;
     left: 0
 }
 
@@ -20254,6 +20255,7 @@ a.text-dark:hover {
     margin-top: 10px;
     padding: 7px 30px;
     cursor: pointer;
+    border-radius: 10px;
     -webkit-transition: background-color .28s ease, color .28s ease, -webkit-box-shadow .28s ease;
     transition: background-color .28s ease, color .28s ease, -webkit-box-shadow .28s ease;
     transition: background-color .28s ease, color .28s ease, box-shadow .28s ease;
@@ -24037,7 +24039,6 @@ em.mm-counter+a.mm-next+label.mm-toggle+span {
     display: block;
     width: 12px;
     height: 12px;
-    background: url(chosen-sprite.html) -42px 1px no-repeat;
     font-size: 1px
 }
 

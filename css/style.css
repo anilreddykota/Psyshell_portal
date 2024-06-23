@@ -451,7 +451,7 @@ header.sticky {
 }
 
 .land-featurearea {
-    background: #1fb6ff none repeat scroll 0 0;
+    background: #b5f4f4 none repeat scroll 0 0;
     color: #fff;
     float: left;
     height: 100vh;
@@ -512,7 +512,7 @@ header.sticky {
 }
 
 .login-reg-bg {
-    background: #1fb6ff none repeat scroll 0 0;
+    background: #b5f4f4 none repeat scroll 0 0;
     float: left;
     height: 100vh;
     position: relative;
@@ -520,8 +520,10 @@ header.sticky {
 }
 
 .log-reg-area {
-    background: #fff none repeat scroll 0 0;
-    box-shadow: 0 0 35px #e2e2e2;
+    background: #ededed none repeat scroll 0 0;
+    box-shadow: 0 0 35px #c8c7c7;
+    border: solid 2px #088dcd;
+    border-radius: 10px;
     display: block;
     float: none;
     left: 50%;
@@ -529,7 +531,8 @@ header.sticky {
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 505px;
+    width: 60%;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .log-reg-area form .checkbox {
@@ -673,9 +676,10 @@ img {
 }
 
 .submit-btns {
-    display: inline-block;
+    display: flex;
     margin-top: 20px;
     width: 100%;
+    justify-content: space-around;
 }
 
 .form-radio > .radio {
@@ -689,7 +693,9 @@ img {
 }
 
 .form-group {
+    border: solid 2px #088dcd;
     margin-bottom: 15px;
+    background-color: white;
     margin-top: 15px;
     display: inline-block;
     width: 100%;
@@ -1489,11 +1495,13 @@ width: auto;
     bottom: 75px;
     left: 50%;
     background:#0077b5;
-    padding: 5px;
+    padding: 2px;
     border-radius: 5px;
     width: max-content;
     transform: translate(-50%, 50px);
     animation: slideAndFade 3s ease forwards;
+    font-weight: bolder;
+    opacity: 0.6;
 }
 
 #land-buttons button:hover, #landing-buttons button:active{
@@ -1507,7 +1515,7 @@ width: auto;
     }
     100% {
         transform: translate(-50%, 50px);
-        opacity: 1;
+        opacity: 0.9;
     }
 }
 @media  (width>900px) {
@@ -2717,7 +2725,7 @@ span.status.f-off {
 footer {
     background: #fff;
     float: left;
-    padding: 75px 0;
+    padding: 20px 0;
     width: 100%;
     position: relative;
 }
@@ -10769,12 +10777,13 @@ aside.sidebar.full-style {
   }
   
   .container {
-    background-color: var(--color-bg);
+    background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100vh;
+    height: fit-content;
+    padding: 20px;
   }
   
   .card-with-comments {

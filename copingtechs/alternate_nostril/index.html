@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternate Nostril Breathing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Alternate Nostril Breathing</h1>
+            <img src="./assets/Coping_image/Altrnate Nostril breathing.png" alt="Alternate Nostril Breathing">
+        </header>
+        <main>
+            <div class="gif-container">
+                <img id="nostrilGif" src="./assets/Coping_image/Altrnate Nostril breathing.png" alt="Nostril Breathing">
+            </div>
+            <div class="instruction" id="instructionText">Click Start to begin the task.</div>
+            <div class="controls">
+                <button id="startStopButton">Start</button>
+                <button id="doneButton" disabled>Done</button>
+            </div>
+        </main>
+    </div>
+    <div id="instructionModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Pre-Instructions</h2>
+            <ul id="instructionList"></ul>
+            <button id="closeModalButton">Close</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

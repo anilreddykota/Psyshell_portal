@@ -1,0 +1,106 @@
+body {
+    font-family: 'Helvetica', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+ 
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.header {
+    background-color: #D3A3F1;
+    padding: 20px;
+}
+
+.title {
+    font-size: 24px;
+    color: white;
+    margin: 0;
+}
+
+.image {
+    height: 130px;
+    width: 95px;
+}
+
+.main {
+    padding: 20px;
+}
+
+.animation-container {
+    margin: 20px auto;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animated-circle {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #D3A3F1;
+    border-radius: 50%;
+    background-color: #7F8C8D;
+    transition: width 6s, height 6s, background-color 6s;
+}
+
+.instruction-text {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.control-panel {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.control-button, .done-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #D3A3F1;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.done-button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close-button {
+    background-color: #D3A3F1;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}

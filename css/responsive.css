@@ -387,6 +387,8 @@
         transform: translate(0px);
         width: 100%;
         height: inherit;
+        border: none;
+        border-radius: 0;
     }
     .peoples-mesg-box {
         width: 76.5%;

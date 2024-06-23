@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belly Breathing Exercise</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Belly Breathing Technique</h1>
+            <img src="assets/Coping_image/Belly Breathing.png" alt="Belly Breathing" class="image">
+        </header>
+        <main class="main">
+            <div class="animation-container">
+                <div id="animation" class="animated-circle"></div>
+            </div>
+            <p id="instruction-text" class="instruction-text">Click Start to begin the task.</p>
+            <div class="control-panel">
+                <button id="control-button" class="control-button">Start</button>
+                <button id="done-button" class="done-button" disabled>Done</button>
+            </div>
+        </main>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Pre-Instructions</h2>
+            <ol id="instruction-list">
+                <li>First place your hand on your stomach.</li>
+                <li>Breathe in slowly through your nose.</li>
+                <li>Imagine there's a balloon in your stomach which you are filling.</li>
+                <li>Breathe out slowly through your mouth and feel the balloon is slowly deflating.</li>
+                <li>Repeat minimum 3 times for benefit.</li>
+            </ol>
+            <button id="close-button" class="close-button">Close</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

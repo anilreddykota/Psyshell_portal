@@ -73,7 +73,7 @@ function displayMoodChart() {
     const ctx = document.getElementById("moodChart").getContext("2d");
     const canvas = document.getElementById("moodChart")
     canvas.classList.add('card')
-    canvas.style.width = '100%'
+ 
     canvas.style.height = '225px'
     const labels = [...subLabels[week]];
 

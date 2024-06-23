@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Backward</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Counting Backward</h1>
+            <img src="assets/Coping_image/Counting Backward.png" alt="Counting Backward" class="image">
+        </header>
+        <main class="main">
+            <div class="controls">
+                <label for="count-select" class="control-label">Select Count Length</label>
+                <select id="count-select" class="count-select">
+                    <option value="25">25 count</option>
+                    <option value="50">50 count</option>
+                    <option value="100">100 count</option>
+                </select>
+            </div>
+            <div class="timer">
+                <p id="timer-display" class="timer-display">25</p>
+            </div>
+            <p id="instruction-text" class="instruction-text">Click Play to Start</p>
+            <div class="buttons">
+                <button id="control-button" class="control-button">Play</button>
+                <button id="done-button" class="done-button" disabled>Done</button>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

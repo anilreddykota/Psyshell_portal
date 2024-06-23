@@ -83,11 +83,6 @@ const urlsToCache = [
   '/',
   '/index.html',
   '/about.html',
-  '/contact.html',
-  '/services.html',
-
-  '/styles.css',
-  '/script.js',
   // Add other assets (CSS, JS, images) you want to cache
 ];
 
