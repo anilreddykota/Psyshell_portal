@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-        fetch('http://localhost:3002/postQuestions', {
+        fetch('https://atman.onrender.com/postQuestions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

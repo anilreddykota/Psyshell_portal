@@ -887,8 +887,12 @@ img {
 
 }
 
-#averagemoodscore{
-    width: 49%;
+#averagemoodscore,#moodChart{
+
+
+    @media (max-width:680px){
+        width: 22rem !important;
+    }
     
 }
 #analytics{
@@ -897,9 +901,7 @@ img {
 }
 
 @media  screen and (width <800px){
-    #averagemoodscore{
-        width: 100%;
-    }
+
     #analytics{
         width: 100%;
     }
@@ -910,6 +912,17 @@ img {
     overflow-x: scroll;
     scrollbar-width: 2px;
   
+}
+.expand-comments a{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #0077b5 !important;
+
+
+}
+.expand-comments a:hover{
+    text-decoration: underline;
 }
 
 
@@ -1560,6 +1573,35 @@ a[href^="#"] {
     animation: spin-l 1.5s linear infinite;
    
 }
+#loading{
+    display: block;
+}
+
+.posts-loading {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50px;
+    width: 50px;
+    border: 5px solid white;
+    border-top-color: #0077b5;
+    border-radius: 50%;
+    z-index: 9999;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    animation: spin-l 1s infinite linear; 
+  }
+  
+  @keyframes spin-l {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
 
 @keyframes spin-l {
     0% { transform: rotate(0deg); }

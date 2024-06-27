@@ -19,7 +19,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"
 			integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg=="
 			crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="./js/feed.js" defer></script>
+	
 		<script src="./js/protected.js"></script>
 		<script src="./js/mood.js"></script>
 		<script src="./js/score.js"></script>
@@ -110,11 +110,6 @@
 						<div class>
 							<div id="feature2">
 								<a id="username"><i class="ti-user"></i></a>
-
-								<!-- <div id="moodChartSelect"></div>
-							<canvas id="moodChart"></canvas>
-							<div id="moodChartControl" class="d-flex justify-content-space-between"></div> -->
-
 								<div id="streak-data"> </div>
 								<div id="no-graph-message"></div>
 							</div>
@@ -202,32 +197,28 @@
 														<a href="notifications.html" title>Notifications</a>
 													</li>
 
-													<!-- <li>
-													<i class="ti-power-off"></i>
-													<a id="logout">Logout</a>
-												</li> -->
+												
 												</ul>
-											</div><!-- Shortcuts -->
+											</div>
 
-											<!-- who's following -->
 										</aside>
-									</div><!-- sidebar -->
+									</div>
 									<div class="col-lg-9">
-										<div class="banners">
-
+										
+											<div class="d-flex justify-content-space-between aligin-items-center">
 											<div class="mt-2 d-flex flex-column">
-												<canvas id="moodChart" style="width:50vw"></canvas>
+												<canvas id="moodChart" style="width:25rem"></canvas>
 												<div id="moodChartControl"
 													class=" justify-content-space-between"></div>
 											</div>
 
-											<div id="averagemoodscore" class="averagemoodscore"></div>
+											<div id="averagemoodscore" class="averagemoodscore m-4" style="width:25rem"></div>
+											
 										</div>
+								
 
 										<div class="banners">
-											<!-- <div class="navsbanner">
-											<img id="banner" alt="banner image" src="./images/logo2.png">
-										</div> -->
+										
 											<div class="navsbanner">
 												<main id="selftest" data-ripple>
 													<h2>Self Test</h2>
@@ -398,9 +389,8 @@
 					</footer><!-- footer -->
 				</div>
 
-				<script data-cfasync="false"
-					src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script
-					src="js/main.min.js"></script>
+			
+			    <script src="js/main.min.js"></script>
 				<script src="js/script.js"></script>
 				<script src="js/map-init.js"></script>
 

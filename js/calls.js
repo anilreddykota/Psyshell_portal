@@ -1,4 +1,4 @@
-const socket = io("http://localhost:3002");
+const socket = io("https://atman.onrender.com");
 
 // Get video elements
 const localVideo = document.getElementById("local-video");
