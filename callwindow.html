@@ -4,111 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Call</title>
-  
+    <link rel="stylesheet" href="./css/calling.css">
     <script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.3.2/dist/socket.io.min.js"></script>
-
-    <style>
-     body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2;
-}
-
-.call-window {
-    width: 90%;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.video-container {
-    display: flex;
-    flex-direction: row;
-    height: 500px;
-}
-
-div.myvideo > video {
-    width: 35rem ;
-    border: rgb(191, 48, 174) 4px solid;
-    border-radius: 25px;
-    object-fit: contain;
-    margin: 2px;
-}
-
-div.othervideo > video {
-    object-fit: contain;
-    width: 35rem;
-    border: rgb(45, 173, 233) 4px solid;
-    border-radius: 25px;
-    object-fit: contain;
-    margin: 2px;
-}
-
-.call-controls {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button.call {
-    background-color: rgb(16, 227, 16);
-}
-
-button.end {
-    background-color: #d32f2f;
-}
-
-
-
-/* Media queries for responsiveness */
-
-@media screen and (max-width: 768px) {
-    .video-container {
-        flex-direction: column;
-        height: auto;
-    }
-    div.myvideo > video,
-    div.othervideo > video {
-        width: calc(100% - 8px);
-        height: auto;
-    }
-}
-
-
-    </style>
 </head>
 <body onload="join()">
     <div class="call-window">
         <div class="video-container">
             <div class="myvideo">
                 <video id="local-video" autoplay muted></video>
-                
+                <div class="controls">
+                    <button class="btn btn-control" onclick="toggleMute()" id="mute-btn">Mute Audio</button>
+                    <button class="btn btn-control" onclick="toggleVideo()" id="video-close">Stop Video</button>
+                </div>
             </div>
             <div class="othervideo">
                 <video id="remote-video" autoplay></video>
             </div>
-      
         </div>
         <div class="call-controls">
             <button class="btn btn-success call" onclick="initiateCall()">Call</button>
             <button onclick="endCall()" class="end">End Call</button>
         </div>
+        <button id="reconnect-button" onclick="initiateCall()">Reconnect</button>
     </div>
-    <script src="./js/calls.js" defer></script>
 
+    <script src="./js/calls.js" defer></script>
+    <script>
+        function toggleMute() {
+            const localVideo = document.getElementById('local-video');
+            const stream = localVideo.srcObject;
+            const tracks = stream.getAudioTracks();
+        
+            tracks.forEach(track => {
+                track.enabled = !track.enabled;
+            });
+        }
+        
+        function toggleVideo() {
+            const localVideo = document.getElementById('local-video');
+            const stream = localVideo.srcObject;
+            const tracks = stream.getVideoTracks();
+        
+            tracks.forEach(track => {
+                track.enabled = !track.enabled;
+            });
+        }
+    </script>
 </body>
 </html>

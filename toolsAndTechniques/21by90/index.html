@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21/90 Rule Habit Tracker</title>
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/color.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .tracker {
+            display: none;
+        }
+
+        .habit-input {
+            margin-bottom: 20px;
+        }
+
+        .progress-section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1 class="text-center">21/90 Rule Habit Tracker</h1>
+        <p class="text-center">Follow the steps below to form a new habit:</p>
+        <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item">
+                <div class="fw-bold">1. Choose a Habit</div>
+                Pick a habit you want to start. Make sure it's clear and specific, like studying for 30 minutes every day.
+            </li>
+            <li class="list-group-item">
+                <div class="fw-bold">2. Commit for 21 Days</div>
+                Do this habit every day for 21 days to get used to it.
+            </li>
+            <li class="list-group-item">
+                <div class="fw-bold">3. Track Your Progress</div>
+                Use a calendar or journal to mark each day you complete your habit.
+            </li>
+            <li class="list-group-item">
+                <div class="fw-bold">4. Stay Consistent</div>
+                Try not to miss a day. If you do, get back on track the next day.
+            </li>
+            <li class="list-group-item">
+                <div class="fw-bold">5. Extend to 90 Days</div>
+                Keep doing the habit every day for a total of 90 days to make it a permanent part of your routine.
+            </li>
+            <li class="list-group-item">
+                <div class="fw-bold">6. Reflect and Adjust</div>
+                After 90 days, think about how the habit has helped you and make any necessary changes.
+            </li>
+        </ul>
+
+        <h2 class="text-center">Track Your Progress</h2>
+        <div class="mb-3 habit-input">
+            <label for="habit" class="form-label fw-bold">Enter Your Goal</label>
+            <input type="text" id="habit" name="habit" placeholder="Enter your habit" class="form-control">
+        </div>
+        <button onclick="start()" class="btn btn-dark w-100">Start Progress</button>
+
+        <div class="tracker mt-4" id="tracker">
+            <h3 id="habitname" class="fw-bold text-uppercase"></h3>
+            <p id="status" class="fw-bold text-uppercase"></p>
+            <button onclick="updateProgress()" class="btn btn-outline-dark w-100">Mark as Done Today</button>
+        </div>
+    </div>
+
+    <script>
+        let days = 0;
+        let habit = "";
+        let lastCompletedDate = "";
+
+        window.onload = function() {
+            loadFromLocalStorage();
+        }
+
+        function start() {
+            habit = document.getElementById('habit').value;
+            if (habit === "") {
+                alert("Please enter the habit");
+                return;
+            }
+            document.getElementById('habitname').innerText = `Tracking: ${habit}`;
+            document.getElementById('status').innerText = `Days Completed: ${days}`;
+            document.getElementById('tracker').style.display = 'block';
+            saveToLocalStorage();
+        }
+
+        function updateProgress() {
+            const today = new Date().toISOString().split('T')[0];
+            if (lastCompletedDate === today) {
+                alert("You've already marked today as done.");
+                return;
+            }
+            days += 1;
+            lastCompletedDate = today;
+            document.getElementById('status').innerText = `Days Completed: ${days}`;
+            if (days === 21) {
+                alert("Congratulations! You formed a new habit!");
+            } else if (days === 90) {
+                alert("Now this is a part of your life!");
+            }
+            saveToLocalStorage();
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('habit', habit);
+            localStorage.setItem('days', days);
+            localStorage.setItem('lastCompletedDate', lastCompletedDate);
+        }
+
+        function loadFromLocalStorage() {
+            if (localStorage.getItem('habit')) {
+                habit = localStorage.getItem('habit');
+                days = parseInt(localStorage.getItem('days'));
+                lastCompletedDate = localStorage.getItem('lastCompletedDate');
+                document.getElementById('habitname').innerText = `Tracking: ${habit}`;
+                document.getElementById('status').innerText = `Days Completed: ${days}`;
+                document.getElementById('tracker').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

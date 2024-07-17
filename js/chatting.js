@@ -1,4 +1,5 @@
 const socket = io('https://atman.onrender.com');
+// const socket = io('http://localhost:3002');
 
 
 if(!getParams()['uid']){

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>369 Rule Habit Tracker</title>
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/color.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+ 
+
+   
+
+        .tracker {
+            display: none;
+        }
+
+        .habit-input {
+            margin-bottom: 20px;
+        }
+
+        .progress-section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1 class="text-center">369 Rule Habit Tracker</h1>
+        <p class="text-center">The 369 Manifestation Technique</p>
+        <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item">
+                <div class="fw-bold">1. Identify Your Goal</div>
+                Decide on a clear, specific goal you want to achieve. It could be related to your studies, personal growth, or any other area of your life.
+            </li>
+            <li class="list-group-item">
+                <div class="fw-bold">2. Write It Down</div>
+                <ul>
+                    <li>Morning (3 times): As soon as you wake up, write your goal or affirmation down three times. For example, "I am confident and successful in my studies."</li>
+                    <li>Afternoon (6 times): Around midday, write your goal or affirmation six times. This keeps your mind focused on what you want.</li>
+                    <li>Evening (9 times): Before you go to bed, write your goal or affirmation nine times. This helps imprint it in your subconscious mind.</li>
+                </ul>
+            </li>
+            <li class="list-group-item">
+                <div class="fw-bold">3. Be Consistent</div>
+                Do this every day for at least 21 days. Consistency is key to making this technique work.
+            </li>
+            <li class="list-group-item">
+                <div class="fw-bold">4. Visualize and Feel</div>
+                While writing your goal, visualize achieving it. Feel the emotions you would experience if your goal were already a reality.
+            </li>
+            <li class="list-group-item">
+                <div class="fw-bold">5. Stay Positive</div>
+                Keep a positive attitude and believe in the process. Trust that your goal is on its way to becoming a reality. By following these steps, you can harness the power of the 369 Manifestation Technique to achieve your goals and create positive changes in your life.
+            </li>
+        </ul>
+
+        <div class="habit-input">
+            <label for="habit" class="form-label fw-bold">Enter Your Goal:</label>
+            <input type="text" id="habit" name="habit" placeholder="Enter your habit" class="form-control">
+        </div>
+        <button onclick="start()" class="btn btn-dark w-100 mb-3">Start Progress</button>
+
+        <div class="tracker" id="tracker">
+            <h3 id="habitname" class="fw-bold text-uppercase"></h3>
+            <p id="morningstatus" class="fw-bold text-uppercase"></p>
+            <p id="afternoonstatus" class="fw-bold text-uppercase"></p>
+            <p id="eveningstatus" class="fw-bold text-uppercase"></p>
+            <p id="days" class="fw-bold text-uppercase"></p>
+            <button onclick="updateProgress('morning')" class="btn btn-outline-dark w-100 mb-2">Mark as Done in Morning</button>
+            <button onclick="updateProgress('afternoon')" class="btn btn-outline-dark w-100 mb-2">Mark as Done in Afternoon</button>
+            <button onclick="updateProgress('evening')" class="btn btn-outline-dark w-100 mb-2">Mark as Done in Evening</button>
+            <button onclick="nextDay()" class="btn btn-outline-dark w-100">Next Day</button>
+        </div>
+    </div>
+    <script src="369rule.js"></script>
+</body>
+
+</html>

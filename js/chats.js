@@ -35,16 +35,9 @@ function join() {
 function appendMessage(message) {
     const chatBox = document.querySelector('.chatting-area');
 
-    // Create li element for the message
     const messageElement = document.createElement('li');
-
-    // Apply different classes based on the sender's UID
-   
-    // Create figure element for the user avatar
     const figureElement = document.createElement('figure');
     const imgElement = document.createElement('img');
-    
-    // Update the image source based on sender or receiver
     imgElement.alt = ""; // Set alt attribute if needed
     if (message.sender === localStorage.uid) {
         messageElement.classList.add('me');
@@ -55,18 +48,14 @@ function appendMessage(message) {
     }
     figureElement.appendChild(imgElement);
 
-    // Create p element for the message text
     const pElement = document.createElement('p');
     pElement.textContent = message.text;
 
-    // Append figure and p elements to the message element
     messageElement.appendChild(figureElement);
     messageElement.appendChild(pElement);
 
-    // Append the message element to the chat box
     chatBox.appendChild(messageElement);
 
-    // Scroll to the bottom of the chat box
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 socket.on('previousmessages', (data) => {
