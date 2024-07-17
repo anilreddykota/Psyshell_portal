@@ -22,10 +22,11 @@ body {
 }
 
 div.myvideo > video, div.othervideo > video {
-    width: 35rem;
+    width: 100%;
     border: 4px solid;
     border-radius: 25px;
-    object-fit: contain;
+    object-fit: cover;
+    height: 30rem;
     margin: 2px;
 }
 
@@ -37,12 +38,16 @@ div.othervideo > video {
     border-color: rgb(45, 173, 233);
 }
 
-.call-controls {
+.call-controls,.controls {
     padding: 20px;
     display: flex;
     justify-content: center;
+    gap: 10px;
 }
-
+.controls button{
+    color: white;
+    background-color: #007bff;
+}
 button {
     padding: 10px 20px;
     border: none;
@@ -71,12 +76,4 @@ button.end {
         width: calc(100% - 8px);
         height: auto;
     }
-}
-#reconnect-button {
-    display: none; /* Initially hide reconnect button */
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
 }
